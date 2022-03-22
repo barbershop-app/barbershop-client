@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function Shop() {
-  return (
-    <View>
-      <Text>Shop</Text>
-    </View>
-  )
-}
+const Shop: React.FC = () => (
+  <View>
+    <Text>
+      Shop
+    </Text>
+  </View>
+)
+export default Shop;

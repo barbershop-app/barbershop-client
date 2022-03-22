@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function CustomersAppointments() {
-  return (
-    <View>
-      <Text>CustomersAppointments</Text>
-    </View>
-  )
-}
+const CustomersAppointments: React.FC = () => (
+  <View>
+    <Text>
+      CustomersAppointments
+    </Text>
+  </View>
+)
+export default CustomersAppointments;
