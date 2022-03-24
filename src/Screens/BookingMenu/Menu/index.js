@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
- const Home: React.FC = () => (
+const Menu = () => (
   <View>
     <Text>
-      Home
+      Menu
     </Text>
   </View>
 )
-export default Home;
+export default Menu;

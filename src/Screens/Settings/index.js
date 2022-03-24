@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Auth: React.FC = () => (
+const Settings = () => (
   <View>
     <Text>
-      Auth
+      Settings
     </Text>
   </View>
 )
-export default Auth;
+export default Settings;

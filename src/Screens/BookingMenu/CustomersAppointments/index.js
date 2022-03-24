@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const CustomersAppointments: React.FC = () => (
+const CustomersAppointments = () => (
   <View>
     <Text>
       CustomersAppointments

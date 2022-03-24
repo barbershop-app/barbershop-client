@@ -1,10 +1,11 @@
-import {StyleSheet, Text, TouchableOpacity, View,Image} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
 
 export default function MainButton(props) {
   return (
     <TouchableOpacity
-      style={[{margin:5},
+      style={[
+        {margin: 5},
         props.shadow ? styles.shadow : '',
         {
           borderWidth: props.borderWidth ? props.borderWidth : 0,
@@ -22,25 +23,24 @@ export default function MainButton(props) {
         },
       ]}
       onPress={props.onPressFunction}>
-     {
-         
-         <Text
-         style={{
-           fontWeight: props.bold ? 'bold' : '',
-           padding: 5 + props.width / 8,
-           fontSize: props.fontSize ? props.fontSize : 13,
-           color: props.titleColor ? props.titleColor : 'black',
-           alignSelf: props.textCenter
-             ? 'center'
-             : props.textRight
-             ? 'flex-end'
-             : props.textLeft
-             ? 'flex-start'
-             : 'center',
-         }}>
-         {props.title}
-       </Text>
-     }
+      {
+        <Text
+          style={{
+            fontWeight: props.bold ? 'bold' : '',
+            padding: 5 + props.width / 8,
+            fontSize: props.fontSize ? props.fontSize : 13,
+            color: props.titleColor ? props.titleColor : 'black',
+            alignSelf: props.textCenter
+              ? 'center'
+              : props.textRight
+              ? 'flex-end'
+              : props.textLeft
+              ? 'flex-start'
+              : 'center',
+          }}>
+          {props.title}
+        </Text>
+      }
     </TouchableOpacity>
   );
 }

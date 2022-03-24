@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const About: React.FC = () => (
+const ForgetPassword = () => (
   <View>
     <Text>
-      About
+      ForgetPassword
     </Text>
   </View>
 )
-export default About;
+export default ForgetPassword;

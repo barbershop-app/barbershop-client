@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Gallery: React.FC = () => (
+const SignUp = () => (
   <View>
     <Text>
-      Gallery
+      SignUp
     </Text>
   </View>
 )
-export default Gallery;
+export default SignUp;

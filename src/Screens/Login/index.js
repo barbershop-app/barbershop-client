@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const SignUp: React.FC = () => (
+const Login = () => (
   <View>
     <Text>
-      SignUp
+      Login
     </Text>
   </View>
 )
-export default SignUp;
+export default Login;

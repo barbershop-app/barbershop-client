@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Settings: React.FC = () => (
+const About = () => (
   <View>
     <Text>
-      Settings
+      About
     </Text>
   </View>
 )
-export default Settings;
+export default About;

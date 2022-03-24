@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Menu: React.FC = () => (
+const BookAppointment = () => (
   <View>
     <Text>
-      Menu
+      BookAppointment
     </Text>
   </View>
 )
-export default Menu;
+export default BookAppointment;
