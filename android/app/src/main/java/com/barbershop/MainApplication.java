@@ -1,5 +1,7 @@
 package com.barbershop;
 
+
+import com.facebook.react.modules.network.OkHttpClientProvider;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;

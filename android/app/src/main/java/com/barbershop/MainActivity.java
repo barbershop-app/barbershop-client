@@ -1,6 +1,8 @@
 package com.barbershop;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
+import com.facebook.react.modules.network.OkHttpClientProvider;
+import com.facebook.soloader.SoLoader;
 
 public class MainActivity extends ReactActivity {
 
@@ -16,5 +18,7 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(null);
+  SoLoader.init(this, /* native exopackage */ false);
+  OkHttpClientProvider.setOkHttpClientFactory(new CustomClientFactory()); //add this line.
 }
 }
