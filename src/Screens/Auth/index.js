@@ -17,13 +17,31 @@ const Auth = () => {
   }, [data]);
 
   const handleNextScreen = () => {
-    if (data.phoneNumber.length === 9) {
-      dispatch(resetCode());
-      dispatch(setIsCodeSent());
-      const result = HttpRequest('users', 'create', 'POST', {
-        PhoneNumber: '0' + data.phoneNumber,
-      });
-      console.log(result);
+    if (data.isCodeSent === false) {
+      if (data.phoneNumber.length === 9) {
+        const result = HttpRequest('users/create', 'POST', {
+          PhoneNumber: '0' + data.phoneNumber,
+        });
+        if (result.status === 200) {
+          dispatch(resetCode());
+          dispatch(setIsCodeSent());
+        }
+        console.log(result);
+      }
+    } else {
+      if (data.code.length === 4) {
+        const result = HttpRequest('users/Authenticate', 'POST', {
+          PhoneNumber: '0' + data.phoneNumber,
+          code: data.code,
+        });
+        if (result.status === 200) {
+          console.log(result.data);
+          //save the token in async
+        } else {
+          //! change to alert component
+          console.log(result.status + 'error !');
+        }
+      }
     }
   };
   return (
@@ -38,7 +56,12 @@ const Auth = () => {
           }}>
           Enter your {'\n'}mobile number
         </Text>
-        <Text style={{marginLeft: windowWidth * 0.03, fontSize: 15}}>
+        <Text
+          style={{
+            marginLeft: windowWidth * 0.03,
+            fontSize: 15,
+            color: '#505050',
+          }}>
           {data.isCodeSent
             ? 'we sent it to the number +972 ' + data.phoneNumber
             : 'We will send you confirmation code'}
