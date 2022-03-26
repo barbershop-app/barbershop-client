@@ -10,8 +10,9 @@ export default async function HttpRequest(url, method, data) {
 
   axios({
     method: method,
-    url: 'https://b-shop.online/api/users/create',
+    url: API_URL + url,
     data: data,
+    headers: {Authorization: 'Bearer ' + token}, // ! check this later
   }).then(
     response => {
       return response.data;
