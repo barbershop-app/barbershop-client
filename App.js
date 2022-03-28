@@ -3,6 +3,7 @@ import React from 'react';
 import AppNavContainer from './src/Navigation/index';
 import {Provider} from 'react-redux';
 import store from './src/Redux/store';
+import Home from './src/Screens/Home';
 
 export default function App() {
   return (
@@ -12,7 +13,8 @@ export default function App() {
         barStyle="dark-content"
         hidden={true}
       />
-      <AppNavContainer />
+      {/* <AppNavContainer /> */}
+      <Home />
     </Provider>
   );
 }
