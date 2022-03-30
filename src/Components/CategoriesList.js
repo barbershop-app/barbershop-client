@@ -1,5 +1,5 @@
 import {View, Text, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import CategoriesCard from './CategoriesCard';
 
 const list = [
@@ -25,15 +25,23 @@ const list = [
     categoriesName: 'test',
   },
 ];
-const CategoriesList = () => {
+const CategoriesList = props => {
   return (
     <View style={{marginTop: '5%'}}>
-      <Text style={{fontSize: 13, color: 'black', marginLeft: '5%'}}>
+      <Text
+        style={{
+          fontSize: 13,
+          color: 'black',
+          marginLeft: '5%',
+          fontWeight: 'bold',
+        }}>
         Categories
       </Text>
-      <ScrollView horizontal={true}>
-        {list?.map(item => (
+      <ScrollView horizontal={true} style={{marginLeft: '5%'}}>
+        {list?.map((item, index) => (
           <CategoriesCard
+            navigation={props.navigation}
+            key={index}
             uri={item.uri}
             categoriesName={item.categoriesName}
             quantity={item.quantity}

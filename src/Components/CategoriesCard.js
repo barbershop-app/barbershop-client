@@ -1,11 +1,20 @@
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {windowWidth} from '../Utils/Themes';
+import {CATALOG_PRODUCTS_LIST} from '../Utils/RouteNames';
 
-const CategoriesCard = ({uri, categoriesName, quantity, onPressFunction}) => {
+const CategoriesCard = props => {
+  useEffect(() => {
+    console.log(props.categoriesName);
+  }, []);
   return (
     <TouchableOpacity
-      onPress={onPressFunction}
+      key={props.index}
+      onPress={() =>
+        props.navigation.navigate(CATALOG_PRODUCTS_LIST, {
+          catalogName: props.categoriesName,
+        })
+      }
       style={{
         width: windowWidth * 0.3,
         flexDirection: 'row',
@@ -22,13 +31,13 @@ const CategoriesCard = ({uri, categoriesName, quantity, onPressFunction}) => {
             borderRadius: 25,
           }}
           source={{
-            uri: uri,
+            uri: props.uri,
           }}
         />
       </View>
       <View style={{alignSelf: 'center'}}>
-        <Text style={styles.textStyle}>{categoriesName}</Text>
-        <Text style={styles.textStyle}>{quantity} now</Text>
+        <Text style={styles.textStyle}>{props.categoriesName}</Text>
+        <Text style={styles.textStyle}>{props.quantity} now</Text>
       </View>
       <View></View>
     </TouchableOpacity>

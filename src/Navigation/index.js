@@ -6,8 +6,8 @@ import AuthNavigator from './AuthNavigator';
 export default function AppNavContainer() {
   return (
     <NavigationContainer>
-      {/* <HomeNavigator /> */}
-      <AuthNavigator />
+      <HomeNavigator />
+      {/* <AuthNavigator /> */}
     </NavigationContainer>
   );
 }

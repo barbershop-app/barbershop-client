@@ -20,5 +20,8 @@ export const REGISTER = 'Register';
 export const FORGOTPASSWORD = 'Forgot Password';
 export const SIGNUP = 'SignUp';
 
+//Shop Navigator Screen
+export const CATALOG_PRODUCTS_LIST = 'Catalog Products List';
+
 //About screen
 export const ABOUT = 'About';

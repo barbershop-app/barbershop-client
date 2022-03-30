@@ -13,8 +13,8 @@ export default function App() {
         barStyle="dark-content"
         hidden={true}
       />
-      {/* <AppNavContainer /> */}
-      <Home />
+      <AppNavContainer />
+      {/* <Home /> */}
     </Provider>
   );
 }

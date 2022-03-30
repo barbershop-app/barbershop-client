@@ -5,7 +5,6 @@ const WelcomeWord = props => {
   const [welcomeWord, setWelcomeWord] = useState('Welcome');
   var hours = new Date().getHours() + 3; //To get the Current Hours (new date get utc date thats mean less 3 hours of israel time!)
   useEffect(() => {
-    console.log(hours);
     // * Good Morning (4->10) - Good Afternoon (11->16) - Good Evening (17->20) - Good Night  (21->3)
     if (hours >= 4 && hours <= 10) setWelcomeWord('Good Morning');
     else if (hours >= 11 && hours <= 16) setWelcomeWord('Good AfterNoon');

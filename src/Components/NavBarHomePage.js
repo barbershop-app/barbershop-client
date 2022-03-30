@@ -2,6 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {StatusBar} from 'react-native';
+import {windowHeight, windowWidth} from '../Utils/Themes';
 
 const NavBarHomePage = props => {
   return (
@@ -9,7 +10,10 @@ const NavBarHomePage = props => {
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: StatusBar.currentHeight,
+        top: StatusBar.currentHeight,
+        width: windowWidth,
+        height: windowHeight * 0.06,
+        padding: 5,
       }}>
       <Icon
         name="menu"
