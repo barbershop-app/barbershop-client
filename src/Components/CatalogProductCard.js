@@ -5,7 +5,7 @@ import {windowHeight, windowWidth} from '../Utils/Themes';
 const CatalogProductCard = props => {
   return (
     <TouchableOpacity
-      key={props.key}
+      key={props.index}
       style={{
         margin: 10,
         borderRadius: 15,
@@ -16,7 +16,7 @@ const CatalogProductCard = props => {
         flexDirection: 'row',
       }}>
       <View
-        key={props.key}
+        key={props.index}
         style={{
           borderWidth: 1,
           margin: 5,
