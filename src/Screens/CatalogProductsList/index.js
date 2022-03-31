@@ -46,7 +46,7 @@ const CatalogProductsList = props => {
       {/* <Text>{params.catalogName}</Text> */}
 
       {testItems?.map((item, index) => (
-        <CatalogProductCard key={index} item={item} />
+        <CatalogProductCard key={index} index={index} item={item} />
       ))}
     </View>
   );
