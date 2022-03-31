@@ -7,7 +7,7 @@ const TitleAndArrow = props => {
   return (
     <View
       style={{
-        marginTop: StatusBar.currentHeight + 5,
+        marginTop: StatusBar.currentHeight * 0.5,
       }}>
       <View>
         <Icon
@@ -26,6 +26,7 @@ const TitleAndArrow = props => {
             fontWeight: 'bold',
             position: 'absolute',
             top: -StatusBar.currentHeight,
+            color: 'black',
           }}>
           {props.title}
         </Text>

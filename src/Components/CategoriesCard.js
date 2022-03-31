@@ -16,7 +16,7 @@ const CategoriesCard = props => {
         })
       }
       style={{
-        width: windowWidth * 0.3,
+        width: windowWidth * 0.35,
         flexDirection: 'row',
         borderWidth: 1,
         margin: 5,
@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: 'bold',
     color: '#000',
+    maxWidth: '100%',
+    maxHeight: '50%',
   },
 });
 export default CategoriesCard;

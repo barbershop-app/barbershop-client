@@ -71,7 +71,7 @@ const Home = props => {
       />
       <TextBigBold>Select Your {'\n'} Favorite Products</TextBigBold>
       <CategoriesList navigation={props.navigation} />
-      <SpecialOffersList />
+      <SpecialOffersList navigation={props.navigation} />
       {/* 
     <Search state="useState"/> // ? I Dont Know If Add It Or Not
    

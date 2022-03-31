@@ -1,11 +1,11 @@
 import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
 import SpecialOfferCardProduct from './SpecialOfferCardProduct';
-
+//! get data from db
 const testItems = [
   {
     categoryId: 0,
-    name: 'Perfume You Armani',
+    name: 'test test test',
     price: 250,
     isAvailable: true,
     onSale: true,
@@ -35,7 +35,7 @@ const testItems = [
   },
 ];
 
-const SpecialOffersList = () => {
+const SpecialOffersList = props => {
   return (
     <View>
       <Text
@@ -50,7 +50,12 @@ const SpecialOffersList = () => {
       </Text>
       <ScrollView horizontal={true} style={{marginLeft: '5%'}}>
         {testItems?.map((e, index) => (
-          <SpecialOfferCardProduct item={e} key={index} />
+          <SpecialOfferCardProduct
+            navigation={props.navigation}
+            key={index + 'KeyIndex'}
+            item={e}
+            index={index}
+          />
         ))}
       </ScrollView>
     </View>

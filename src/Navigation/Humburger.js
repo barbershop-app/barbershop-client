@@ -26,7 +26,9 @@ export function Humburger(props) {
   );
 
   return (
-    <LinearGradient style={{flex: 1}} colors={['#D5BE2A', '#D5BE2A', 'white']}>
+    <LinearGradient
+      style={{flex: 1}}
+      colors={['gray', '#D5BE2A', '#D5BE2A', '#D5BE2A', 'white']}>
       <DrawerContentScrollView {...props}>
         <Image
           style={{

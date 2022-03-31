@@ -1,11 +1,13 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {windowHeight, windowWidth} from '../Utils/Themes';
+import {PRODUCT_PAGE} from '../Utils/RouteNames';
 
 const SpecialOfferCardProduct = props => {
+  console.log(props.index);
   return (
     <TouchableOpacity
-      key={props.key}
+      onPress={() => props.navigation.navigate(PRODUCT_PAGE, props.item)}
       style={{
         borderWidth: 1,
         margin: 5,
@@ -14,7 +16,6 @@ const SpecialOfferCardProduct = props => {
         height: windowHeight * 0.2,
       }}>
       <View
-        key={props.key}
         style={{
           borderWidth: 1,
           margin: 5,
@@ -23,6 +24,7 @@ const SpecialOfferCardProduct = props => {
           borderRadius: 15,
         }}>
         <Image
+          alt={props.index + '_IMG'}
           style={{
             width: '100%',
             height: 80,
@@ -33,7 +35,7 @@ const SpecialOfferCardProduct = props => {
         />
       </View>
       <View style={{alignSelf: 'center'}}>
-        <Text style={{fontSize: 13, fontWeight: 'bold'}}>
+        <Text style={{fontSize: 13, fontWeight: 'bold', color: 'black'}}>
           {props.item.name.substr(0, 12)}..
         </Text>
         <Text style={{fontSize: 13, fontWeight: 'bold', color: 'black'}}>

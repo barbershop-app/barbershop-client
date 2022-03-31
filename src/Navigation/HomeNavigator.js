@@ -8,6 +8,7 @@ import {
   GALLERY,
   HOME,
   MY_APPOINTMENTS,
+  PRODUCT_PAGE,
   SETTINGS,
   SHOP,
 } from '../Utils/RouteNames';
@@ -21,6 +22,7 @@ import {Humburger} from './Humburger';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyAppointment from '../Screens/BookingMenu/MyAppointment';
 import CatalogProductsList from '../Screens/CatalogProductsList';
+import ProductPage from '../Screens/ProductPage';
 
 const Drawer = createDrawerNavigator();
 
@@ -38,6 +40,7 @@ export default function HomeNavigator() {
         name={CATALOG_PRODUCTS_LIST}
         component={CatalogProductsList}
       />
+      <Drawer.Screen name={PRODUCT_PAGE} component={ProductPage} />
       <Drawer.Screen name={GALLERY} component={Gallery} />
       <Drawer.Screen name={SETTINGS} component={Settings} />
       <Drawer.Screen name={SHOP} component={Shop} />

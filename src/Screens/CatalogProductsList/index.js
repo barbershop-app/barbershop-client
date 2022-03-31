@@ -45,8 +45,8 @@ const CatalogProductsList = props => {
       <TitleAndArrow navigation={props.navigation} title={params.catalogName} />
       {/* <Text>{params.catalogName}</Text> */}
 
-      {testItems?.map(e => (
-        <CatalogProductCard item={e} />
+      {testItems?.map((item, index) => (
+        <CatalogProductCard key={index + '_ProdKey'} item={item} />
       ))}
     </View>
   );

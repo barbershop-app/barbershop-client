@@ -51,7 +51,9 @@ const CatalogProductCard = props => {
             fontWeight: 'bold',
             position: 'absolute',
             bottom: 0,
-            right: '20%',
+            // left: '20%',
+            right: '8%',
+            color: 'black',
           }}>
           ${props.item.price.toFixed(2)}{' '}
         </Text>

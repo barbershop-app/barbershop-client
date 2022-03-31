@@ -22,6 +22,7 @@ export const SIGNUP = 'SignUp';
 
 //Shop Navigator Screen
 export const CATALOG_PRODUCTS_LIST = 'Catalog Products List';
+export const PRODUCT_PAGE = 'Product Page';
 
 //About screen
 export const ABOUT = 'About';

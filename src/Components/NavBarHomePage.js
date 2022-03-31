@@ -10,7 +10,7 @@ const NavBarHomePage = props => {
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        top: StatusBar.currentHeight,
+        top: StatusBar.currentHeight * 0.5,
         width: windowWidth,
         height: windowHeight * 0.06,
         padding: 5,
