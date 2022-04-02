@@ -6,6 +6,7 @@ import DualButton from '../../Components/DualButton';
 import {windowWidth} from '../../Utils/Themes';
 import CategoriesList from '../../Components/CategoriesList';
 import SpecialOffersList from '../../Components/SpecialOffersList';
+import {CART} from '../../Utils/RouteNames';
 
 const TextBigBold = ({children}) => (
   <Text
@@ -29,7 +30,7 @@ const Home = props => {
           props.navigation.openDrawer();
         }}
         onPressCart={() => {
-          console.log('clicked shop');
+          props.navigation.navigate(CART);
         }}
       />
       <WelcomeWord name="Mosaab" />

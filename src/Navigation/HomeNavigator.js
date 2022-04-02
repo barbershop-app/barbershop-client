@@ -11,6 +11,7 @@ import {
   PRODUCT_PAGE,
   SETTINGS,
   SHOP,
+  CART,
 } from '../Utils/RouteNames';
 import Home from '../Screens/Home';
 import About from '../Screens/About';
@@ -23,6 +24,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyAppointment from '../Screens/BookingMenu/MyAppointment';
 import CatalogProductsList from '../Screens/CatalogProductsList';
 import ProductPage from '../Screens/ProductPage';
+import Cart from '../Screens/Cart';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,6 +38,7 @@ export default function HomeNavigator() {
       <Drawer.Screen name={ABOUT} component={About} />
       <Drawer.Screen name={BOOK_APPOINTMENT} component={BookAppointment} />
       <Drawer.Screen name={MY_APPOINTMENTS} component={MyAppointment} />
+      <Drawer.Screen name={CART} component={Cart} />
       <Drawer.Screen
         name={CATALOG_PRODUCTS_LIST}
         component={CatalogProductsList}
