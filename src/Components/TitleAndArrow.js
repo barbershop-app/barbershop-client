@@ -8,6 +8,8 @@ const TitleAndArrow = props => {
     <View
       style={{
         marginTop: StatusBar.currentHeight * 0.5,
+        flexDirection:'row',
+        justifyContent:'space-around'
       }}>
       <View>
         <Icon
@@ -15,7 +17,7 @@ const TitleAndArrow = props => {
           size={35}
           color="black"
           onPress={() => props.navigation.goBack()}
-          style={{}}
+          style={{marginLeft:-15}}
         />
       </View>
 
@@ -24,13 +26,12 @@ const TitleAndArrow = props => {
           style={{
             fontSize: 25,
             fontWeight: 'bold',
-            position: 'absolute',
-            top: -StatusBar.currentHeight,
             color: 'black',
           }}>
           {props.title}
         </Text>
       </View>
+      <View></View>
     </View>
   );
 };

@@ -2,23 +2,13 @@ import {View, Text, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import CartProductQuantity from './CartProductQuantity';
+
 const ProductCartCard = props => {
-  const [quantity, setQuantity] = useState(1);
-  useEffect(() => {
-    setQuantity(props.item.quantity);
-  }, []);
-
   const changeQuantity = (method, itemId) => {
-    method
-      ? setQuantity(quantity + 1)
-      : quantity === 1
-      ? null
-      : setQuantity(quantity - 1);
-
     //* send to mycartcomponent update by id
     props.changeQuantity(
       itemId,
-      quantity + (method ? 1 : quantity === 1 ? 0 : -1),
+      props.item.quantity + (method ? 1 : props.item.quantity === 1 ? 0 : -1),
     );
   };
 
@@ -54,7 +44,7 @@ const ProductCartCard = props => {
           }}>
           {props.item.name}
         </Text>
-        {props.item.onSale ? (
+        {props.item.onSale && props.item.onSalePercentage > 0 ? (
           <Text
             style={{
               fontSize: 18,
@@ -81,13 +71,13 @@ const ProductCartCard = props => {
             ? (
                 props.item.price -
                 (props.item.price / 100) * props.item.onSalePercentage
-              ).toFixed(2) 
+              ).toFixed(2)
             : props.item.price.toFixed(2)}{' '}
         </Text>
       </View>
       <CartProductQuantity
         itemId={props.item.id}
-        quantity={quantity}
+        quantity={props.item.quantity}
         removeItem={id => props.removeItem(id)}
         changeQuantity={(method, itemId) => changeQuantity(method, itemId)}
       />

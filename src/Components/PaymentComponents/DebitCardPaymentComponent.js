@@ -1,10 +1,11 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/AntDesign';
+import { CART_SELECT_PAYMENT } from '../../Utils/RouteNames';
 
 const DebitCardPaymentComponent = (props) => {
   return (
-    <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-between',marginTop:"5%",width:"90%",alignSelf:'center'}}>
+    <TouchableOpacity  onPress={() => props.navigation.navigate(CART_SELECT_PAYMENT)} style={{flexDirection:'row',justifyContent:'space-between',marginTop:"5%",width:"90%",alignSelf:'center'}}>
     <View style={{flexDirection:'row'}}>
     <View style={{borderWidth:1,borderRadius:15,padding:5,marginRight:15}}>
 
@@ -32,7 +33,7 @@ const DebitCardPaymentComponent = (props) => {
     name="right"
     size={30}
     color="black"
-    onPress={() => props.navigation.navigate('someplace')}
+
     style={{alignSelf:'center'}}
   />
   </TouchableOpacity>

@@ -2,6 +2,8 @@ import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
 
 export default function MainButton(props) {
+  //* shadow borderWidth borderColor borderRadius alignSelf color(textColor)
+  //!width title onPressFunction
   return (
     <TouchableOpacity
       style={[

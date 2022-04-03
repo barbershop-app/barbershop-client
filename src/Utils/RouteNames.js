@@ -1,7 +1,6 @@
 export const SHOP = 'Shop';
 export const ITEM = 'Item';
 export const ITEM_UPDATE = 'ItemUpdate';
-export const CART = 'Cart';
 export const HOME = 'Home';
 export const GALLERY = 'Gallery';
 export const SETTINGS = 'Settings';
@@ -26,3 +25,7 @@ export const PRODUCT_PAGE = 'Product Page';
 
 //About screen
 export const ABOUT = 'About';
+
+//Cart
+export const CART = 'Cart';
+export const CART_SELECT_PAYMENT = 'cart Select Payment';

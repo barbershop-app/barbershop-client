@@ -12,6 +12,7 @@ import {
   SETTINGS,
   SHOP,
   CART,
+  CART_SELECT_PAYMENT,
 } from '../Utils/RouteNames';
 import Home from '../Screens/Home';
 import About from '../Screens/About';
@@ -25,6 +26,8 @@ import MyAppointment from '../Screens/BookingMenu/MyAppointment';
 import CatalogProductsList from '../Screens/CatalogProductsList';
 import ProductPage from '../Screens/ProductPage';
 import Cart from '../Screens/Cart';
+import PaymentMethod from '../Components/PaymentMethod';
+import PaymentMethodSelect from '../Screens/PaymentMethodSelect';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,6 +42,7 @@ export default function HomeNavigator() {
       <Drawer.Screen name={BOOK_APPOINTMENT} component={BookAppointment} />
       <Drawer.Screen name={MY_APPOINTMENTS} component={MyAppointment} />
       <Drawer.Screen name={CART} component={Cart} />
+      <Drawer.Screen name={CART_SELECT_PAYMENT} component={PaymentMethodSelect} />
       <Drawer.Screen
         name={CATALOG_PRODUCTS_LIST}
         component={CatalogProductsList}
