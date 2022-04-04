@@ -4,9 +4,6 @@ import {windowWidth} from '../Utils/Themes';
 import {CATALOG_PRODUCTS_LIST} from '../Utils/RouteNames';
 
 const CategoriesCard = props => {
-  useEffect(() => {
-    console.log(props.categoriesName);
-  }, []);
   return (
     <TouchableOpacity
       key={props.index}

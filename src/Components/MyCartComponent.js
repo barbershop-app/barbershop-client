@@ -9,7 +9,6 @@ const MyCartComponent = props => {
   };
 
   const removeItem = id => {
-    console.log(id);
     props.removeItem(id);
   };
   return (

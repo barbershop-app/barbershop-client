@@ -12,6 +12,7 @@ import HttpRequest from '../../config/API/axios';
 const Auth = () => {
   const data = useSelector(state => state.dial);
   const dispatch = useDispatch();
+
   useEffect(() => {
     console.log(data);
   }, [data]);

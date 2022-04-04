@@ -11,7 +11,6 @@ const DialSlice = createSlice({
     setDial(state, {payload}) {
       // * Checks if phoneNumber is not empty and the sent value is  not 0
       if (!(state.phoneNumber.length === 0 && payload.value == '0')) {
-        console.log(state.phoneNumber.length);
         if (payload.value !== 'icon' && state.phoneNumber.length < 9)
           state.phoneNumber += payload.value;
         else if (payload.value === 'icon')

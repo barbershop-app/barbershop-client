@@ -6,6 +6,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import PaymentIcon from '../../Components/PaymentIcon';
 import MainButton from '../../Components/MainButton';
 import CashForm from '../../Components/PaymentComponents/CashForm';
+import MainInputText from '../../Components/MainInputText';
+import {windowWidth} from '../../Utils/Themes';
+import CardForm from '../../Components/PaymentComponents/CardForm';
+import {setMethod} from '../../Redux/Slices/paymentSlice';
+import {CART} from '../../Utils/RouteNames';
 
 const PaymentMethodSelect = props => {
   const data = useSelector(state => state.dial);
@@ -51,6 +56,15 @@ const PaymentMethodSelect = props => {
       ),
     );
   };
+  //onClickConfirm
+  const handleFunction = () => {
+    if (paymentMethod !== null) {
+      dispatch(
+        setMethod({type: {method: paymentMethod, visaDigits: cardNumber}}),
+      );
+      props.navigation.navigate(CART);
+    }
+  };
   //get Selected One
   const getSelectedMethodName = () => {
     let flag = null;
@@ -89,6 +103,7 @@ const PaymentMethodSelect = props => {
             opacity: 0.3,
             marginTop: 15,
             marginBottom: 15,
+            alignSelf: 'center',
           }}
         />
         {paymentMethod === null ? (
@@ -101,9 +116,10 @@ const PaymentMethodSelect = props => {
         ) : paymentMethod === 'cash' ? (
           <CashForm imageSource={paymentArr[0].imageSource} />
         ) : paymentMethod === 'creditCard' ? (
-          <Text>credit Card</Text>
+          <CardForm method={'creditCard'} setCardNumber={setCardNumber} />
         ) : paymentMethod === 'debitCard' ? (
-          <Text>debit Card</Text>
+          //setOnChangeText
+          <CardForm method={'debitCard'} setCardNumber={setCardNumber} />
         ) : (
           <></>
         )}
@@ -115,6 +131,8 @@ const PaymentMethodSelect = props => {
             alignSelf: 'center',
           }}>
           <MainButton
+            onPressFunction={handleFunction}
+            disabled={paymentMethod === null}
             width={100}
             title={'Confirm'}
             borderWidth={1}

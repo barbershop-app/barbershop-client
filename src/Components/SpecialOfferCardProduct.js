@@ -4,7 +4,6 @@ import {windowHeight, windowWidth} from '../Utils/Themes';
 import {PRODUCT_PAGE} from '../Utils/RouteNames';
 
 const SpecialOfferCardProduct = props => {
-  console.log(props.index);
   return (
     <TouchableOpacity
       onPress={() => props.navigation.navigate(PRODUCT_PAGE, props.item)}

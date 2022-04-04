@@ -3,22 +3,27 @@ import {createSlice} from '@reduxjs/toolkit';
 const PaymentSlice = createSlice({
   name: 'payment',
   initialState: {
-    method: 'creditCard',
-    visaLast4Digits: '5555',
+    method: '',
+    visaLast4Digits: '',
   },
   reducers: {
     setMethod(state, {type, payload}) {
-      switch (payload.method) {
+      switch (payload.type.method) {
         case 'debitCard':
           state.method = 'debitCard';
-          state.visaLast4Digits = payload.visaLast4Digits;
+          state.visaLast4Digits = payload.type.visaDigits.slice(
+            payload.type.visaDigits.length - 4,
+          );
           break;
         case 'creditCard':
           state.method = 'creditCard';
-          state.visaLast4Digits = payload.visaLast4Digits;
+          state.visaLast4Digits = payload.type.visaDigits.slice(
+            payload.type.visaDigits.length - 4,
+          );
           break;
         case 'cash':
           state.method = 'cash';
+          break;
         default:
           state.method = null;
           state.visaLast4Digits = null;

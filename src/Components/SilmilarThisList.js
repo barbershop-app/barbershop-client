@@ -97,8 +97,7 @@ const testItems = [
 const SilmilarThisList = props => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    //! get all products from catagory
-    console.log(props.catagoryId);
+    //! get all products from catagory - props.catagoryId
     setData(testItems);
   }, []);
   return (

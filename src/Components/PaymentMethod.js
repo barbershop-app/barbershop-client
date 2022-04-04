@@ -1,43 +1,46 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
-import { useSelector} from 'react-redux';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
 import SelectPayment from './PaymentComponents/SelectPayment';
 import CashPaymentComponent from './PaymentComponents/CashPaymentComponent';
 import DebitCardPaymentComponent from './PaymentComponents/DebitCardPaymentComponent';
 import OrderInfo from './OrderInfo';
 
-
-const PaymentMethod = (props) => {
+const PaymentMethod = props => {
   const data = useSelector(state => state.payment);
-  useEffect(() => {
-    console.log("data : " +  data.method);
-  }, [data]);
   return (
     <View>
-         <Text
+      <Text
         style={{
           fontSize: 20,
           color: 'black',
           fontWeight: 'bold',
           marginTop: '5%',
           marginLeft: '5%',
-         
-        }}>Payment Method</Text>
-        {data.method === "debitCard"?
-          <DebitCardPaymentComponent method={data.method}  digits={data.visaLast4Digits} navigation={props.navigation}/>
-          :
-          data.method === "creditCard"?
-          <DebitCardPaymentComponent method={data.method} digits={data.visaLast4Digits} navigation={props.navigation}/>
-          :
-          data.method === "cash"?
-          <CashPaymentComponent navigation={props.navigation}/>:
-          <SelectPayment navigation={props.navigation}/>
-          }
-        <View>
-        </View>
+        }}>
+        Payment Method
+      </Text>
+      {data.method === 'debitCard' ? (
+        <DebitCardPaymentComponent
+          method={data.method}
+          digits={data.visaLast4Digits}
+          navigation={props.navigation}
+        />
+      ) : data.method === 'creditCard' ? (
+        <DebitCardPaymentComponent
+          method={data.method}
+          digits={data.visaLast4Digits}
+          navigation={props.navigation}
+        />
+      ) : data.method === 'cash' ? (
+        <CashPaymentComponent navigation={props.navigation} />
+      ) : (
+        <SelectPayment navigation={props.navigation} />
+      )}
+      <View></View>
     </View>
-  )
-}
+  );
+};
 
-export default PaymentMethod
+export default PaymentMethod;

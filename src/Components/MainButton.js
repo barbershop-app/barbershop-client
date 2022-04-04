@@ -6,6 +6,7 @@ export default function MainButton(props) {
   //!width title onPressFunction
   return (
     <TouchableOpacity
+      disabled={props.disabled}
       style={[
         {margin: 5, justifyContent: 'center'},
         props.shadow ? styles.shadow : '',
