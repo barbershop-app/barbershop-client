@@ -8,40 +8,76 @@ import MainButton from '../../Components/MainButton';
 import TermsAndPolicy from '../../Components/TermsAndPolicy';
 import {resetCode, setIsCodeSent} from '../../Redux/Slices/dialSlice';
 import HttpRequest from '../../config/API/axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AwesomeAlert from 'react-native-awesome-alerts';
+import AlertOneButton from '../../Components/AlertOneButton';
+import {setUser} from '../../Redux/Slices/userSlice';
+import {setApp, setLoginIn} from '../../Redux/Slices/appSlice';
 
-const Auth = () => {
-  const data = useSelector(state => state.dial);
+const Auth = props => {
+  const dialData = useSelector(state => state.dial);
+  const userData = useSelector(state => state.user);
+
   const dispatch = useDispatch();
+  const [alertData, setAlertData] = useState({
+    title: '',
+    message: '',
+    showAlert: false,
+  });
+  useEffect(() => {
+    console.log(dialData);
+  }, [dialData]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    console.log(userData);
+  }, [userData]);
 
-  const handleNextScreen = () => {
-    if (data.isCodeSent === false) {
-      if (data.phoneNumber.length === 9) {
-        const result = HttpRequest('users/create', 'POST', {
-          PhoneNumber: '0' + data.phoneNumber,
+  const handleNextScreen = async () => {
+    if (dialData.isCodeSent === false) {
+      if (dialData.phoneNumber.length === 9) {
+        const result = await HttpRequest('users/create', 'POST', {
+          PhoneNumber: '0' + dialData.phoneNumber,
         });
+        // console.log(result);
+
         if (result.status === 200) {
           dispatch(resetCode());
           dispatch(setIsCodeSent());
         }
-        console.log(result);
+      } else {
+        setAlertData({
+          title: 'Incorrect Format Number Phone!',
+          message: 'Please Try Again',
+          showAlert: true,
+        });
       }
     } else {
-      if (data.code.length === 4) {
-        const result = HttpRequest('users/Authenticate', 'POST', {
-          PhoneNumber: '0' + data.phoneNumber,
-          code: data.code,
+      if (dialData.code.length === 4) {
+        const result = await HttpRequest('users/Authenticate', 'POST', {
+          PhoneNumber: '0' + dialData.phoneNumber,
+          code: dialData.code,
         });
         if (result.status === 200) {
-          console.log(result.data);
-          //save the token in async
+          await AsyncStorage.setItem(
+            'barbershop',
+            JSON.stringify(result.data),
+          ).then(async () => {
+            dispatch(setUser(result.data));
+            dispatch(setLoginIn({isLoggedIn: true}));
+          });
         } else {
-          //! change to alert component
-          console.log(result.status + 'error !');
+          setAlertData({
+            title: 'Incorrect Code!',
+            message: 'Please Try Again',
+            showAlert: true,
+          });
         }
+      } else {
+        setAlertData({
+          title: 'Incorrect Code!',
+          message: 'Please Try Again',
+          showAlert: true,
+        });
       }
     }
   };
@@ -63,8 +99,8 @@ const Auth = () => {
             fontSize: 15,
             color: '#505050',
           }}>
-          {data.isCodeSent
-            ? 'we sent it to the number +972 ' + data.phoneNumber
+          {dialData.isCodeSent
+            ? 'we sent it to the number +972 ' + dialData.phoneNumber
             : 'We will send you confirmation code'}
         </Text>
         <View style={{flexDirection: 'row'}}>
@@ -76,7 +112,7 @@ const Auth = () => {
               marginLeft: windowWidth * 0.1,
               color: '#D5BE2A',
             }}>
-            {data.isCodeSent ? '' : '+972'}
+            {dialData.isCodeSent ? '' : '+972'}
           </Text>
           <Text
             style={{
@@ -86,18 +122,21 @@ const Auth = () => {
               color: '#505050',
             }}>
             {' '}
-            {(data.isCodeSent ? data.code : data.phoneNumber) + '|'}
+            {(dialData.isCodeSent ? dialData.code : dialData.phoneNumber) + '|'}
           </Text>
         </View>
         <Dial />
         <MainButton
           onPressFunction={() => handleNextScreen()}
           width={80}
-          title={data.isCodeSent ? 'Enter' : 'Next'}
+          title={dialData.isCodeSent ? 'Enter' : 'Next'}
           center
         />
         <TermsAndPolicy />
       </MainCard>
+
+      {/* alerts */}
+      <AlertOneButton alertData={alertData} setAlertData={setAlertData} />
     </View>
   );
 };

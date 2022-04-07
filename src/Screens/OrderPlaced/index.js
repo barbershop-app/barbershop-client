@@ -1,32 +1,19 @@
-import {View, Text, Image} from 'react-native';
-import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import HttpRequest from '../../config/API/axios';
-import {useDispatch} from 'react-redux';
-import {setUser} from '../../Redux/Slices/userSlice';
-import {setLoginIn} from '../../Redux/Slices/appSlice';
-import {AUTH, HOME} from '../../Utils/RouteNames';
+import {windowHeight} from '../../Utils/Themes';
+import {HOME} from '../../Utils/RouteNames';
 
-export default function Splash({navigation}) {
-  const dispatch = useDispatch();
+const OrderPlaced = props => {
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    // console.log(JSON.parse(data).token);
-    HttpCall();
-  });
-
-  const HttpCall = async () => {
-    const result = await HttpRequest('users/IsLoggedIn', 'GET', '');
-    console.log(result.status);
     setTimeout(() => {
-      if (result.status === 200) {
-        dispatch(setUser(result.data));
-        dispatch(setLoginIn({isLoggedIn: true}));
-      } else {
-        AsyncStorage.removeItem('barbershop');
-      }
-    }, 1500);
-  };
+      setLoading(false);
+      setTimeout(() => {
+        props.navigation.navigate(HOME);
+      }, 2000);
+    }, 5000);
+  }, []);
   return (
     <View
       style={{
@@ -37,12 +24,14 @@ export default function Splash({navigation}) {
         justifyContent: 'center',
       }}>
       <View>
-        <Animatable.View animation={animation_0} iterationCount={'infinite'}>
+        <Animatable.View
+          animation={loading ? animation_0 : animation_1}
+          iterationCount={'infinite'}>
           <Image
             style={{
               width: 60,
               height: 100,
-              transform: [{rotate: '90deg'}],
+              transform: [{rotate: loading ? '90deg' : '0deg'}],
             }}
             source={{
               uri: 'https://www.pikpng.com/pngl/b/91-919025_barber-shears-png-hair-salon-scissors-png-clipart.png',
@@ -54,17 +43,17 @@ export default function Splash({navigation}) {
         animation="swing"
         iterationCount={'infinite'}
         style={{
-          color: 'black',
+          color: loading ? 'black' : 'green',
           fontWeight: 'bold',
           fontSize: 15,
           marginTop: 10,
         }}
         direction="alternate">
-        {'Loading...'}
+        {loading ? 'Loading...' : 'Order Placed!'}
       </Animatable.Text>
     </View>
   );
-}
+};
 
 const animation_0 = {
   0: {
@@ -88,3 +77,25 @@ const animation_0 = {
     marginLeft: 250,
   },
 };
+const animation_1 = {
+  0: {
+    opacity: 0,
+    marginTop: 0,
+  },
+  0.2: {
+    opacity: 0.3,
+    marginTop: 10,
+  },
+  0.8: {
+    opacity: 0.5,
+    marginTop: 5,
+  },
+  1: {
+    opacity: 1,
+    marginTop: 0,
+  },
+};
+
+const styles = StyleSheet.create({});
+
+export default OrderPlaced;

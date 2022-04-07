@@ -36,13 +36,17 @@ export default function HomeNavigator() {
     <Drawer.Navigator
       screenOptions={{headerShown: false}}
       drawerContent={props => <Humburger {...props} />}
-      initialRouteName={HOME}>
+      initialRouteName={HOME}
+      theme={{colors: {background: '#D5BE2A'}}}>
       <Drawer.Screen name={HOME} component={Home} />
       <Drawer.Screen name={ABOUT} component={About} />
       <Drawer.Screen name={BOOK_APPOINTMENT} component={BookAppointment} />
       <Drawer.Screen name={MY_APPOINTMENTS} component={MyAppointment} />
       <Drawer.Screen name={CART} component={Cart} />
-      <Drawer.Screen name={CART_SELECT_PAYMENT} component={PaymentMethodSelect} />
+      <Drawer.Screen
+        name={CART_SELECT_PAYMENT}
+        component={PaymentMethodSelect}
+      />
       <Drawer.Screen
         name={CATALOG_PRODUCTS_LIST}
         component={CatalogProductsList}

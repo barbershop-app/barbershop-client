@@ -18,6 +18,7 @@ export const LOGIN = 'Login';
 export const REGISTER = 'Register';
 export const FORGOTPASSWORD = 'Forgot Password';
 export const SIGNUP = 'SignUp';
+export const SPLASH = 'Splash';
 
 //Shop Navigator Screen
 export const CATALOG_PRODUCTS_LIST = 'Catalog Products List';

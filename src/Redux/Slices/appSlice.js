@@ -1,22 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit"
+import {createSlice} from '@reduxjs/toolkit';
 
 const AppSlice = createSlice({
-  name: "app",
+  name: 'app',
   initialState: {
-    isLoggedIn:false,
-    isLoading:false
+    isLoggedIn: false,
+    isLoading: false,
   },
   reducers: {
-    setApp(state, {type,payload}) {
-      if (payload.isLoggedIn != null)
-      state.isLoggedIn = payload.isLoggedIn;
+    setLoginIn(state, {type, payload}) {
+      if (payload.isLoggedIn != null) state.isLoggedIn = payload.isLoggedIn;
+    },
+    setLoading(state, {type, payload}) {
+      if (payload.isLoading != null) state.isLoading = payload.isLoading;
+    },
+  },
+});
 
-      if (payload.isLoading != null)
-      state.isLoading = payload.isLoading;
-
-    }
-  }
-})
-
-export const { setApp } = AppSlice.actions
-export default AppSlice.reducer
+export const {setLoginIn, setLoading} = AppSlice.actions;
+export default AppSlice.reducer;

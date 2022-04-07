@@ -1,37 +1,28 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-
-
-
-const initialState = {
-    id: 0,
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    createDate: '',
-    isActive: false
-}
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 export const UserSlice = createSlice({
   name: 'create',
   // `createSlice` will infer the state type from the `initialState` argument
-  initialState,
+  initialState: {
+    id: null,
+    isAdmin: false,
+    firstName: null,
+    lastName: null,
+    token: null,
+  },
   reducers: {
-    setUserName: (state, action) => {
-      state.id =  action.payload,
-      state.firstName= action.payload,
-      state.lastName= action.payload,
-      state.phoneNumber= action.payload,
-      state.createDate= action.payload,
-      state.isActive= action.payload
-      state = action.payload // mutate the state all you want with immer
-    }
-  }
-})
+    setUser(state, {type, payload}) {
+      state.id = payload.id;
+      state.isAdmin = payload.isAdmin;
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
+      state.token = payload.token;
+    },
+  },
+});
 
-export const { setUserName } = UserSlice.actions
+export const {setUser} = UserSlice.actions;
+export default UserSlice.reducer;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectUser = (state) => state.user
-
-export default UserSlice.reducer
+//* export const selectUser = (state) => state.user

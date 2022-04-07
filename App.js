@@ -4,6 +4,9 @@ import AppNavContainer from './src/Navigation/index';
 import {Provider} from 'react-redux';
 import store from './src/Redux/store';
 import Home from './src/Screens/Home';
+import OrderPlaced from './src/Screens/OrderPlaced';
+import Intro from './src/Screens/Intro';
+import Splash from './src/Screens/Splash';
 
 export default function App() {
   return (
@@ -14,7 +17,6 @@ export default function App() {
         hidden={true}
       />
       <AppNavContainer />
-      {/* <Home /> */}
     </Provider>
   );
 }
