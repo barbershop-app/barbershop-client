@@ -18,7 +18,7 @@ import {
 import Home from '../Screens/Home';
 import About from '../Screens/About';
 import BookAppointment from '../Screens/BookingMenu/BookAppointment';
-import Gallery from '../Screens/Gallery';
+
 import Settings from '../Screens/Settings';
 import Shop from '../Screens/Shop';
 import {Humburger} from './Humburger';
@@ -55,7 +55,6 @@ export default function HomeNavigator() {
         component={CatalogProductsList}
       />
       <Drawer.Screen name={PRODUCT_PAGE} component={ProductPage} />
-      <Drawer.Screen name={GALLERY} component={Gallery} />
       <Drawer.Screen name={SETTINGS} component={Settings} />
       <Drawer.Screen name={SHOP} component={Shop} />
     </Drawer.Navigator>

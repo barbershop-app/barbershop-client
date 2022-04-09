@@ -6,21 +6,29 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Images, windowHeight, windowWidth} from '../Utils/Themes';
 import {
   ABOUT,
+  AUTH,
   BOOK_APPOINTMENT,
   HOME,
   MY_APPOINTMENTS,
   SETTINGS,
   SHOP,
+  SPLASH,
 } from '../Utils/RouteNames';
+import {useDispatch} from 'react-redux';
+import {setLoginIn} from '../Redux/Slices/appSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {resetData} from '../Redux/Slices/dialSlice';
 
 export function Humburger(props) {
-  const DrawerItemWithNavigationTop = ({icon, navigate, label}) => (
+  const dispatch = useDispatch();
+  const DrawerItemWithNavigationTop = ({onPress, icon, navigate, label}) => (
     <DrawerItem
       labelStyle={{fontWeight: 'bold'}}
       icon={({color, size}) => <Icon name={icon} color={color} size={size} />}
       label={label}
       onPress={() => {
-        props.navigation.navigate(navigate);
+        navigate === null ? null : props.navigation.navigate(navigate);
+        onPress();
       }}
     />
   );
@@ -75,8 +83,14 @@ export function Humburger(props) {
       <View style={styles.bottomDrawerSection}>
         <DrawerItemWithNavigationTop
           label="Sign Out"
-          navigate={'Soon'}
+          navigate={null}
           icon={'logout'}
+          onPress={() => {
+            dispatch(setLoginIn({isLoggedIn: false}));
+            dispatch(resetData());
+
+            AsyncStorage.removeItem('barbershop');
+          }}
         />
       </View>
     </LinearGradient>
