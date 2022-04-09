@@ -5,6 +5,13 @@ import MyCartComponent from '../../Components/MyCartComponent';
 import PaymentMethod from '../../Components/PaymentMethod';
 import OrderInfo from '../../Components/OrderInfo';
 import MainButton from '../../Components/MainButton';
+import {
+  changeQuantityAsyncStorage,
+  getCartList,
+  removeCartItem,
+} from '../../Utils/StaticFunctions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CART_ORDER_PLACED} from '../../Utils/RouteNames';
 
 const tempData = [
   {
@@ -51,7 +58,9 @@ const Cart = props => {
 
   useEffect(() => {
     //get from asyncstorage
-    setData(tempData);
+    AsyncStorage.getItem('cart-list').then(data => {
+      setData(JSON.parse(data));
+    });
   }, []);
 
   useEffect(() => {
@@ -68,14 +77,17 @@ const Cart = props => {
 
   const removeItem = id => {
     setData(data?.filter(e => e.id !== id));
+    removeCartItem(id);
   };
 
-  const changeQuantity = (id, newQuantity) =>
+  const changeQuantity = (id, newQuantity) => {
     setData(
       data?.map(item =>
         item.id === id ? {...item, quantity: newQuantity} : item,
       ),
     );
+    changeQuantityAsyncStorage(id, newQuantity);
+  };
 
   return (
     <View>
@@ -90,6 +102,7 @@ const Cart = props => {
       <OrderInfo totalPrice={total} shippingFee={0} />
       <View style={{marginTop: 15}}>
         <MainButton
+          disabled={total === 0}
           borderRadius={20}
           fontSize={15}
           borderWidth={0.5}
@@ -98,6 +111,10 @@ const Cart = props => {
           center
           bold
           title={`Checkout ($${total})`}
+          onPressFunction={() => {
+            setData([]);
+            props.navigation.navigate(CART_ORDER_PLACED);
+          }}
         />
       </View>
     </View>

@@ -29,4 +29,5 @@ export const ABOUT = 'About';
 
 //Cart
 export const CART = 'Cart';
-export const CART_SELECT_PAYMENT = 'cart Select Payment';
+export const CART_SELECT_PAYMENT = 'Cart Select Payment';
+export const CART_ORDER_PLACED = 'Cart Order Placed';

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
 import {windowHeight} from '../../Utils/Themes';
 import {HOME} from '../../Utils/RouteNames';
+import {clearCartList} from '../../Utils/StaticFunctions';
 
 const OrderPlaced = props => {
   const [loading, setLoading] = useState(true);
@@ -10,6 +11,7 @@ const OrderPlaced = props => {
     setTimeout(() => {
       setLoading(false);
       setTimeout(() => {
+        clearCartList();
         props.navigation.navigate(HOME);
       }, 2000);
     }, 5000);

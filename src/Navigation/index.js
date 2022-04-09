@@ -9,7 +9,8 @@ export default function AppNavContainer() {
   const data = useSelector(state => state.app);
   return (
     <NavigationContainer>
-      {data.isLoggedIn ? <HomeNavigator /> : <AuthNavigator />}
+      {/* {data.isLoggedIn ? <HomeNavigator /> : <AuthNavigator />} */}
+      <HomeNavigator />
     </NavigationContainer>
   );
 }

@@ -4,6 +4,7 @@ import SpecialOfferCardProduct from './SpecialOfferCardProduct';
 //! get data from db
 const testItems = [
   {
+    id: 1,
     categoryId: 0,
     name: 'test test test',
     price: 250,
@@ -14,6 +15,7 @@ const testItems = [
       'https://media.gq-magazine.co.uk/photos/6013e45caa1bacc9780a6927/1:1/w_3000,h_3000,c_limit/Emporio%20Armani.png',
   },
   {
+    id: 2,
     categoryId: 0,
     name: 'Perfume You Armani',
     price: 250,
@@ -24,6 +26,7 @@ const testItems = [
       'https://media.gq-magazine.co.uk/photos/6013e45caa1bacc9780a6927/1:1/w_3000,h_3000,c_limit/Emporio%20Armani.png',
   },
   {
+    id: 3,
     categoryId: 0,
     name: 'Perfume You Armani',
     price: 250,

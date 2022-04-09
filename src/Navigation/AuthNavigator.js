@@ -19,8 +19,6 @@ export default function AuthNavigator() {
       <Stack.Screen name={SPLASH} component={Splash} />
       <Stack.Screen name={INTRO} component={Intro} />
       <Stack.Screen name={AUTH} component={Auth} />
-      {/* <Stack.Screen name={LOGIN} component={Login} />
-      <Stack.Screen name={SIGNUP} component={SignUp} /> */}
     </Stack.Navigator>
   );
 }

@@ -6,6 +6,7 @@ import MainCard from '../../Components/MainCard';
 import SilmilarThisList from '../../Components/SilmilarThisList';
 import NameAndPrice from '../../Components/NameAndPrice';
 import MainButton from '../../Components/MainButton';
+import {AddToCart} from '../../Utils/StaticFunctions';
 
 const ProductPage = props => {
   const params = props.route.params;
@@ -58,7 +59,9 @@ const ProductPage = props => {
         <SilmilarThisList catagoryId={params.categoryId} />
         <View style={{width: '100%', height: '18%'}}>
           <MainButton
-            onPressFunction={() => {}} //!add to cart function and ask about button add to fav
+            onPressFunction={() => {
+              AddToCart(params);
+            }}
             height={'80%'}
             width={90}
             title={'+ Add To Cart'}

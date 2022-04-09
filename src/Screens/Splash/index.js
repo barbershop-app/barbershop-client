@@ -11,7 +11,6 @@ import {AUTH, HOME} from '../../Utils/RouteNames';
 export default function Splash({navigation}) {
   const dispatch = useDispatch();
   useEffect(() => {
-    // console.log(JSON.parse(data).token);
     HttpCall();
   });
 
