@@ -6,10 +6,13 @@ import MainCard from '../../Components/MainCard';
 import SilmilarThisList from '../../Components/SilmilarThisList';
 import NameAndPrice from '../../Components/NameAndPrice';
 import MainButton from '../../Components/MainButton';
-import {AddToCart} from '../../Utils/StaticFunctions';
+import {AddToCartAsync} from '../../Utils/StaticFunctions';
+import {useDispatch} from 'react-redux';
+import {AddToCart} from '../../Redux/Slices/cartSlice';
 
 const ProductPage = props => {
   const params = props.route.params;
+  const dispatch = useDispatch();
   return (
     <View style={{backgroundColor: '#D5BE2A', flex: 1}}>
       <NavProductPage navigation={props.navigation} />
@@ -60,7 +63,8 @@ const ProductPage = props => {
         <View style={{width: '100%', height: '18%'}}>
           <MainButton
             onPressFunction={() => {
-              AddToCart(params);
+              AddToCartAsync(params);
+              dispatch(AddToCart(params));
             }}
             height={'80%'}
             width={90}

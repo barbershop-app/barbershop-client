@@ -12,56 +12,19 @@ import {
 } from '../../Utils/StaticFunctions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CART_ORDER_PLACED} from '../../Utils/RouteNames';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  RemoveFromCart,
+  ResetCart,
+  Update,
+  UpdateQuantity,
+} from '../../Redux/Slices/cartSlice';
 
-const tempData = [
-  {
-    id: 0,
-    categoryId: 0,
-    name: 'Perfume You 1',
-    price: 250,
-    isAvailable: true,
-    onSale: false,
-    onSalePercentage: 25,
-    imageSource:
-      'https://media.gq-magazine.co.uk/photos/6013e45caa1bacc9780a6927/1:1/w_3000,h_3000,c_limit/Emporio%20Armani.png',
-    quantity: 1,
-  },
-  {
-    id: 1,
-    categoryId: 0,
-    name: 'Perfume You 2',
-    price: 250,
-    isAvailable: true,
-    onSale: true,
-    onSalePercentage: 50,
-    imageSource:
-      'https://media.gq-magazine.co.uk/photos/6013e45caa1bacc9780a6927/1:1/w_3000,h_3000,c_limit/Emporio%20Armani.png',
-    quantity: 1,
-  },
-  {
-    id: 2,
-    categoryId: 0,
-    name: 'Perfume You 3',
-    price: 350,
-    isAvailable: true,
-    onSale: true,
-    onSalePercentage: 10,
-    imageSource:
-      'https://media.gq-magazine.co.uk/photos/6013e45caa1bacc9780a6927/1:1/w_3000,h_3000,c_limit/Emporio%20Armani.png',
-    quantity: 1,
-  },
-];
 const Cart = props => {
   const [total, setTotal] = useState(0); //price
-
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    //get from asyncstorage
-    AsyncStorage.getItem('cart-list').then(data => {
-      setData(JSON.parse(data));
-    });
-  }, []);
+  // const [data, setData] = useState();
+  const dispatch = useDispatch();
+  const data = useSelector(data => data.cart.items);
 
   useEffect(() => {
     // total
@@ -76,16 +39,12 @@ const Cart = props => {
   }, [data]);
 
   const removeItem = id => {
-    setData(data?.filter(e => e.id !== id));
+    dispatch(RemoveFromCart({id}));
     removeCartItem(id);
   };
 
   const changeQuantity = (id, newQuantity) => {
-    setData(
-      data?.map(item =>
-        item.id === id ? {...item, quantity: newQuantity} : item,
-      ),
-    );
+    dispatch(UpdateQuantity({id, newQuantity}));
     changeQuantityAsyncStorage(id, newQuantity);
   };
 
@@ -94,8 +53,8 @@ const Cart = props => {
       <TitleAndArrow navigation={props.navigation} title="Order Details" />
       <MyCartComponent
         tempData={data}
-        setData={setData}
-        removeItem={e => removeItem(e)}
+        setData={e => dispatch(Update(e))}
+        removeItem={id => removeItem(id)}
         changeQuantity={(id, newQuantity) => changeQuantity(id, newQuantity)}
       />
       <PaymentMethod navigation={props.navigation} />
@@ -112,7 +71,7 @@ const Cart = props => {
           bold
           title={`Checkout ($${total})`}
           onPressFunction={() => {
-            setData([]);
+            dispatch(ResetCart());
             props.navigation.navigate(CART_ORDER_PLACED);
           }}
         />

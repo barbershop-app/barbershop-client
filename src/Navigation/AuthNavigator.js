@@ -14,7 +14,7 @@ export default function AuthNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName={SPLASH}
+      initialRouteName={INTRO}
       cardStyle={{opacity: 1}}>
       <Stack.Screen name={SPLASH} component={Splash} />
       <Stack.Screen name={INTRO} component={Intro} />

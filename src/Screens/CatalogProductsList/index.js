@@ -2,6 +2,7 @@ import {View, Text} from 'react-native';
 import React, {useEffect} from 'react';
 import CatalogProductCard from '../../Components/CatalogProductCard';
 import TitleAndArrow from '../../Components/TitleAndArrow';
+import HttpRequest from '../../config/API/axios';
 
 const testItems = [
   {
@@ -37,9 +38,18 @@ const testItems = [
 ];
 const CatalogProductsList = props => {
   const params = props.route.params;
+  console.log(params.catalogId);
   useEffect(() => {
-    console.log(params.catalogName);
+    HttpCall();
   }, []);
+  const HttpCall = async () => {
+    const result = await HttpRequest(
+      `​market/getallproductsbycategoryid/${params.catalogId}`,
+      'GET',
+      '',
+    );
+    console.log('data' + result);
+  };
   return (
     <View>
       <TitleAndArrow navigation={props.navigation} title={params.catalogName} />

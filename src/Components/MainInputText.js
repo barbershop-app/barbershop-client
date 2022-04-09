@@ -35,9 +35,7 @@ const MainInputText = props => {
             : null,
           borderWidth: 1,
         }}
-        onChangeText={
-          props.setOnChangeText ? props.setOnChangeText : console.log('nothing')
-        }
+        onChangeText={props.setOnChangeText ? props.setOnChangeText : null}
       />
     </View>
   );

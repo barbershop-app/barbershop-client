@@ -24,13 +24,6 @@ const Auth = props => {
     message: '',
     showAlert: false,
   });
-  useEffect(() => {
-    console.log(dialData);
-  }, [dialData]);
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
 
   const handleNextScreen = async () => {
     if (dialData.isCodeSent === false) {
@@ -38,7 +31,6 @@ const Auth = props => {
         const result = await HttpRequest('users/create', 'POST', {
           PhoneNumber: '0' + dialData.phoneNumber,
         });
-        // console.log(result);
 
         if (result.status === 200) {
           dispatch(resetCode());
