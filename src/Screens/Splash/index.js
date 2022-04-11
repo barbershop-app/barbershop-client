@@ -16,6 +16,7 @@ export default function Splash({navigation}) {
 
   const HttpCall = async () => {
     const result = await HttpRequest('users/IsLoggedIn', 'GET', '');
+    console.log(result.status);
     setTimeout(() => {
       if (result.status === 200) {
         dispatch(setUser(result.data));

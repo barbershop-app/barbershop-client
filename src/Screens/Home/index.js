@@ -6,7 +6,7 @@ import DualButton from '../../Components/DualButton';
 import {windowWidth} from '../../Utils/Themes';
 import CategoriesList from '../../Components/CategoriesList';
 import SpecialOffersList from '../../Components/SpecialOffersList';
-import {CART} from '../../Utils/RouteNames';
+import {BOOK_APPOINTMENT, CART} from '../../Utils/RouteNames';
 
 const TextBigBold = ({children}) => (
   <Text
@@ -53,7 +53,7 @@ const Home = props => {
         textIconOne="Book Appointment"
         textIconTwo="My Appointment"
         onPressIconOne={() => {
-          console.log('Book Appointment');
+          props.navigation.navigate(BOOK_APPOINTMENT);
         }}
         onPressIconTwo={() => {
           console.log('My Appointment');

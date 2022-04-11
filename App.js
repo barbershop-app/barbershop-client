@@ -7,6 +7,7 @@ import Home from './src/Screens/Home';
 import OrderPlaced from './src/Screens/OrderPlaced';
 import Intro from './src/Screens/Intro';
 import Splash from './src/Screens/Splash';
+import BookAppointment from './src/Screens/BookingMenu/BookAppointment';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         hidden={true}
       />
       <AppNavContainer />
+      {/* <BookAppointment /> */}
     </Provider>
   );
 }

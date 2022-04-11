@@ -2,7 +2,8 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
-const AlertOneButton = ({alertData, setAlertData}) => {
+const AlertOneButton = ({alertData, setAlertData, onPressOk}) => {
+  //! title , message , showAlert
   return (
     <AwesomeAlert
       show={alertData.showAlert}
@@ -26,6 +27,7 @@ const AlertOneButton = ({alertData, setAlertData}) => {
       }}
       onCancelPressed={() => {
         setAlertData({...alertData, showAlert: false});
+        onPressOk();
       }}
     />
   );

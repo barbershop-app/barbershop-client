@@ -8,6 +8,7 @@ export default async function HttpRequest(url, method, data) {
   let jsonValue = await AsyncStorage.getItem('barbershop');
   let storageData = jsonValue !== null ? await JSON.parse(jsonValue) : null;
   token = storageData?.token;
+
   return axios({
     method: method,
     url: API_URL + url,
