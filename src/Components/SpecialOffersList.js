@@ -1,6 +1,7 @@
 import {View, Text, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import SpecialOfferCardProduct from './SpecialOfferCardProduct';
+import HttpRequest from '../config/API/axios';
 //! get data from db
 const testItems = [
   {
@@ -39,6 +40,18 @@ const testItems = [
 ];
 
 const SpecialOffersList = props => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    HttpCall();
+  }, []);
+
+  const HttpCall = async () => {
+    const result = await HttpRequest('Market/GetAllProducts', 'GET');
+    if (result.status === 200)
+      setData(result.data.products?.filter(e => e.onSale === true));
+  };
+
   return (
     <View>
       <Text
@@ -52,14 +65,15 @@ const SpecialOffersList = props => {
         Special Offers
       </Text>
       <ScrollView horizontal={true} style={{marginLeft: '5%'}}>
-        {testItems?.map((e, index) => (
-          <SpecialOfferCardProduct
-            navigation={props.navigation}
-            key={index + 'KeyIndex'}
-            item={e}
-            index={index}
-          />
-        ))}
+        {data.length > 0 &&
+          data?.map((e, index) => (
+            <SpecialOfferCardProduct
+              navigation={props.navigation}
+              key={index + 'KeyIndex'}
+              item={e}
+              index={index}
+            />
+          ))}
       </ScrollView>
     </View>
   );

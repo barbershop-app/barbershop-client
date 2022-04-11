@@ -65,7 +65,6 @@ const Auth = props => {
             dispatch(setUser(result.data));
 
             if (result.data.firstName === null) {
-              //! pop up
               setVisible(true);
             } else {
               dispatch(setLoginIn({isLoggedIn: true}));
@@ -165,7 +164,7 @@ const Auth = props => {
           borderWidth: 1,
         }}
         visible={visible}>
-        <Dialog.Title style={{fontWeight: 'bold'}}>
+        <Dialog.Title style={{fontWeight: 'bold', color: 'black'}}>
           Enter your details
         </Dialog.Title>
         {/* <Dialog.input></Dialog.input> */}
@@ -176,6 +175,7 @@ const Auth = props => {
               margin: 1,
               padding: -5,
               width: '100%',
+              color: 'black',
             }}
             placeholderTextColor="gray"
             value={undefined}
@@ -189,6 +189,7 @@ const Auth = props => {
               padding: -5,
               marginTop: 10,
               width: '100%',
+              color: 'black',
             }}
             placeholderTextColor="grey"
             value={undefined}

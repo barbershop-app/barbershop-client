@@ -27,7 +27,7 @@ const AlertOneButton = ({alertData, setAlertData, onPressOk}) => {
       }}
       onCancelPressed={() => {
         setAlertData({...alertData, showAlert: false});
-        onPressOk();
+        onPressOk === undefined ? console.log('nothing') : onPressOk();
       }}
     />
   );

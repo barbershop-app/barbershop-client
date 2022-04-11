@@ -69,7 +69,7 @@ const Cart = props => {
           height={50}
           center
           bold
-          title={`Checkout ($${total})`}
+          title={`Checkout ($${total.toFixed(2)})`}
           onPressFunction={() => {
             dispatch(ResetCart());
             props.navigation.navigate(CART_ORDER_PLACED);

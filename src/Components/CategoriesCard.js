@@ -10,7 +10,7 @@ const CategoriesCard = props => {
       onPress={() =>
         props.navigation.navigate(CATALOG_PRODUCTS_LIST, {
           catalogName: props.categoriesName,
-          catalogId: props.id,
+          catagoryId: props.id,
         })
       }
       style={{

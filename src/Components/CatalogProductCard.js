@@ -4,10 +4,16 @@ import {windowHeight, windowWidth} from '../Utils/Themes';
 import {PRODUCT_PAGE} from '../Utils/RouteNames';
 
 const CatalogProductCard = props => {
+  console.log('catalogProductCard ' + props.catagoryId);
   return (
     <TouchableOpacity
       key={props.index}
-      onPress={() => props.navigation.navigate(PRODUCT_PAGE, props.item)}
+      onPress={() =>
+        props.navigation.navigate(PRODUCT_PAGE, {
+          ...props.item,
+          catagoryId: props.catagoryId,
+        })
+      }
       style={{
         margin: 10,
         borderRadius: 15,
@@ -58,7 +64,7 @@ const CatalogProductCard = props => {
             color: 'red',
             textDecorationLine: 'line-through',
           }}>
-          $ {props.item.onSale ? props.item.price.toFixed(2) : ''}
+          {props.item.onSale ? '$' + props.item.price.toFixed(2) : ''}
         </Text>
         <Text
           style={{

@@ -31,7 +31,7 @@ export default function MainButton(props) {
         <Text
           style={{
             fontWeight: props.bold ? 'bold' : null,
-            padding: 5 + props.width / 8,
+            padding: props.padding ? props.padding : 5 + props.width / 8,
             fontSize: props.fontSize ? props.fontSize : 13,
             color: props.titleColor ? props.titleColor : 'black',
             alignSelf: props.textCenter

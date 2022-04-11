@@ -7,9 +7,9 @@ import Gallery from './Gallery';
 import Location from './Location';
 import OpenTime from './OpenTime';
 
-const About = () => (
+const About = props => (
   <View style={{backgroundColor: '#D5BE2A', flex: 1}}>
-    <TitleAndArrow title={'About'} />
+    <TitleAndArrow title={'About'} navigation={props.navigation} />
     <MainCard size={85}>
       <ScrollView>
         <Image

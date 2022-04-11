@@ -28,7 +28,7 @@ export function Humburger(props) {
       label={label}
       onPress={() => {
         navigate === null ? null : props.navigation.navigate(navigate);
-        onPress();
+        onPress !== undefined ? onPress() : console.log('no OnPress');
       }}
     />
   );
@@ -53,11 +53,6 @@ export function Humburger(props) {
           label="Home"
           navigate={HOME}
           icon={'home'}
-        />
-        <DrawerItemWithNavigationTop
-          label="Shop"
-          navigate={SHOP}
-          icon={'shopping'}
         />
         <DrawerItemWithNavigationTop
           label="Book Appointment"

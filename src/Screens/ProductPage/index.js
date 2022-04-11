@@ -1,5 +1,5 @@
 import {View, Text, Image, StyleSheet, Platform} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavProductPage from '../../Components/NavProductPage';
 import {windowWidth} from '../../Utils/Themes';
 import MainCard from '../../Components/MainCard';
@@ -13,6 +13,7 @@ import {AddToCart} from '../../Redux/Slices/cartSlice';
 const ProductPage = props => {
   const params = props.route.params;
   const dispatch = useDispatch();
+  useEffect(() => console.log('product page ' + params.catagoryId), []);
   return (
     <View style={{backgroundColor: '#D5BE2A', flex: 1}}>
       <NavProductPage navigation={props.navigation} />
@@ -30,11 +31,11 @@ const ProductPage = props => {
             },
           ]}
           source={{
-            uri: 'https://media.gq-magazine.co.uk/photos/6013e45caa1bacc9780a6927/1:1/w_3000,h_3000,c_limit/Emporio%20Armani.png',
+            uri: params.imageSource,
           }}
         />
       </View>
-      <MainCard size={60}>
+      <MainCard size={58}>
         <View
           style={{
             width: '13%',
@@ -48,18 +49,25 @@ const ProductPage = props => {
         <Text
           style={{
             fontSize: 18,
-            marginTop: '6%',
-            height: '30%',
+            marginTop: '3%',
+            height: '33%',
             fontWeight: 'bold',
             opacity: 0.7,
             width: '95%',
             color: '#000',
           }}>
-          Emporio Armani - Stronger With You Only is a new perfume by Giorgio
-          Armani for men and was released in 2022.{'\n'} The scent is
-          fresh-sweet. It is being marketed by L'Oréal.
+          {params.description === undefined
+            ? `
+Lorem Ipsum is simply dummy text of the
+ printing and typesetting industry. Lorem
+ Ipsum has been the industrys standard
+ dummy text ever since the 1500s`
+            : params.description}
         </Text>
-        <SilmilarThisList catagoryId={params.categoryId} />
+        <SilmilarThisList
+          catagoryId={params.catagoryId}
+          navigation={props.navigation}
+        />
         <View style={{width: '100%', height: '18%'}}>
           <MainButton
             onPressFunction={() => {

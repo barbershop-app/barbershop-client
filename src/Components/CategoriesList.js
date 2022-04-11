@@ -55,7 +55,7 @@ const CategoriesList = props => {
               key={index}
               uri={item.uri}
               categoriesName={item.name}
-              quantity={item.quantity}
+              quantity={item.numberOfProductsInCategory}
               onPressFunction={() => {
                 console.log(item.name);
               }}
