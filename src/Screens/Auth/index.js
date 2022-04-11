@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TextInput} from 'react-native';
 import React, {Children, useEffect, useState} from 'react';
 import {windowHeight, windowWidth} from '../../Utils/Themes';
 import MainCard from '../../Components/MainCard';
@@ -13,6 +13,7 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import AlertOneButton from '../../Components/AlertOneButton';
 import {setUser} from '../../Redux/Slices/userSlice';
 import {setApp, setLoginIn} from '../../Redux/Slices/appSlice';
+import Dialog from 'react-native-dialog';
 
 const Auth = props => {
   const dialData = useSelector(state => state.dial);
@@ -25,12 +26,19 @@ const Auth = props => {
     showAlert: false,
   });
 
+  const [visible, setVisible] = useState(false);
+  const [fullName, setFullName] = useState({
+    firstName: '',
+    lastName: '',
+  });
+
   const handleNextScreen = async () => {
     if (dialData.isCodeSent === false) {
       if (dialData.phoneNumber.length === 9) {
         const result = await HttpRequest('users/create', 'POST', {
           PhoneNumber: '0' + dialData.phoneNumber,
         });
+        // console.log(result);
 
         if (result.status === 200) {
           dispatch(resetCode());
@@ -55,7 +63,13 @@ const Auth = props => {
             JSON.stringify(result.data),
           ).then(async () => {
             dispatch(setUser(result.data));
-            dispatch(setLoginIn({isLoggedIn: true}));
+
+            if (result.data.firstName === null) {
+              //! pop up
+              setVisible(true);
+            } else {
+              dispatch(setLoginIn({isLoggedIn: true}));
+            }
           });
         } else {
           setAlertData({
@@ -71,6 +85,21 @@ const Auth = props => {
           showAlert: true,
         });
       }
+    }
+  };
+
+  const handleUpdateFullName = async () => {
+    if (
+      fullName.firstName.trim().length >= 3 &&
+      fullName.lastName.trim().length >= 3
+    ) {
+      const result = await HttpRequest('Users/Update', 'POST', {
+        id: userData.id,
+        firstName: fullName.firstName,
+        lastName: fullName.lastName,
+      });
+      if (result.status === 200) dispatch(setLoginIn({isLoggedIn: true}));
+      else console.log('ERRORRRR');
     }
   };
   return (
@@ -129,7 +158,63 @@ const Auth = props => {
 
       {/* alerts */}
       <AlertOneButton alertData={alertData} setAlertData={setAlertData} />
+      <Dialog.Container
+        contentStyle={{
+          borderRadius: 25,
+          backgroundColor: 'white',
+          borderWidth: 1,
+        }}
+        visible={visible}>
+        <Dialog.Title style={{fontWeight: 'bold'}}>
+          Enter your details
+        </Dialog.Title>
+        {/* <Dialog.input></Dialog.input> */}
+        <View style={{width: '80%', marginLeft: '5%'}}>
+          <TextInput
+            style={{
+              borderBottomWidth: 1,
+              margin: 1,
+              padding: -5,
+              width: '100%',
+            }}
+            placeholderTextColor="gray"
+            value={undefined}
+            maxlength={3}
+            onChangeText={e => setFullName({...fullName, firstName: e})}
+            placeholder="FirstName"
+          />
+          <TextInput
+            style={{
+              borderBottomWidth: 1,
+              padding: -5,
+              marginTop: 10,
+              width: '100%',
+            }}
+            placeholderTextColor="grey"
+            value={undefined}
+            maxlength={3}
+            onChangeText={e => setFullName({...fullName, lastName: e})}
+            placeholder="LastName"
+          />
+        </View>
+        <View style={{width: '100%', marginTop: 10}}>
+          <Dialog.Button
+            label="Update"
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              textAlign: 'center',
+              width: '80%',
+              borderWidth: 1,
+              borderRadius: 15,
+              backgroundColor: '#D5BE2A',
+            }}
+            onPress={handleUpdateFullName}
+          />
+        </View>
+      </Dialog.Container>
     </View>
   );
+  9;
 };
 export default Auth;

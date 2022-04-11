@@ -6,7 +6,7 @@ import HttpRequest from '../../config/API/axios';
 import {useDispatch} from 'react-redux';
 import {setUser} from '../../Redux/Slices/userSlice';
 import {setLoginIn} from '../../Redux/Slices/appSlice';
-import {AUTH, HOME} from '../../Utils/RouteNames';
+import {AUTH, HOME, INTRO} from '../../Utils/RouteNames';
 
 export default function Splash({navigation}) {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ export default function Splash({navigation}) {
         dispatch(setLoginIn({isLoggedIn: true}));
       } else {
         AsyncStorage.removeItem('barbershop');
+        navigation.navigate(INTRO);
       }
     }, 1500);
   };

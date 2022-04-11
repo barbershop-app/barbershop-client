@@ -33,7 +33,6 @@ const CategoriesList = props => {
   }, []);
   const HttpCall = async () => {
     const result = await HttpRequest('market/GetAllCategories', 'GET');
-    console.log(result.data);
     if (result.status === 200) setList(result.data.categories);
   };
   return (

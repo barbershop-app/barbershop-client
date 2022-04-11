@@ -28,8 +28,14 @@ const DialSlice = createSlice({
     resetCode(state) {
       state.code = '';
     },
+    resetData(state) {
+      state.phoneNumber = '';
+      state.code = '';
+      state.isCodeSent = false;
+    },
   },
 });
 
-export const {setDial, setCode, setIsCodeSent, resetCode} = DialSlice.actions;
+export const {setDial, setCode, setIsCodeSent, resetCode, resetData} =
+  DialSlice.actions;
 export default DialSlice.reducer;

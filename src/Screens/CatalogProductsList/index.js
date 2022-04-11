@@ -38,7 +38,6 @@ const testItems = [
 ];
 const CatalogProductsList = props => {
   const params = props.route.params;
-  console.log(params.catalogId);
   useEffect(() => {
     HttpCall();
   }, []);
@@ -48,7 +47,6 @@ const CatalogProductsList = props => {
       'GET',
       '',
     );
-    console.log('data' + result);
   };
   return (
     <View>

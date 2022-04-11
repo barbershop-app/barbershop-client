@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from 'react-redux';
 import {Update} from '../Redux/Slices/cartSlice';
 import UseDispatchCart from '../Hooks/UseDispatch';
+import {setUser} from '../Redux/Slices/userSlice';
+import HttpRequest from '../config/API/axios';
 
 export const AddToCartAsync = product => {
   AsyncStorage.getItem('cart-list').then(data => {
@@ -23,10 +25,6 @@ export const AddToCartAsync = product => {
     }
   });
 };
-
-// export const getCartList = () => {
-//   return ;
-// };
 
 export const clearCartList = async () => {
   await AsyncStorage.removeItem('cart-list');

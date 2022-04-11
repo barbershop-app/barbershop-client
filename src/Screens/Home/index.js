@@ -7,6 +7,11 @@ import {windowWidth} from '../../Utils/Themes';
 import CategoriesList from '../../Components/CategoriesList';
 import SpecialOffersList from '../../Components/SpecialOffersList';
 import {BOOK_APPOINTMENT, CART} from '../../Utils/RouteNames';
+import {CART} from '../../Utils/RouteNames';
+import {useDispatch, useSelector} from 'react-redux';
+import HttpRequest from '../../config/API/axios';
+import {setUser} from '../../Redux/Slices/userSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TextBigBold = ({children}) => (
   <Text
@@ -23,6 +28,27 @@ const TextBigBold = ({children}) => (
 );
 
 const Home = props => {
+  const userData = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (userData.firstName === null) UpdateUserData();
+  }, []);
+
+  const UpdateUserData = async () => {
+    const result = await HttpRequest(`Users/GetById/${userData.id}`, 'GET', '');
+    if (result.status === 200) {
+      let user = {
+        ...result.data,
+        id: userData.id,
+        token: userData.token,
+        isAdmin: userData.isAdmin,
+      };
+      dispatch(setUser(user));
+      AsyncStorage.setItem('barbershop', JSON.stringify(user));
+    } else console.log(result);
+    AsyncStorage.getItem('barbershop').then(data => console.log(data));
+  };
+
   return (
     <ScrollView style={{backgroundColor: 'white'}}>
       <NavBarHomePage
@@ -33,7 +59,7 @@ const Home = props => {
           props.navigation.navigate(CART);
         }}
       />
-      <WelcomeWord name="Mosaab" />
+      <WelcomeWord name={userData.firstName} />
 
       <TextBigBold>Let's get a Hair Cut</TextBigBold>
 
@@ -73,11 +99,6 @@ const Home = props => {
       <TextBigBold>Select Your {'\n'} Favorite Products</TextBigBold>
       <CategoriesList navigation={props.navigation} />
       <SpecialOffersList navigation={props.navigation} />
-      {/* 
-    <Search state="useState"/> // ? I Dont Know If Add It Or Not
-   
-   
-   */}
     </ScrollView>
   );
 };
