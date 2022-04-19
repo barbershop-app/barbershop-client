@@ -6,12 +6,18 @@ import {NavigationContainer} from '@react-navigation/native';
 import {AUTH} from '../../Utils/RouteNames';
 import {useDispatch} from 'react-redux';
 import {resetData} from '../../Redux/Slices/dialSlice';
+import LinearGradient from 'react-native-linear-gradient';
+import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
 
 export default function Intro({navigation}) {
   const dispatch = useDispatch();
   return (
-    <View style={{flex: 1, backgroundColor: '#505050'}}>
-      <Image
+    <LinearGradient
+      start={{x: 0.5, y: -0.5}}
+      end={{x: 0, y: 0.5}}
+      style={{flex: 1}}
+      colors={[Gray_1, Gray_2, Gray_3, Gray_5]}>
+      {/* <Image
         style={{
           height: windowHeight * 0.24,
           width: windowWidth * 0.8,
@@ -28,18 +34,78 @@ export default function Intro({navigation}) {
           alignSelf: 'center',
         }}
         source={Images.BarberMan}
-      />
-      <MainButton
-        onPressFunction={() => {
-          navigation.navigate(AUTH);
-          dispatch(resetData());
+      /> */}
+      <Image
+        style={{
+          height: windowHeight * 0.4,
+          width: windowWidth * 0.7,
+          marginTop: 50,
+          alignSelf: 'center',
         }}
-        width={80}
-        title={'Bright My Hair ..'}
-        center
-        shadow
-        bold
+        source={Images.BarberFrame}
       />
-    </View>
+      <View
+        style={{
+          width: windowWidth * 0.9,
+
+          height: windowHeight * 0.125,
+          alignSelf: 'center',
+          marginTop: windowHeight * 0.05,
+        }}>
+        <Text
+          style={{
+            fontSize: 25,
+            fontWeight: 'bold',
+            color: 'white',
+            opacity: 0.9,
+          }}>
+          Book Your Schedule With Our Talent Barber.
+        </Text>
+      </View>
+      <View
+        style={{
+          width: windowWidth * 0.9,
+
+          height: windowHeight * 0.2,
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={{
+            fontSize: 15,
+            fontWeight: 'bold',
+            color: 'white',
+            opacity: 0.9,
+          }}>
+          The person who cuts your hair isn't just some random guy or gal, they
+          are a highly trained artist in the truest sense. The art of barbering
+          involves how one cuts, shaves and styles hair, as well as how they
+          interact with and get to know their client.
+        </Text>
+      </View>
+      <View
+        style={{
+          width: windowWidth * 0.9,
+
+          height: windowHeight * 0.125,
+          alignSelf: 'center',
+          position: 'absolute',
+          bottom: 0,
+        }}>
+        <MainButton
+          onPressFunction={() => {
+            navigation.navigate(AUTH);
+            dispatch(resetData());
+          }}
+          width={60}
+          title={'Get Started'}
+          fontSize={18}
+          color={'white'}
+          titleColor={'gray'}
+          center
+          shadow
+          bold
+        />
+      </View>
+    </LinearGradient>
   );
 }

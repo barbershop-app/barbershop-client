@@ -2,87 +2,77 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React, {useEffect} from 'react';
 import {windowHeight, windowWidth} from '../Utils/Themes';
 import {PRODUCT_PAGE} from '../Utils/RouteNames';
+import {Gray_3} from '../Utils/Colors';
 
 const CatalogProductCard = props => {
-  console.log('catalogProductCard ' + props.catagoryId);
   return (
     <TouchableOpacity
       key={props.index}
       onPress={() =>
         props.navigation.navigate(PRODUCT_PAGE, {
           ...props.item,
-          catagoryId: props.catagoryId,
         })
       }
       style={{
-        margin: 10,
         borderRadius: 15,
-        width: windowWidth,
-        height: windowHeight * 0.17,
-        borderBottomWidth: 1,
-        width: windowWidth * 1,
-        flexDirection: 'row',
+        width: windowWidth * 0.43,
+        height: windowHeight * 0.35,
+        backgroundColor: 'white',
+        margin: '2%',
+        alignSelf: 'center',
       }}>
       <View
         key={props.index}
         style={{
-          borderWidth: 1,
-          margin: 5,
-          width: '28%',
-          height: windowHeight * 0.145,
           borderRadius: 15,
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
         <Image
           style={{
-            width: '100%',
-            height: '100%',
+            width: '50%',
+            height: '60%',
           }}
           source={{
             uri: props.item.imageSource,
           }}
         />
       </View>
-      <View style={{width: '65%'}}>
-        <Text
-          style={{
-            fontSize: 20,
-            marginTop: 15,
-            marginLeft: '5%',
-            fontWeight: 'bold',
-            color: 'black',
-          }}>
-          {props.item.name}
-        </Text>
+      <View style={{marginLeft: '5%'}}>
         <Text
           style={{
             fontSize: 20,
             fontWeight: 'bold',
-            position: 'absolute',
-            bottom: 25,
-            // left: '20%',
-            right: '8%',
             color: 'red',
             textDecorationLine: 'line-through',
           }}>
-          {props.item.onSale ? '$' + props.item.price.toFixed(2) : ''}
+          {props.item.onSale ? props.item.price.toFixed(2) + '$' : ''}
         </Text>
         <Text
           style={{
             fontSize: 20,
             fontWeight: 'bold',
-            position: 'absolute',
-            bottom: 0,
-            // left: '20%',
-            right: '8%',
             color: 'black',
           }}>
-          $
           {props.item.onSale
             ? (
                 props.item.price -
                 (props.item.price / 100) * props.item.onSalePercentage
               ).toFixed(2)
-            : props.item.price.toFixed(2)}{' '}
+            : props.item.price.toFixed(2)}
+          $
+        </Text>
+        <Text
+          style={{
+            fontSize: 15,
+            marginTop: 10,
+            marginLeft: '5%',
+            fontWeight: 'bold',
+            color: 'black',
+            maxWidth: '90%',
+            marginBottom: '5%',
+          }}>
+          {props.item.name} bla bla bla bla
         </Text>
       </View>
     </TouchableOpacity>

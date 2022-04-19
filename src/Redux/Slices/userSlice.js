@@ -12,7 +12,6 @@ export const UserSlice = createSlice({
   },
   reducers: {
     setUser(state, {type, payload}) {
-      console.log('####PAYLOAD:', payload);
       state.id = payload.id;
       state.isAdmin = payload.isAdmin;
       state.firstName = payload.firstName;

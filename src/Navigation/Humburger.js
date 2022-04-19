@@ -6,6 +6,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Images, windowHeight, windowWidth} from '../Utils/Themes';
 import {
   ABOUT,
+  ADMIN,
+  ADMINAPPOINTMENT,
   AUTH,
   BOOK_APPOINTMENT,
   HOME,
@@ -14,40 +16,53 @@ import {
   SHOP,
   SPLASH,
 } from '../Utils/RouteNames';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setLoginIn} from '../Redux/Slices/appSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {resetData} from '../Redux/Slices/dialSlice';
+import {Gray_1, Gray_2, Gray_3, Gray_5} from '../Utils/Colors';
+import {Text} from 'react-native-animatable';
 
 export function Humburger(props) {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
   const DrawerItemWithNavigationTop = ({onPress, icon, navigate, label}) => (
     <DrawerItem
-      labelStyle={{fontWeight: 'bold'}}
-      icon={({color, size}) => <Icon name={icon} color={color} size={size} />}
+      labelStyle={{fontWeight: 'bold', color: 'white', opacity: 0.8}}
+      icon={({color, size}) => <Icon name={icon} color={'white'} size={size} />}
       label={label}
       onPress={() => {
         navigate === null ? null : props.navigation.navigate(navigate);
-        onPress !== undefined ? onPress() : console.log('no OnPress');
+        onPress !== undefined
+          ? onPress()
+          : console.log('nothing in OnPress Function');
       }}
     />
   );
 
   return (
-    <LinearGradient
-      style={{flex: 1}}
-      colors={['gray', '#D5BE2A', '#D5BE2A', '#D5BE2A', 'white']}>
+    <LinearGradient style={{flex: 1}} colors={[Gray_1, Gray_2, Gray_3, Gray_5]}>
       <DrawerContentScrollView {...props}>
         <Image
           style={{
-            height: windowHeight * 0.1,
-            width: windowWidth * 0.3,
+            height: windowHeight * 0.15,
+            width: windowWidth * 0.32,
             marginTop: 50,
             alignSelf: 'center',
           }}
-          source={Images.Logo}
+          source={Images.BarberFrame}
         />
-        <View style={{width: '100%', borderWidth: 1, marginTop: 10}}></View>
+        <Text style={{alignSelf: 'center', fontWeight: 'bold', fontSize: 20}}>
+          Barber Shop
+        </Text>
+        <View
+          style={{
+            width: '100%',
+            borderWidth: 1,
+            marginTop: 10,
+            borderColor: 'white',
+          }}
+        />
 
         <DrawerItemWithNavigationTop
           label="Home"
@@ -74,6 +89,20 @@ export function Humburger(props) {
           navigate={ABOUT}
           icon={'information'}
         />
+        {user.isAdmin && (
+          <DrawerItemWithNavigationTop
+            label="Admin"
+            navigate={ADMIN}
+            icon={'account-settings'}
+          />
+        )}
+        {user.isAdmin && (
+          <DrawerItemWithNavigationTop
+            label="Edit Appointments"
+            navigate={ADMINAPPOINTMENT}
+            icon={'account-settings'}
+          />
+        )}
       </DrawerContentScrollView>
       <View style={styles.bottomDrawerSection}>
         <DrawerItemWithNavigationTop
@@ -147,6 +176,7 @@ const styles = StyleSheet.create({
   },
   bottomDrawerSection: {
     borderTopWidth: 1,
+    borderColor: 'white',
   },
   preference: {
     flexDirection: 'row',

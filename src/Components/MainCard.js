@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 
 export const MainCard = ({isYellow, size, children}) => {
+  //! size
   return (
     <View
       style={{

@@ -18,7 +18,7 @@ const Gallery = () => (
         fontWeight: 'bold',
         marginBottom: 10,
       }}>
-      Photos
+      Gallery
     </Text>
     <ScrollView horizontal={true} style={{width: '90%', alignSelf: 'center'}}>
       {GalleryImages.map(e => (

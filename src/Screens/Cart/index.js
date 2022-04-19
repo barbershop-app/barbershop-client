@@ -62,6 +62,8 @@ const Cart = props => {
       <View style={{marginTop: 15}}>
         <MainButton
           disabled={total === 0}
+          titleColor={'white'}
+          color={'black'}
           borderRadius={20}
           fontSize={15}
           borderWidth={0.5}

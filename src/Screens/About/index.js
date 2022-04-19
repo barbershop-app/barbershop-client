@@ -6,34 +6,19 @@ import {Images, windowHeight, windowWidth} from '../../Utils/Themes';
 import Gallery from './Gallery';
 import Location from './Location';
 import OpenTime from './OpenTime';
+import LogoCenter from '../BookingMenu/BookAppointment/LogoCenter';
+import LinearGradient from 'react-native-linear-gradient';
+import {Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
 
 const About = props => (
-  <View style={{backgroundColor: '#D5BE2A', flex: 1}}>
+  <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
     <TitleAndArrow title={'About'} navigation={props.navigation} />
-    <MainCard size={85}>
+    <LogoCenter />
+    <MainCard size={68}>
       <ScrollView>
-        <Image
-          style={{
-            backgroundColor: 'black',
-            borderRadius: 15,
-            height: windowHeight * 0.24,
-            width: windowWidth * 0.8,
-            marginTop: 10,
-            alignSelf: 'center',
-          }}
-          source={Images.Logo}
-        />
-        <View
-          style={{
-            width: '90%',
-            borderWidth: 0.5,
-            marginTop: 20,
-            alignSelf: 'center',
-          }}
-        />
         <View style={{width: '90%', alignSelf: 'center'}}>
-          <Text style={{fontSize: 25, fontWeight: 'bold', color: 'black'}}>
-            About Us
+          <Text style={{fontSize: 30, fontWeight: 'bold', color: 'black'}}>
+            Who Us?
           </Text>
           <Text style={{fontSize: 15, color: 'black'}}>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -55,6 +40,6 @@ const About = props => (
       openTime
   
   */}
-  </View>
+  </LinearGradient>
 );
 export default About;

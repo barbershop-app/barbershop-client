@@ -6,11 +6,13 @@ import DualButton from '../../Components/DualButton';
 import {windowWidth} from '../../Utils/Themes';
 import CategoriesList from '../../Components/CategoriesList';
 import SpecialOffersList from '../../Components/SpecialOffersList';
-import {BOOK_APPOINTMENT, CART} from '../../Utils/RouteNames';
+import {BOOK_APPOINTMENT, CART, MY_APPOINTMENTS} from '../../Utils/RouteNames';
 import {useDispatch, useSelector} from 'react-redux';
 import HttpRequest from '../../config/API/axios';
 import {setUser} from '../../Redux/Slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
+import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
 
 const TextBigBold = ({children}) => (
   <Text
@@ -18,7 +20,7 @@ const TextBigBold = ({children}) => (
       alignSelf: 'center',
       fontSize: 35,
       marginTop: 10,
-      color: 'black',
+      color: 'white',
       fontWeight: 'bold',
       textAlign: 'center',
     }}>
@@ -29,6 +31,7 @@ const TextBigBold = ({children}) => (
 const Home = props => {
   const userData = useSelector(state => state.user);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (userData.firstName === null || userData.firstName === undefined)
       UpdateUserData();
@@ -56,56 +59,68 @@ const Home = props => {
   };
 
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
-      <NavBarHomePage
-        onPressMenu={() => {
-          props.navigation.openDrawer();
-        }}
-        onPressCart={() => {
-          props.navigation.navigate(CART);
-        }}
-      />
-      <WelcomeWord name={userData.firstName} />
+    <LinearGradient style={{flex: 1}} colors={[Gray_1, Gray_2, Gray_3, Gray_5]}>
+      <ScrollView>
+        <NavBarHomePage
+          onPressMenu={() => {
+            props.navigation.openDrawer();
+          }}
+          onPressCart={() => {
+            props.navigation.navigate(CART);
+          }}
+        />
+        <WelcomeWord name={userData.firstName} />
 
-      <TextBigBold>Let's get a Hair Cut</TextBigBold>
+        <TextBigBold>Let's get a Hair Cut</TextBigBold>
 
-      <Text
-        style={{
-          alignSelf: 'center',
-          fontSize: 17,
-          fontWeight: 'bold',
-          marginTop: 10,
-        }}>
-        Haircutting is an art
-      </Text>
+        <Text
+          style={{
+            alignSelf: 'center',
+            fontSize: 17,
+            fontWeight: 'bold',
+            marginTop: 10,
+            color: Gray_5,
+          }}>
+          Haircutting is an art
+        </Text>
 
-      <DualButton
-        iconOne="calendar"
-        iconTwo="calendar-check-o"
-        textIconOne="Book Appointment"
-        textIconTwo="My Appointment"
-        onPressIconOne={() => {
-          props.navigation.navigate(BOOK_APPOINTMENT);
-        }}
-        onPressIconTwo={() => {
-          console.log('My Appointment');
-        }}
-      />
+        <DualButton
+          iconOne="calendar"
+          iconTwo="calendar-check-o"
+          textIconOne="Book Appointment"
+          textIconTwo="My Appointment"
+          onPressIconOne={() => {
+            props.navigation.navigate(BOOK_APPOINTMENT);
+          }}
+          onPressIconTwo={() => {
+            props.navigation.navigate(MY_APPOINTMENTS);
+          }}
+        />
 
-      <View
-        style={{
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-          width: windowWidth * 0.9,
-          alignSelf: 'center',
-          marginTop: 15,
-          marginBottom: 15,
-        }}
-      />
-      <TextBigBold>Select Your {'\n'} Favorite Products</TextBigBold>
-      <CategoriesList navigation={props.navigation} />
-      <SpecialOffersList navigation={props.navigation} />
-    </ScrollView>
+        <View
+          style={{
+            borderBottomColor: 'white',
+            borderBottomWidth: 1,
+            width: windowWidth * 0.9,
+            alignSelf: 'center',
+            marginTop: 15,
+            marginBottom: 15,
+          }}
+        />
+        <TextBigBold>Select Your {'\n'} Favorite Products</TextBigBold>
+        <CategoriesList navigation={props.navigation} />
+        <View
+          style={{
+            borderBottomColor: 'white',
+            borderBottomWidth: 1,
+            width: windowWidth * 0.9,
+            alignSelf: 'center',
+            marginTop: 15,
+          }}
+        />
+        <SpecialOffersList navigation={props.navigation} />
+      </ScrollView>
+    </LinearGradient>
   );
 };
 export default Home;

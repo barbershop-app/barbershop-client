@@ -31,3 +31,6 @@ export const ABOUT = 'About';
 export const CART = 'Cart';
 export const CART_SELECT_PAYMENT = 'Cart Select Payment';
 export const CART_ORDER_PLACED = 'Cart Order Placed';
+
+export const ADMIN = 'Admin';
+export const ADMINAPPOINTMENT = 'admin appointment';

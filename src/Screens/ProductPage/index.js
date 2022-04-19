@@ -1,5 +1,5 @@
 import {View, Text, Image, StyleSheet, Platform} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import NavProductPage from '../../Components/NavProductPage';
 import {windowWidth} from '../../Utils/Themes';
 import MainCard from '../../Components/MainCard';
@@ -9,20 +9,35 @@ import MainButton from '../../Components/MainButton';
 import {AddToCartAsync} from '../../Utils/StaticFunctions';
 import {useDispatch} from 'react-redux';
 import {AddToCart} from '../../Redux/Slices/cartSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
+import {Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
 
 const ProductPage = props => {
   const params = props.route.params;
+
   const dispatch = useDispatch();
-  useEffect(() => console.log('product page ' + params.catagoryId), []);
+  const [found, setFound] = useState(false);
+  useEffect(() => {
+    checkIfInCart();
+  }, [params]);
+
+  const checkIfInCart = async () =>
+    await AsyncStorage.getItem('cart-list').then(data => {
+      let JsonData = JSON.parse(data);
+      if (JsonData?.findIndex(e => e.id === params.id) === undefined)
+        setFound(undefined);
+      else if (JsonData?.findIndex(e => e.id === params.id) > -1)
+        setFound(true);
+      else setFound(false);
+    });
+
   return (
-    <View style={{backgroundColor: '#D5BE2A', flex: 1}}>
+    <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
       <NavProductPage navigation={props.navigation} />
       <View>
         <Image
           style={[
-            Platform.OS === 'ios'
-              ? styles.boxWithShadowIOS
-              : styles.boxWithShadowANDROID,
             {
               width: windowWidth * 0.7,
               height: windowWidth * 0.7,
@@ -65,19 +80,31 @@ Lorem Ipsum is simply dummy text of the
             : params.description}
         </Text>
         <SilmilarThisList
-          catagoryId={params.catagoryId}
+          categoryId={params.categoryId}
           navigation={props.navigation}
         />
         <View style={{width: '100%', height: '18%'}}>
           <MainButton
-            onPressFunction={() => {
+            color={found === undefined ? 'black' : found ? 'white' : 'black'}
+            onPressFunction={async () => {
               AddToCartAsync(params);
               dispatch(AddToCart(params));
+              setFound(true);
             }}
             height={'80%'}
             width={90}
-            title={'+ Add To Cart'}
+            titleColor={
+              found === undefined ? 'white' : found ? 'black' : 'white'
+            }
+            title={
+              found === undefined
+                ? '+ Add To Cart'
+                : found
+                ? 'Already In Cart'
+                : '+ Add To Cart'
+            }
             fontSize={18}
+            disabled={found}
             borderRadius={16}
             borderWidth={1}
             textCenter
@@ -87,7 +114,7 @@ Lorem Ipsum is simply dummy text of the
           />
         </View>
       </MainCard>
-    </View>
+    </LinearGradient>
   );
 };
 

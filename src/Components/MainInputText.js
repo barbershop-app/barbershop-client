@@ -6,6 +6,7 @@ const MainInputText = props => {
   return (
     <View style={{width: `${props.size}%`}}>
       <TextInput
+        value={props.value === undefined ? null : props.value}
         placeholder={props.placeHolder}
         placeholderTextColor={
           props.placeholderTextColor ? props.placeholderTextColor : '#000'

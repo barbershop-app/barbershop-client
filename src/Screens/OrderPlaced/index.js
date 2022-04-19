@@ -12,6 +12,7 @@ const OrderPlaced = props => {
       setLoading(false);
       setTimeout(() => {
         clearCartList();
+        setLoading(true);
         props.navigation.navigate(HOME);
       }, 2000);
     }, 5000);

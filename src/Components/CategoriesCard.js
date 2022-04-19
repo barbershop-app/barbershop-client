@@ -10,22 +10,28 @@ const CategoriesCard = props => {
       onPress={() =>
         props.navigation.navigate(CATALOG_PRODUCTS_LIST, {
           catalogName: props.categoriesName,
-          catagoryId: props.id,
+          categoryId: props.id,
         })
       }
       style={{
-        width: windowWidth * 0.35,
-        flexDirection: 'row',
         borderWidth: 1,
+        borderColor: 'white',
         margin: 5,
         borderRadius: 15,
         justifyContent: 'space-around',
       }}>
-      <View style={{borderRadius: 25, borderWidth: 1, margin: 3}}>
+      <View
+        style={{
+          borderRadius: 25,
+          borderColor: 'white',
+          margin: 3,
+          padding: 5,
+          alignItems: 'center',
+        }}>
         <Image
           style={{
-            width: 35,
-            height: 35,
+            width: 45,
+            height: 45,
             borderRadius: 25,
           }}
           source={{
@@ -33,11 +39,10 @@ const CategoriesCard = props => {
           }}
         />
       </View>
-      <View style={{alignSelf: 'center'}}>
-        <Text style={styles.textStyle}>{props.categoriesName}</Text>
+      <View style={{alignSelf: 'center', alignItems: 'center'}}>
+        <Text style={[styles.textStyle]}>{props.categoriesName}</Text>
         <Text style={styles.textStyle}>{props.quantity} now</Text>
       </View>
-      <View></View>
     </TouchableOpacity>
   );
 };
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 13,
     fontWeight: 'bold',
-    color: '#000',
+    color: 'white',
     maxWidth: '100%',
     maxHeight: '50%',
   },

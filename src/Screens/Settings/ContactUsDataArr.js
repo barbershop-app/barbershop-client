@@ -17,7 +17,7 @@ const ContactUsDataArr = props => {
       <View>
         <GrayBigTitle title={'Contact Us'} />
         {props.arr.map(e => (
-          <View>
+          <View key={e.title}>
             <SmallTitleAndValue title={e.title} value={e.value} />
           </View>
         ))}

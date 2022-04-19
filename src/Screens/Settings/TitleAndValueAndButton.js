@@ -23,7 +23,8 @@ const TitleAndValueAndButton = props => {
       <View>
         {props.button ? (
           <MainButton
-            color={'white'}
+            titleColor={'white'}
+            color={'black'}
             padding={props.padding ? props.padding : undefined}
             width={props.buttonWidth}
             height={props.buttonHeight}

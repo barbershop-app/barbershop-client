@@ -1,6 +1,7 @@
 import {Dimensions} from 'react-native';
 let Logo = require('../Assets/Images/Logo.png');
 let BarberMan = require('../Assets/Images/BarberMan.png');
+let BarberFrame = require('../Assets/Images/BarberFrame.png');
 
 let Gallery_1 = require('../Assets/Images/Gallery/1.jpg');
 let Gallery_2 = require('../Assets/Images/Gallery/2.jpg');
@@ -12,6 +13,7 @@ let Gallery_6 = require('../Assets/Images/Gallery/6.jpg');
 export const Images = {
   Logo,
   BarberMan,
+  BarberFrame,
 };
 export const GalleryImages = [
   Gallery_1,

@@ -2,6 +2,7 @@ import {View, Text, StatusBar} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {windowWidth} from '../Utils/Themes';
+import {CART} from '../Utils/RouteNames';
 const NavProductPage = props => {
   return (
     <View
@@ -25,6 +26,7 @@ const NavProductPage = props => {
         size={30}
         color="black"
         style={{marginRight: '3%'}}
+        onPress={() => props.navigation.navigate(CART)}
       />
     </View>
   );

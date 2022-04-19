@@ -14,6 +14,7 @@ import AlertOneButton from '../../Components/AlertOneButton';
 import {setUser} from '../../Redux/Slices/userSlice';
 import {setApp, setLoginIn} from '../../Redux/Slices/appSlice';
 import Dialog from 'react-native-dialog';
+import {Gray_1, Gray_3, Gray_5} from '../../Utils/Colors';
 
 const Auth = props => {
   const dialData = useSelector(state => state.dial);
@@ -27,18 +28,19 @@ const Auth = props => {
   });
 
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [fullName, setFullName] = useState({
     firstName: '',
     lastName: '',
   });
 
   const handleNextScreen = async () => {
+    setLoading(true);
     if (dialData.isCodeSent === false) {
       if (dialData.phoneNumber.length === 9) {
         const result = await HttpRequest('users/create', 'POST', {
           PhoneNumber: '0' + dialData.phoneNumber,
         });
-        // console.log(result);
 
         if (result.status === 200) {
           dispatch(resetCode());
@@ -85,6 +87,7 @@ const Auth = props => {
         });
       }
     }
+    setLoading(false);
   };
 
   const handleUpdateFullName = async () => {
@@ -98,7 +101,12 @@ const Auth = props => {
         lastName: fullName.lastName,
       });
       if (result.status === 200) dispatch(setLoginIn({isLoggedIn: true}));
-      else console.log('ERRORRRR');
+      else
+        setAlertData({
+          title: 'Something Went Wrong!',
+          message: 'Please Try Again',
+          showAlert: true,
+        });
     }
   };
   return (
@@ -130,7 +138,7 @@ const Auth = props => {
               fontWeight: 'bold',
               marginTop: 10,
               marginLeft: windowWidth * 0.1,
-              color: '#D5BE2A',
+              color: Gray_1,
             }}>
             {dialData.isCodeSent ? '' : '+972'}
           </Text>
@@ -147,9 +155,17 @@ const Auth = props => {
         </View>
         <Dial />
         <MainButton
+          fontSize={18}
+          color={'black'}
+          titleColor={'white'}
+          bold
+          borderWidth={1}
           onPressFunction={() => handleNextScreen()}
           width={80}
-          title={dialData.isCodeSent ? 'Enter' : 'Next'}
+          disabled={loading}
+          title={
+            loading ? 'Loading...' : dialData.isCodeSent ? 'Enter' : 'Next'
+          }
           center
         />
         <TermsAndPolicy />

@@ -6,19 +6,18 @@ import HttpRequest from '../config/API/axios';
 const SilmilarThisList = props => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    console.log(props.catagoryId);
     HttpCall();
   }, []);
 
   const HttpCall = async () => {
     const result = await HttpRequest(
-      `Market/GetAllProductsByCategoryId/${props.catagoryId}`,
+      `Market/GetAllProductsByCategoryId/${props.categoryId}`,
       'GET',
       '',
     );
-    console.log(result.data);
+
     if (result.status === 200) setData(result.data.products);
-    else props.navigation.goBack();
+    else console.log(result);
   };
   return (
     <View style={{marginTop: '3%', height: '32%', width: '100%'}}>
@@ -27,9 +26,15 @@ const SilmilarThisList = props => {
       </Text>
       <ScrollView horizontal={true} style={{marginLeft: '2%'}}>
         {data.length > 0 &&
-          data?.map((e, index) => (
-            <SimilarCardProduct item={e} key={index + 'KeyIndex_SCP'} />
-          ))}
+          data?.map((e, index) => {
+            return (
+              <SimilarCardProduct
+                navigation={props.navigation}
+                item={e}
+                key={index + 'KeyIndex_SCP'}
+              />
+            );
+          })}
       </ScrollView>
     </View>
   );

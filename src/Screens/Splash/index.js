@@ -7,6 +7,8 @@ import {useDispatch} from 'react-redux';
 import {setUser} from '../../Redux/Slices/userSlice';
 import {setLoginIn} from '../../Redux/Slices/appSlice';
 import {AUTH, HOME, INTRO} from '../../Utils/RouteNames';
+import LinearGradient from 'react-native-linear-gradient';
+import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
 
 export default function Splash({navigation}) {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ export default function Splash({navigation}) {
 
   const HttpCall = async () => {
     const result = await HttpRequest('users/IsLoggedIn', 'GET', '');
-    console.log(result.status);
+
     setTimeout(() => {
       if (result.status === 200) {
         dispatch(setUser(result.data));
@@ -28,14 +30,17 @@ export default function Splash({navigation}) {
     }, 1500);
   };
   return (
-    <View
+    <LinearGradient
       style={{
         flex: 1,
         backgroundColor: '#D5BE2A',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+      start={{x: 0, y: 0}}
+      end={{x: 0, y: 1}}
+      colors={[Gray_1, Gray_2, Gray_5]}>
       <View>
         <Animatable.View animation={animation_0} iterationCount={'infinite'}>
           <Image
@@ -62,7 +67,7 @@ export default function Splash({navigation}) {
         direction="alternate">
         {'Loading...'}
       </Animatable.Text>
-    </View>
+    </LinearGradient>
   );
 }
 
