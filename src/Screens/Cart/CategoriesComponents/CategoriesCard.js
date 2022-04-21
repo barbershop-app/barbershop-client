@@ -1,9 +1,10 @@
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
-import {windowWidth} from '../Utils/Themes';
-import {CATALOG_PRODUCTS_LIST} from '../Utils/RouteNames';
+import {windowWidth} from '../../../Utils/Themes';
+import {CATALOG_PRODUCTS_LIST} from '../../../Utils/RouteNames';
 
 const CategoriesCard = props => {
+  console.log(props.uri);
   return (
     <TouchableOpacity
       key={props.index}
@@ -14,10 +15,9 @@ const CategoriesCard = props => {
         })
       }
       style={{
-        borderWidth: 1,
-        borderColor: 'white',
         margin: 5,
         borderRadius: 15,
+        backgroundColor: 'rgba(220, 220, 220,0.15)',
         justifyContent: 'space-around',
       }}>
       <View
@@ -35,13 +35,16 @@ const CategoriesCard = props => {
             borderRadius: 25,
           }}
           source={{
-            uri: props.uri,
+            uri:
+              props.uri !== 'string'
+                ? props.uri
+                : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Icon-round-Question_mark.svg/1200px-Icon-round-Question_mark.svg.png',
           }}
         />
       </View>
       <View style={{alignSelf: 'center', alignItems: 'center'}}>
         <Text style={[styles.textStyle]}>{props.categoriesName}</Text>
-        <Text style={styles.textStyle}>{props.quantity} now</Text>
+        {/* <Text style={styles.textStyle}>{props.quantity} now</Text> */}
       </View>
     </TouchableOpacity>
   );
@@ -53,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     maxWidth: '100%',
-    maxHeight: '50%',
+    maxHeight: '105%',
   },
 });
 export default CategoriesCard;

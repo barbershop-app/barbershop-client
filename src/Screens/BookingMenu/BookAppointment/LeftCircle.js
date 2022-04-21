@@ -1,15 +1,17 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
+import {gradientColors} from '../../../Utils/Colors';
 
 const LeftCircle = props => {
   return (
     <View
       style={{
-        backgroundColor: 'black',
+        backgroundColor: gradientColors[0],
         width: 70,
         height: 70,
         borderWidth: 1,
+        borderColor: 'black',
         alignSelf: 'center',
         padding: 10,
         alignItems: 'center',
@@ -35,7 +37,8 @@ const LeftCircle = props => {
           </Text>
           <Text
             style={{
-              color: 'gray',
+              color: 'white',
+              opacity: 0.7,
               fontWeight: 'bold',
               fontSize: 15,
               marginTop: -10,

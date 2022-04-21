@@ -1,8 +1,8 @@
 import {View, Text, StatusBar} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import {windowWidth} from '../Utils/Themes';
-import {CART} from '../Utils/RouteNames';
+import {windowWidth} from '../../Utils/Themes';
+import {CART} from '../../Utils/RouteNames';
 const NavProductPage = props => {
   return (
     <View

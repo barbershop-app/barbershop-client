@@ -12,6 +12,7 @@ const PaymentIcon = props => {
           backgroundColor: props.item.isSelected ? 'white' : 'transparent',
           borderWidth: 1,
           borderRadius: 25,
+          borderColor: 'white',
           padding: 10,
         }}>
         <Image
@@ -19,7 +20,9 @@ const PaymentIcon = props => {
           source={{uri: props.item.imageSource}}
         />
       </View>
-      <Text style={{alignSelf: 'center'}}>{props.item.name}</Text>
+      <Text style={{alignSelf: 'center', color: 'white', fontWeight: 'bold'}}>
+        {props.item.name}
+      </Text>
     </TouchableOpacity>
   );
 };

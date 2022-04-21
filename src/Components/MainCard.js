@@ -1,12 +1,16 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 
-export const MainCard = ({isYellow, size, children}) => {
+export const MainCard = ({backgroundColor, isYellow, size, children}) => {
   //! size
   return (
     <View
       style={{
-        backgroundColor: isYellow ? '#D5BE2A' : 'white',
+        backgroundColor: backgroundColor
+          ? backgroundColor
+          : isYellow
+          ? '#D5BE2A'
+          : 'white',
         position: 'absolute',
         width: '100%',
         borderTopRightRadius: 15,

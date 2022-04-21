@@ -1,9 +1,8 @@
 import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import TitleAndArrow from '../../Components/TitleAndArrow';
-import MyCartComponent from '../../Components/MyCartComponent';
-import PaymentMethod from '../../Components/PaymentMethod';
-import OrderInfo from '../../Components/OrderInfo';
+import MyCartComponent from './MyCartComponent';
+import OrderInfo from './OrderInfo';
 import MainButton from '../../Components/MainButton';
 import {
   changeQuantityAsyncStorage,
@@ -19,6 +18,9 @@ import {
   Update,
   UpdateQuantity,
 } from '../../Redux/Slices/cartSlice';
+import LinearGradient from 'react-native-linear-gradient';
+import {gradientColors} from '../../Utils/Colors';
+import PaymentMethod from './PaymentComponents/PaymentMethod';
 
 const Cart = props => {
   const [total, setTotal] = useState(0); //price
@@ -49,7 +51,9 @@ const Cart = props => {
   };
 
   return (
-    <View>
+    <LinearGradient
+      colors={['white', 'white', gradientColors[1], gradientColors[0]]}
+      style={{flex: 1}}>
       <TitleAndArrow navigation={props.navigation} title="Order Details" />
       <MyCartComponent
         tempData={data}
@@ -62,8 +66,8 @@ const Cart = props => {
       <View style={{marginTop: 15}}>
         <MainButton
           disabled={total === 0}
-          titleColor={'white'}
-          color={'black'}
+          titleColor={'black'}
+          color={'white'}
           borderRadius={20}
           fontSize={15}
           borderWidth={0.5}
@@ -78,7 +82,7 @@ const Cart = props => {
           }}
         />
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 

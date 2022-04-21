@@ -1,13 +1,16 @@
 import {View, Text, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import SimilarCardProduct from './SimilarCardProduct';
-import HttpRequest from '../config/API/axios';
+import HttpRequest from '../../config/API/axios';
+import {useIsFocused} from '@react-navigation/native';
 
 const SilmilarThisList = props => {
+  const isFocused = useIsFocused();
   const [data, setData] = useState([]);
+
   useEffect(() => {
     HttpCall();
-  }, []);
+  }, [isFocused]);
 
   const HttpCall = async () => {
     const result = await HttpRequest(
@@ -19,8 +22,9 @@ const SilmilarThisList = props => {
     if (result.status === 200) setData(result.data.products);
     else console.log(result);
   };
+  console.log(props.categoryId);
   return (
-    <View style={{marginTop: '3%', height: '32%', width: '100%'}}>
+    <View style={{height: '32%', width: '100%'}}>
       <Text style={{color: 'black', fontWeight: 'bold', fontSize: 18}}>
         Silmilar This
       </Text>
@@ -31,6 +35,7 @@ const SilmilarThisList = props => {
               <SimilarCardProduct
                 navigation={props.navigation}
                 item={e}
+                categoryId={props.categoryId}
                 key={index + 'KeyIndex_SCP'}
               />
             );

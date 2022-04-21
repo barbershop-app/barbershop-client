@@ -15,8 +15,9 @@ import HttpRequest from '../../config/API/axios';
 import {AUTH} from '../../Utils/RouteNames';
 import {setLoginIn} from '../../Redux/Slices/appSlice';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
+import {gradientColors} from '../../Utils/Colors';
 import {Images, windowHeight, windowWidth} from '../../Utils/Themes';
+import {COUNTRY_CODE} from '../../Utils/Rules';
 
 const Settings = props => {
   const dispatch = useDispatch();
@@ -94,7 +95,15 @@ const Settings = props => {
   };
 
   return (
-    <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
+    <LinearGradient
+      style={{flex: 1}}
+      colors={[
+        'white',
+        gradientColors[1],
+        gradientColors[0],
+        gradientColors[0],
+        gradientColors[1],
+      ]}>
       <TitleAndArrow navigation={props.navigation} title={'Settings'} />
       <Image
         style={{
@@ -118,7 +127,7 @@ const Settings = props => {
 
         <TitleAndValueAndButton
           bigTitle={'Number Phone'}
-          value={'+972 50 790 7888'}
+          value={COUNTRY_CODE + ' 50 790 7888'}
         />
 
         <Line90Width />
@@ -147,7 +156,7 @@ const Settings = props => {
         <Line90Width />
         <ContactUsDataArr
           arr={[
-            {title: 'Phone Number', value: '+972 50 790 7888'},
+            {title: 'Phone Number', value: COUNTRY_CODE + ' 50 790 7888'},
             {title: 'Email Address', value: 'aborkiamosaab@gmail.com'},
           ]}
         />

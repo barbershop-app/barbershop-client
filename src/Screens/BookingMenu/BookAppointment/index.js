@@ -14,7 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AlertOneButton from '../../../Components/AlertOneButton';
 import {HOME} from '../../../Utils/RouteNames';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../../Utils/Colors';
+import {gradientColors} from '../../../Utils/Colors';
 
 const BookAppointment = props => {
   const [leftPlaces, setLeftPlaces] = useState(15);
@@ -82,8 +82,12 @@ const BookAppointment = props => {
   };
 
   return (
-    <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
-      <TitleAndArrow navigation={props.navigation} title={'Book Appointment'} />
+    <LinearGradient style={{flex: 1}} colors={[...gradientColors, 'white']}>
+      <TitleAndArrow
+        navigation={props.navigation}
+        title={'Book Appointment'}
+        white
+      />
       <LogoCenter />
       <MainCard size={68}>
         <ScrollView>
@@ -104,7 +108,7 @@ const BookAppointment = props => {
                 markedDates[key] = {
                   selected: true,
                   marked: true,
-                  selectedColor: 'black',
+                  selectedColor: gradientColors[1],
                 };
                 setMarkedDates(markedDates);
                 setDateSelected(day.dateString + 'T00:00:00.000Z');
@@ -115,6 +119,7 @@ const BookAppointment = props => {
             />
             <View style={{marginTop: 15}}>
               <MainButton
+                bold
                 width={100}
                 titleColor={'white'}
                 color={'black'}

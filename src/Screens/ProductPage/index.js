@@ -1,17 +1,17 @@
 import {View, Text, Image, StyleSheet, Platform} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import NavProductPage from '../../Components/NavProductPage';
+import NavProductPage from './NavProductPage';
 import {windowWidth} from '../../Utils/Themes';
 import MainCard from '../../Components/MainCard';
-import SilmilarThisList from '../../Components/SilmilarThisList';
-import NameAndPrice from '../../Components/NameAndPrice';
+import SilmilarThisList from './SilmilarThisList';
+import NameAndPrice from './NameAndPrice';
 import MainButton from '../../Components/MainButton';
 import {AddToCartAsync} from '../../Utils/StaticFunctions';
 import {useDispatch} from 'react-redux';
 import {AddToCart} from '../../Redux/Slices/cartSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
+import {gradientColors} from '../../Utils/Colors';
 
 const ProductPage = props => {
   const params = props.route.params;
@@ -33,7 +33,14 @@ const ProductPage = props => {
     });
 
   return (
-    <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
+    <LinearGradient
+      style={{flex: 1}}
+      colors={[
+        'white',
+        gradientColors[1],
+        gradientColors[0],
+        gradientColors[1],
+      ]}>
       <NavProductPage navigation={props.navigation} />
       <View>
         <Image
@@ -65,7 +72,7 @@ const ProductPage = props => {
           style={{
             fontSize: 18,
             marginTop: '3%',
-            height: '33%',
+            height: '25%',
             fontWeight: 'bold',
             opacity: 0.7,
             width: '95%',
@@ -85,7 +92,13 @@ Lorem Ipsum is simply dummy text of the
         />
         <View style={{width: '100%', height: '18%'}}>
           <MainButton
-            color={found === undefined ? 'black' : found ? 'white' : 'black'}
+            color={
+              found === undefined
+                ? 'black'
+                : found
+                ? gradientColors[0]
+                : 'black'
+            }
             onPressFunction={async () => {
               AddToCartAsync(params);
               dispatch(AddToCart(params));

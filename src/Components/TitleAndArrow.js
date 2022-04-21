@@ -9,7 +9,7 @@ const TitleAndArrow = props => {
     <View>
       <View
         style={{
-          marginTop: StatusBar.currentHeight * 0.5,
+          marginTop: StatusBar.currentHeight * 0.2,
           flexDirection: 'row',
           alignSelf: 'center',
         }}>
@@ -22,7 +22,7 @@ const TitleAndArrow = props => {
           <Icon
             name="left"
             size={35}
-            color="black"
+            color={props.white ? 'white' : 'black'}
             onPress={() => props.navigation.goBack()}
             style={{}}
           />
@@ -39,7 +39,7 @@ const TitleAndArrow = props => {
             style={{
               fontSize: 25,
               fontWeight: 'bold',
-              color: 'black',
+              color: props.white ? 'white' : 'black',
             }}>
             {props.title}
           </Text>

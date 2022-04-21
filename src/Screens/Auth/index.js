@@ -14,7 +14,7 @@ import AlertOneButton from '../../Components/AlertOneButton';
 import {setUser} from '../../Redux/Slices/userSlice';
 import {setApp, setLoginIn} from '../../Redux/Slices/appSlice';
 import Dialog from 'react-native-dialog';
-import {Gray_1, Gray_3, Gray_5} from '../../Utils/Colors';
+import {COUNTRY_CODE} from '../../Utils/Rules';
 
 const Auth = props => {
   const dialData = useSelector(state => state.dial);
@@ -110,13 +110,13 @@ const Auth = props => {
     }
   };
   return (
-    <View style={{backgroundColor: '#505050', flex: 1}}>
+    <View style={{backgroundColor: '#AA076B', flex: 1}}>
       <MainCard isYellow={false} size={85}>
         <Text
           style={{
             fontSize: 30,
             fontWeight: 'bold',
-            color: '#505050',
+            color: 'black',
             marginLeft: windowWidth * 0.03,
           }}>
           Enter your {'\n'}mobile number
@@ -125,10 +125,13 @@ const Auth = props => {
           style={{
             marginLeft: windowWidth * 0.03,
             fontSize: 15,
-            color: '#505050',
+            color: 'black',
           }}>
           {dialData.isCodeSent
-            ? 'we sent it to the number +972 ' + dialData.phoneNumber
+            ? 'we sent it to the number ' +
+              COUNTRY_CODE +
+              ' ' +
+              dialData.phoneNumber
             : 'We will send you confirmation code'}
         </Text>
         <View style={{flexDirection: 'row'}}>
@@ -138,16 +141,16 @@ const Auth = props => {
               fontWeight: 'bold',
               marginTop: 10,
               marginLeft: windowWidth * 0.1,
-              color: Gray_1,
+              color: 'black',
             }}>
-            {dialData.isCodeSent ? '' : '+972'}
+            {dialData.isCodeSent ? '' : COUNTRY_CODE}
           </Text>
           <Text
             style={{
               fontSize: 30,
               fontWeight: 'bold',
               marginTop: 10,
-              color: '#505050',
+              color: 'black',
             }}>
             {' '}
             {(dialData.isCodeSent ? dialData.code : dialData.phoneNumber) + '|'}
@@ -156,7 +159,7 @@ const Auth = props => {
         <Dial />
         <MainButton
           fontSize={18}
-          color={'black'}
+          color={'#61045F'}
           titleColor={'white'}
           bold
           borderWidth={1}

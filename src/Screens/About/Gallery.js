@@ -21,9 +21,10 @@ const Gallery = () => (
       Gallery
     </Text>
     <ScrollView horizontal={true} style={{width: '90%', alignSelf: 'center'}}>
-      {GalleryImages.map(e => (
+      {GalleryImages.map((e, index) => (
         <Image
           style={{height: 100, width: 60, borderRadius: 15, margin: 5}}
+          key={'image_' + index}
           source={e}
         />
       ))}

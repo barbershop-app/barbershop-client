@@ -7,7 +7,6 @@ import MainCard from '../../../Components/MainCard';
 import TitleAndArrow from '../../../Components/TitleAndArrow';
 import AlertOneButton from '../../../Components/AlertOneButton';
 import BookedAppointmentCard from './BookedAppointmentCard';
-import {Gray_2, Gray_3} from '../../../Utils/Colors';
 
 export default function BookedAppointments(props) {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
@@ -45,7 +44,7 @@ export default function BookedAppointments(props) {
     else console.log(result);
   };
   return (
-    <View style={{flex: 1, backgroundColor: Gray_2}}>
+    <View style={{flex: 1, backgroundColor: 'rgb(140, 140, 140)'}}>
       <TitleAndArrow
         navigation={props.navigation}
         title={'Edit Booked Appointments'}

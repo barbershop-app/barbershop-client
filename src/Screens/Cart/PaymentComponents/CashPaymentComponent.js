@@ -1,7 +1,7 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {CART_SELECT_PAYMENT} from '../../Utils/RouteNames';
+import {CART_SELECT_PAYMENT} from '../../../Utils/RouteNames';
 
 const CashPaymentComponent = props => {
   return (
@@ -34,7 +34,7 @@ const CashPaymentComponent = props => {
       <Icon
         name="right"
         size={30}
-        color="black"
+        color="white"
         style={{alignSelf: 'center'}}
       />
     </TouchableOpacity>

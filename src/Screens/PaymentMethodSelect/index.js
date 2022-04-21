@@ -3,14 +3,16 @@ import React, {useEffect, useState} from 'react';
 import TitleAndArrow from '../../Components/TitleAndArrow';
 import MainCard from '../../Components/MainCard';
 import {useDispatch, useSelector} from 'react-redux';
-import PaymentIcon from '../../Components/PaymentIcon';
+
 import MainButton from '../../Components/MainButton';
-import CashForm from '../../Components/PaymentComponents/CashForm';
 import MainInputText from '../../Components/MainInputText';
 import {windowWidth} from '../../Utils/Themes';
-import CardForm from '../../Components/PaymentComponents/CardForm';
+import CardForm from '../Cart/PaymentComponents/CardForm';
 import {setMethod} from '../../Redux/Slices/paymentSlice';
 import {CART} from '../../Utils/RouteNames';
+import PaymentIcon from '../Cart/PaymentIcon';
+import {gradientColors} from '../../Utils/Colors';
+import CashForm from '../Cart/PaymentComponents/CashForm';
 
 const PaymentMethodSelect = props => {
   const data = useSelector(state => state.dial);
@@ -76,7 +78,7 @@ const PaymentMethodSelect = props => {
   return (
     <View style={{flex: 1}}>
       <TitleAndArrow navigation={props.navigation} title={'Payment Method'} />
-      <MainCard size={80} isYellow>
+      <MainCard size={80} backgroundColor={gradientColors[0]}>
         <Text
           style={{
             fontSize: 25,
@@ -125,8 +127,6 @@ const PaymentMethodSelect = props => {
         )}
         <View
           style={{
-            position: 'absolute',
-            bottom: '3%',
             width: '95%',
             alignSelf: 'center',
           }}>
@@ -134,6 +134,8 @@ const PaymentMethodSelect = props => {
             onPressFunction={handleFunction}
             disabled={paymentMethod === null}
             width={100}
+            color={'black'}
+            titleColor={'white'}
             title={'Confirm'}
             borderWidth={1}
             borderRadius={15}

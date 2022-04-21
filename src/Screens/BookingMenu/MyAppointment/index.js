@@ -9,7 +9,7 @@ import {BOOK_APPOINTMENT, HOME} from '../../../Utils/RouteNames';
 import BookedDetailsSucess from './BookedDetailsSucess';
 import MainButton from '../../../Components/MainButton';
 import {useIsFocused} from '@react-navigation/native';
-import {Gray_2, Gray_3, Gray_5} from '../../../Utils/Colors';
+import {gradientColors} from '../../../Utils/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import LogoCenter from '../BookAppointment/LogoCenter';
 import LoadingDots from '../../../Components/LoadingDots';
@@ -69,8 +69,12 @@ const MyAppointment = props => {
     }
   };
   return (
-    <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
-      <TitleAndArrow navigation={props.navigation} title={'My Appointment'} />
+    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+      <TitleAndArrow
+        white
+        navigation={props.navigation}
+        title={'My Appointment'}
+      />
       <LogoCenter />
       <MainCard isYellow={false} size={67}>
         <Text
@@ -110,6 +114,7 @@ const MyAppointment = props => {
                   borderWidth={1}
                   center
                   width={80}
+                  bold
                   title={'Book an Appointment'}
                   titleColor={'white'}
                   color={'black'}

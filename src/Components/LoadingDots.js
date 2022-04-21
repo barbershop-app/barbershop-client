@@ -8,7 +8,7 @@ const LoadingDots = props => {
       animation="swing"
       iterationCount={'infinite'}
       style={{
-        color: 'black',
+        color: 'white',
         fontWeight: 'bold',
         alignSelf: 'center',
         fontSize: 70,

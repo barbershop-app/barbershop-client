@@ -1,7 +1,7 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {CART_SELECT_PAYMENT} from '../../Utils/RouteNames';
+import {CART_SELECT_PAYMENT} from '../../../Utils/RouteNames';
 const SelectPayment = props => {
   return (
     <TouchableOpacity
@@ -15,19 +15,19 @@ const SelectPayment = props => {
       }}>
       <View style={{borderWidth: 1, borderRadius: 15, padding: 5}}>
         <Image
-          style={{width: 35, height: 35}}
+          style={{width: 35, height: 35, borderRadius: 15}}
           source={{
             uri: 'https://img2.arabpng.com/20180419/wsw/kisspng-payment-gateway-credit-card-computer-icons-point-o-automotive-industry-business-card-5ad93c4a689256.4385955015241861864283.jpg',
           }}
         />
       </View>
-      <Text style={{alignSelf: 'center', fontSize: 15}}>
+      <Text style={{alignSelf: 'center', fontSize: 15, color: 'white'}}>
         Please Select Payment Method
       </Text>
       <Icon
         name="right"
         size={30}
-        color="black"
+        color="white"
         style={{alignSelf: 'center'}}
       />
     </TouchableOpacity>

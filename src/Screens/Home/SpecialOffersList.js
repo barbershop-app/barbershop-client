@@ -1,9 +1,9 @@
 import {View, Text, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import SpecialOfferCardProduct from './SpecialOfferCardProduct';
-import HttpRequest from '../config/API/axios';
+import HttpRequest from '../../config/API/axios';
 import * as Animatable from 'react-native-animatable';
-import LoadingDots from './LoadingDots';
+import LoadingDots from '../../Components/LoadingDots';
 
 const SpecialOffersList = props => {
   const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ const SpecialOffersList = props => {
       <Text
         style={{
           fontSize: 13,
-          color: 'black',
+          color: 'white',
           marginLeft: '5%',
           marginTop: '5%',
           fontWeight: 'bold',

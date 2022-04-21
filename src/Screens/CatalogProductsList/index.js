@@ -1,13 +1,14 @@
 import {View, Text, ScrollView, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import CatalogProductCard from '../../Components/CatalogProductCard';
+import CatalogProductCard from './CatalogProductCard';
 import TitleAndArrow from '../../Components/TitleAndArrow';
 import HttpRequest from '../../config/API/axios';
 import {useIsFocused} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
-import {windowWidth} from '../../Utils/Themes';
+import {gradientColors} from '../../Utils/Colors';
+import {windowHeight, windowWidth} from '../../Utils/Themes';
 import LoadingDots from '../../Components/LoadingDots';
+import Line90Width from '../BookingMenu/BookAppointment/Line90Width';
 
 const CatalogProductsList = props => {
   const isFocused = useIsFocused();
@@ -17,6 +18,7 @@ const CatalogProductsList = props => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     HttpCall();
   }, [isFocused]);
 
@@ -44,9 +46,28 @@ const CatalogProductsList = props => {
       categoryId={categoryId}
     />
   );
+  // console.log(categoryId);
   return (
-    <LinearGradient style={{flex: 1}} colors={['#5D5C58', '#5D5C58', 'white']}>
-      <TitleAndArrow navigation={props.navigation} title={params.catalogName} />
+    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+      <TitleAndArrow
+        white
+        navigation={props.navigation}
+        title={params.catalogName}
+      />
+      <View style={{borderBottomWidth: 1, borderColor: 'white'}} />
+      {products.length <= 0 ? (
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: windowHeight * 0.4,
+          }}>
+          <Text>Empty</Text>
+        </View>
+      ) : (
+        <></>
+      )}
+
       {loading ? (
         <View
           style={{

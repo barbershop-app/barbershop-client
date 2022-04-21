@@ -1,10 +1,10 @@
 import {View, Text, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import CategoriesCard from './CategoriesCard';
-import HttpRequest from '../config/API/axios';
+import HttpRequest from '../../../config/API/axios';
 import {useIsFocused} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
-import LoadingDots from './LoadingDots';
+import LoadingDots from '../../../Components/LoadingDots';
 
 const CategoriesList = props => {
   const [list, setList] = useState([]);
@@ -25,7 +25,7 @@ const CategoriesList = props => {
       <Text
         style={{
           fontSize: 13,
-          color: 'black',
+          color: 'white',
           marginLeft: '5%',
 
           fontWeight: 'bold',

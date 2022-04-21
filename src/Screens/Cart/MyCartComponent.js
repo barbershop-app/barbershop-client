@@ -1,7 +1,7 @@
 import {View, Text, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import ProductCartCard from './ProductCartCard';
-import {windowHeight} from '../Utils/Themes';
+import {windowHeight} from '../../Utils/Themes';
 
 const MyCartComponent = props => {
   const changeQuantity = (id, newQuantity) => {

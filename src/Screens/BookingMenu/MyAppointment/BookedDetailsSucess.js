@@ -32,8 +32,14 @@ export default function BookedDetailsSucess(props) {
             }}>
             Date
           </Text>
-          <Text style={{alignSelf: 'center', fontSize: 35}}>
-            {props.dataDate.slice(0, 10)}
+          <Text
+            style={{
+              alignSelf: 'center',
+              fontSize: 35,
+              color: 'black',
+              fontWeight: 'bold',
+            }}>
+            {new Date(props.dataDate).toDateString()}
           </Text>
         </View>
       </View>
@@ -54,7 +60,9 @@ export default function BookedDetailsSucess(props) {
             alignSelf: 'center',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 15}}>Cancel This Appoinment</Text>
+          <Text style={{fontSize: 15, color: 'gray'}}>
+            Cancel This Appoinment
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

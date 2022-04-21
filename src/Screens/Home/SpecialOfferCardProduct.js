@@ -1,7 +1,7 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {windowHeight, windowWidth} from '../Utils/Themes';
-import {PRODUCT_PAGE} from '../Utils/RouteNames';
+import {windowHeight, windowWidth} from '../../Utils/Themes';
+import {PRODUCT_PAGE} from '../../Utils/RouteNames';
 
 const SpecialOfferCardProduct = props => {
   return (
@@ -17,6 +17,7 @@ const SpecialOfferCardProduct = props => {
         borderRadius: 15,
         width: windowWidth * 0.8,
         height: windowHeight * 0.5,
+        backgroundColor: 'rgba(220, 220, 220,0.1)',
       }}>
       <View
         style={{

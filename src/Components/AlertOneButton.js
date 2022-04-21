@@ -1,6 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import {gradientColors} from '../Utils/Colors';
 
 const AlertOneButton = ({
   showButtonOther,
@@ -28,7 +29,7 @@ const AlertOneButton = ({
         fontSize: 15,
         textAlign: 'center',
       }}
-      cancelButtonColor="black"
+      cancelButtonColor={gradientColors[1]}
       cancelButtonTextStyle={{
         color: 'white',
         fontWeight: 'bold',

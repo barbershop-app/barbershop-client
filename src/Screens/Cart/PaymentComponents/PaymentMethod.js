@@ -2,10 +2,10 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
-import SelectPayment from './PaymentComponents/SelectPayment';
-import CashPaymentComponent from './PaymentComponents/CashPaymentComponent';
-import DebitCardPaymentComponent from './PaymentComponents/DebitCardPaymentComponent';
-import OrderInfo from './OrderInfo';
+import SelectPayment from './SelectPayment';
+import CashPaymentComponent from './CashPaymentComponent';
+import DebitCardPaymentComponent from './DebitCardPaymentComponent';
+import OrderInfo from '../OrderInfo';
 
 const PaymentMethod = props => {
   const data = useSelector(state => state.payment);
@@ -14,7 +14,7 @@ const PaymentMethod = props => {
       <Text
         style={{
           fontSize: 20,
-          color: 'black',
+          color: 'white',
           fontWeight: 'bold',
           marginTop: '5%',
           marginLeft: '5%',

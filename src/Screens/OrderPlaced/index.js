@@ -4,6 +4,8 @@ import * as Animatable from 'react-native-animatable';
 import {windowHeight} from '../../Utils/Themes';
 import {HOME} from '../../Utils/RouteNames';
 import {clearCartList} from '../../Utils/StaticFunctions';
+import LinearGradient from 'react-native-linear-gradient';
+import {gradientColors} from '../../Utils/Colors';
 
 const OrderPlaced = props => {
   const [loading, setLoading] = useState(true);
@@ -18,10 +20,9 @@ const OrderPlaced = props => {
     }, 5000);
   }, []);
   return (
-    <View
+    <LinearGradient
+      colors={gradientColors}
       style={{
-        flex: 1,
-        backgroundColor: '#D5BE2A',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -54,7 +55,7 @@ const OrderPlaced = props => {
         direction="alternate">
         {loading ? 'Loading...' : 'Order Placed!'}
       </Animatable.Text>
-    </View>
+    </LinearGradient>
   );
 };
 

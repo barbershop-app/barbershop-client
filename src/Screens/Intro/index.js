@@ -7,34 +7,12 @@ import {AUTH} from '../../Utils/RouteNames';
 import {useDispatch} from 'react-redux';
 import {resetData} from '../../Redux/Slices/dialSlice';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
+import {gradientColors} from '../../Utils/Colors';
 
 export default function Intro({navigation}) {
   const dispatch = useDispatch();
   return (
-    <LinearGradient
-      start={{x: 0.5, y: -0.5}}
-      end={{x: 0, y: 0.5}}
-      style={{flex: 1}}
-      colors={[Gray_1, Gray_2, Gray_3, Gray_5]}>
-      {/* <Image
-        style={{
-          height: windowHeight * 0.24,
-          width: windowWidth * 0.8,
-          marginTop: 50,
-          alignSelf: 'center',
-        }}
-        source={Images.Logo}
-      />
-      <Image
-        style={{
-          height: windowHeight * 0.5,
-          width: windowWidth * 0.8,
-          marginTop: 25,
-          alignSelf: 'center',
-        }}
-        source={Images.BarberMan}
-      /> */}
+    <LinearGradient style={{flex: 1}} colors={gradientColors}>
       <Image
         style={{
           height: windowHeight * 0.4,
@@ -99,8 +77,8 @@ export default function Intro({navigation}) {
           width={60}
           title={'Get Started'}
           fontSize={18}
-          color={'white'}
-          titleColor={'gray'}
+          color={'black'}
+          titleColor={'white'}
           center
           shadow
           bold

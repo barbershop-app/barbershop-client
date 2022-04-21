@@ -8,7 +8,7 @@ import {setUser} from '../../Redux/Slices/userSlice';
 import {setLoginIn} from '../../Redux/Slices/appSlice';
 import {AUTH, HOME, INTRO} from '../../Utils/RouteNames';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
+import {gradientColors} from '../../Utils/Colors';
 
 export default function Splash({navigation}) {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export default function Splash({navigation}) {
       }}
       start={{x: 0, y: 0}}
       end={{x: 0, y: 1}}
-      colors={[Gray_1, Gray_2, Gray_5]}>
+      colors={gradientColors}>
       <View>
         <Animatable.View animation={animation_0} iterationCount={'infinite'}>
           <Image
@@ -59,7 +59,7 @@ export default function Splash({navigation}) {
         animation="swing"
         iterationCount={'infinite'}
         style={{
-          color: 'black',
+          color: 'white',
           fontWeight: 'bold',
           fontSize: 15,
           marginTop: 10,

@@ -20,7 +20,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setLoginIn} from '../Redux/Slices/appSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {resetData} from '../Redux/Slices/dialSlice';
-import {Gray_1, Gray_2, Gray_3, Gray_5} from '../Utils/Colors';
+import {gradientColors} from '../Utils/Colors';
 import {Text} from 'react-native-animatable';
 
 export function Humburger(props) {
@@ -28,7 +28,7 @@ export function Humburger(props) {
   const user = useSelector(state => state.user);
   const DrawerItemWithNavigationTop = ({onPress, icon, navigate, label}) => (
     <DrawerItem
-      labelStyle={{fontWeight: 'bold', color: 'white', opacity: 0.8}}
+      labelStyle={{fontWeight: 'bold', color: 'white'}}
       icon={({color, size}) => <Icon name={icon} color={'white'} size={size} />}
       label={label}
       onPress={() => {
@@ -41,7 +41,7 @@ export function Humburger(props) {
   );
 
   return (
-    <LinearGradient style={{flex: 1}} colors={[Gray_1, Gray_2, Gray_3, Gray_5]}>
+    <LinearGradient style={{flex: 1}} colors={gradientColors}>
       <DrawerContentScrollView {...props}>
         <Image
           style={{
@@ -52,7 +52,13 @@ export function Humburger(props) {
           }}
           source={Images.BarberFrame}
         />
-        <Text style={{alignSelf: 'center', fontWeight: 'bold', fontSize: 20}}>
+        <Text
+          style={{
+            alignSelf: 'center',
+            fontWeight: 'bold',
+            fontSize: 20,
+            color: 'white',
+          }}>
           Barber Shop
         </Text>
         <View

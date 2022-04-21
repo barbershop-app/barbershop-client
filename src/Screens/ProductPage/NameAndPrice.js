@@ -6,14 +6,15 @@ const NameAndPrice = ({data}) => (
     style={{
       flexDirection: 'row',
       justifyContent: 'space-between',
-      width: '100%',
-      height: '8%',
+      width: '90%',
+      height: '20%',
       alignSelf: 'center',
       marginTop: '5%',
       maxWidth: '100%',
-      maxHeight: '8%',
+      maxHeight: '20%',
     }}>
-    <Text style={{fontSize: 25, color: 'black', fontWeight: 'bold'}}>
+    <Text
+      style={{fontSize: 20, color: 'black', fontWeight: 'bold', width: '80%'}}>
       {data.name}
     </Text>
     <Text style={{fontSize: 25, color: 'black', fontWeight: 'bold'}}>

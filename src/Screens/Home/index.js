@@ -1,18 +1,18 @@
 import {View, Text, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import NavBarHomePage from '../../Components/NavBarHomePage';
-import WelcomeWord from '../../Components/WelcomeWord';
+import NavBarHomePage from './NavBarHomePage';
+import WelcomeWord from './WelcomeWord';
 import DualButton from '../../Components/DualButton';
 import {windowWidth} from '../../Utils/Themes';
-import CategoriesList from '../../Components/CategoriesList';
-import SpecialOffersList from '../../Components/SpecialOffersList';
+import SpecialOffersList from './SpecialOffersList';
 import {BOOK_APPOINTMENT, CART, MY_APPOINTMENTS} from '../../Utils/RouteNames';
 import {useDispatch, useSelector} from 'react-redux';
 import HttpRequest from '../../config/API/axios';
 import {setUser} from '../../Redux/Slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_1, Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
+import {gradientColors} from '../../Utils/Colors';
+import CategoriesList from '../Cart/CategoriesComponents/CategoriesList';
 
 const TextBigBold = ({children}) => (
   <Text
@@ -59,16 +59,17 @@ const Home = props => {
   };
 
   return (
-    <LinearGradient style={{flex: 1}} colors={[Gray_1, Gray_2, Gray_3, Gray_5]}>
+    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+      <NavBarHomePage
+        white
+        onPressMenu={() => {
+          props.navigation.openDrawer();
+        }}
+        onPressCart={() => {
+          props.navigation.navigate(CART);
+        }}
+      />
       <ScrollView>
-        <NavBarHomePage
-          onPressMenu={() => {
-            props.navigation.openDrawer();
-          }}
-          onPressCart={() => {
-            props.navigation.navigate(CART);
-          }}
-        />
         <WelcomeWord name={userData.firstName} />
 
         <TextBigBold>Let's get a Hair Cut</TextBigBold>
@@ -79,7 +80,8 @@ const Home = props => {
             fontSize: 17,
             fontWeight: 'bold',
             marginTop: 10,
-            color: Gray_5,
+            color: 'white',
+            opacity: 0.7,
           }}>
           Haircutting is an art
         </Text>

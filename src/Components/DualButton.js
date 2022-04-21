@@ -2,7 +2,6 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_1, Gray_5} from '../Utils/Colors';
 
 const DualButton = props => {
   return (

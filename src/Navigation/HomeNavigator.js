@@ -29,7 +29,7 @@ import MyAppointment from '../Screens/BookingMenu/MyAppointment';
 import CatalogProductsList from '../Screens/CatalogProductsList';
 import ProductPage from '../Screens/ProductPage';
 import Cart from '../Screens/Cart';
-import PaymentMethod from '../Components/PaymentMethod';
+import PaymentMethod from '../Screens/Cart/PaymentComponents/PaymentMethod';
 import PaymentMethodSelect from '../Screens/PaymentMethodSelect';
 import OrderPlaced from '../Screens/OrderPlaced';
 import Admin from '../Screens/Admin';

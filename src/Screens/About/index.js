@@ -8,11 +8,11 @@ import Location from './Location';
 import OpenTime from './OpenTime';
 import LogoCenter from '../BookingMenu/BookAppointment/LogoCenter';
 import LinearGradient from 'react-native-linear-gradient';
-import {Gray_2, Gray_3, Gray_5} from '../../Utils/Colors';
+import {gradientColors} from '../../Utils/Colors';
 
 const About = props => (
-  <LinearGradient style={{flex: 1}} colors={[Gray_2, Gray_5, Gray_3, Gray_5]}>
-    <TitleAndArrow title={'About'} navigation={props.navigation} />
+  <LinearGradient style={{flex: 1}} colors={gradientColors}>
+    <TitleAndArrow white title={'About'} navigation={props.navigation} />
     <LogoCenter />
     <MainCard size={68}>
       <ScrollView>

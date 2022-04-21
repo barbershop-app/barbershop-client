@@ -1,6 +1,5 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Gray_1} from '../Utils/Colors';
 
 const WelcomeWord = props => {
   const [welcomeWord, setWelcomeWord] = useState('Welcome');

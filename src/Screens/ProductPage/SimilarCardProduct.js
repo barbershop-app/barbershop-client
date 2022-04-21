@@ -1,6 +1,6 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {PRODUCT_PAGE} from '../Utils/RouteNames';
+import {PRODUCT_PAGE} from '../../Utils/RouteNames';
 
 const SimilarCardProduct = props => {
   return (
@@ -8,7 +8,7 @@ const SimilarCardProduct = props => {
       onPress={() =>
         props.navigation.navigate(PRODUCT_PAGE, {
           ...props.item,
-          categoryId: props.item.categoryId,
+          categoryId: props.categoryId,
         })
       }
       style={{borderWidth: 1, margin: 5, borderRadius: 25}}>
