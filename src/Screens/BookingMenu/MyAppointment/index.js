@@ -93,7 +93,7 @@ const MyAppointment = props => {
               justifyContent: 'center',
               flex: 0.8,
             }}>
-            <LoadingDots />
+            <LoadingDots color="black" />
           </View>
         ) : (
           <>

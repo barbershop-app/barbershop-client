@@ -2,62 +2,86 @@ import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import HttpRequest from '../../../config/API/axios';
 import {ScrollView} from 'react-native-gesture-handler';
-
 import MainCard from '../../../Components/MainCard';
 import TitleAndArrow from '../../../Components/TitleAndArrow';
 import AlertOneButton from '../../../Components/AlertOneButton';
 import BookedAppointmentCard from './BookedAppointmentCard';
+import {gradientColors} from '../../../Utils/Colors';
+import LinearGradient from 'react-native-linear-gradient';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function BookedAppointments(props) {
-  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const isFocused = useIsFocused();
   const [appointments, setAppointments] = useState([]);
   const [alertData, setAlertData] = useState({
     title: '',
     message: '',
     showAlert: false,
   });
-  const deleteAppointment = async id => {
-    const result = await HttpRequest(`appointments/delete/${id}`, 'POST', {});
-    console.log(result);
-
-    getBookedAppointments();
-  };
-  const markAsDoneAppointment = async id => {
-    const result = await HttpRequest('Appointments​/Update', 'POST', {
-      id: id, //! need fix here with hakam
-      hasBeenHandeled: true,
-    });
-    console.log(result);
-    getBookedAppointments();
-  };
 
   useEffect(() => {
     getBookedAppointments();
-  }, []);
+  }, [isFocused]);
+
+  const deleteAppointment = async id => {
+    console.log(id);
+    const result = await HttpRequest(`Appointments/Delete/${id}`, 'POST', {});
+    if (result.status === 200) {
+      getBookedAppointments();
+    } else console.log(result);
+  };
+  const markAsDoneAppointment = async (id, done) => {
+    console.log(id, done);
+    const result = await HttpRequest('Appointments/update', 'POST', {
+      id: id,
+      hasBeenHandeled: !done,
+    });
+    getBookedAppointments();
+  };
+
   const getBookedAppointments = async () => {
     const result = await HttpRequest(
       'Appointments/GetTodayAppointments',
       'GET',
       '',
     );
+    // console.log(result);
     if (result.status === 200) setAppointments(result.data.bookedAppointments);
-    else console.log(result);
+    else {
+      console.log('result');
+      setAppointments([]);
+    }
   };
   return (
-    <View style={{flex: 1, backgroundColor: 'rgb(140, 140, 140)'}}>
+    <LinearGradient style={{flex: 1}} colors={[...gradientColors, 'white']}>
       <TitleAndArrow
+        white
         navigation={props.navigation}
         title={'Edit Booked Appointments'}
       />
       <MainCard size={85} isYellow={false}>
-        <View style={{}}>
+        <View style={{alignSelf: 'center', width: '90%'}}>
+          <Text
+            style={{
+              fontSize: 30,
+              color: 'black',
+              fontWeight: 'bold',
+              borderBottomWidth: 1,
+              textAlign: 'center',
+            }}>
+            Today Appointments
+          </Text>
+        </View>
+        <View>
           <ScrollView>
             <Text style={{alignSelf: 'center', color: 'black', fontSize: 25}}>
               {appointments.length > 0 ? '' : 'No Appointment Today'}
             </Text>
+
             {appointments.length > 0 &&
-              appointments.map(e => (
+              appointments.map((e, index) => (
                 <BookedAppointmentCard
+                  key={index}
                   appointment={e}
                   markAsDoneAppointment={markAsDoneAppointment}
                   deleteAppointment={deleteAppointment}
@@ -67,6 +91,6 @@ export default function BookedAppointments(props) {
         </View>
       </MainCard>
       <AlertOneButton alertData={alertData} setAlertData={setAlertData} />
-    </View>
+    </LinearGradient>
   );
 }

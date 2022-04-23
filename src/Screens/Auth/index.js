@@ -100,6 +100,7 @@ const Auth = props => {
         firstName: fullName.firstName,
         lastName: fullName.lastName,
       });
+      console.log(result);
       if (result.status === 200) dispatch(setLoginIn({isLoggedIn: true}));
       else
         setAlertData({
@@ -156,7 +157,7 @@ const Auth = props => {
             {(dialData.isCodeSent ? dialData.code : dialData.phoneNumber) + '|'}
           </Text>
         </View>
-        <Dial />
+        <Dial disabled={loading} />
         <MainButton
           fontSize={18}
           color={'#61045F'}

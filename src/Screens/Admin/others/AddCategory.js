@@ -49,7 +49,7 @@ export default function AddCategory() {
     <View>
       <Text
         style={{fontSize: 25, color: 'black', marginTop: 10, marginBottom: 10}}>
-        Add a new Category:
+        Create Category:
       </Text>
       <View style={{flexDirection: 'row'}}>
         <MainInputText

@@ -34,3 +34,4 @@ export const CART_ORDER_PLACED = 'Cart Order Placed';
 
 export const ADMIN = 'Admin';
 export const ADMINAPPOINTMENT = 'admin appointment';
+export const ADMINPRODUCTSLIST = 'admin products list';

@@ -4,7 +4,7 @@ import Square from './Square';
 import {windowHeight, windowWidth} from '../../Utils/Themes';
 import {useDispatch, useSelector} from 'react-redux';
 import DialSlice, {setDial, setCode} from '../../Redux/Slices/dialSlice';
-export default function Dial() {
+export default function Dial({disabled}) {
   const dispatch = useDispatch();
   const isCodeSent = useSelector(state => state.dial.isCodeSent);
   const handleOnClick = value => {
@@ -24,7 +24,12 @@ export default function Dial() {
         marginTop: 30,
       }}>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0, 'icon'].map((e, index) => (
-        <Square handleOnClick={handleOnClick} value={e} key={index} />
+        <Square
+          disabled={disabled}
+          handleOnClick={handleOnClick}
+          value={e}
+          key={index}
+        />
       ))}
     </View>
   );

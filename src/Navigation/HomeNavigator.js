@@ -16,6 +16,7 @@ import {
   CART_ORDER_PLACED,
   ADMIN,
   ADMINAPPOINTMENT,
+  ADMINPRODUCTSLIST,
 } from '../Utils/RouteNames';
 import Home from '../Screens/Home';
 import About from '../Screens/About';
@@ -34,6 +35,7 @@ import PaymentMethodSelect from '../Screens/PaymentMethodSelect';
 import OrderPlaced from '../Screens/OrderPlaced';
 import Admin from '../Screens/Admin';
 import BookedAppointments from '../Screens/Admin/BookedAppointments';
+import ProductsListAdmin from '../Screens/Admin/Product/ProductsListAdmin';
 
 const Drawer = createDrawerNavigator();
 
@@ -52,6 +54,7 @@ export default function HomeNavigator() {
       <Drawer.Screen name={CART_ORDER_PLACED} component={OrderPlaced} />
       <Drawer.Screen name={ADMIN} component={Admin} />
       <Drawer.Screen name={ADMINAPPOINTMENT} component={BookedAppointments} />
+      <Drawer.Screen name={ADMINPRODUCTSLIST} component={ProductsListAdmin} />
       <Drawer.Screen
         name={CART_SELECT_PAYMENT}
         component={PaymentMethodSelect}

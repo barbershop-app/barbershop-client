@@ -1,11 +1,13 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 
-export default function Square({value, handleOnClick}) {
+export default function Square({disabled, value, handleOnClick}) {
   return (
     <View style={{width: '33%'}}>
       {value === 'icon' ? (
-        <TouchableOpacity onPress={() => handleOnClick(value)}>
+        <TouchableOpacity
+          disabled={disabled}
+          onPress={() => handleOnClick(value)}>
           <Image
             style={{
               width: 25,
@@ -19,7 +21,7 @@ export default function Square({value, handleOnClick}) {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
-          disabled={value === ''}
+          disabled={disabled}
           onPress={() => handleOnClick(value)}
           style={{width: '80%'}}>
           <Text

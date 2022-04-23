@@ -1,8 +1,8 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import AddProduct from './Product/AddProduct';
-import RemoveProduct from './Product/RemoveProduct';
-import UpdateProduct from './Product/UpdateProduct';
+import AddProduct from './AddProduct';
+import RemoveProduct from './RemoveProduct';
+import UpdateProduct from './UpdateProduct';
 
 export default function ProductCard() {
   return (

@@ -12,7 +12,7 @@ import {setUser} from '../../Redux/Slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 import {gradientColors} from '../../Utils/Colors';
-import CategoriesList from '../Cart/CategoriesComponents/CategoriesList';
+import CategoriesList from './CategoriesComponents/CategoriesList';
 
 const TextBigBold = ({children}) => (
   <Text

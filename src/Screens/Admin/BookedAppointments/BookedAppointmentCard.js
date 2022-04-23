@@ -42,27 +42,33 @@ const BookedAppointmentCard = props => {
             onPress={() => {
               props.deleteAppointment(props.appointment.id);
             }}
-            style={{}}
+            style={{alignSelf: 'center'}}
           />
+          <Text style={{fontSize: 10, alignSelf: 'center'}}>
+            Cancel Appointment
+          </Text>
         </View>
         <View>
-          {props.appointment.hasBeenHandeled ? (
-            <Icon
-              name="ios-checkmark-circle-outline"
-              size={50}
-              color="green"
-              // onPress={() => consolprops.appointment.log(props.appointment.id)}
-              style={{}}
-            />
-          ) : (
-            <Icon
-              name="ios-checkmark-circle-outline"
-              size={50}
-              color="black"
-              onPress={() => props.markAsDoneAppointment(props.appointment.id)}
-              style={{}}
-            />
-          )}
+          <Icon
+            name={
+              props.appointment.hasBeenHandeled
+                ? 'checkbox'
+                : 'checkbox-outline'
+            }
+            size={50}
+            color="black"
+            onPress={() =>
+              props.markAsDoneAppointment(
+                props.appointment.id,
+                props.appointment.hasBeenHandeled,
+              )
+            }
+            // onPress={() => consolprops.appointment.log(props.appointment.id)}
+            style={{alignSelf: 'center'}}
+          />
+          <Text style={{fontSize: 10, alignSelf: 'center'}}>
+            Update Appointment
+          </Text>
         </View>
       </View>
       <Line90Width />
