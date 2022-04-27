@@ -1,11 +1,21 @@
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import React from 'react';
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import Dialog from 'react-native-dialog';
 import {gradientColors} from '../../../Utils/Colors';
 import {windowWidth} from '../../../Utils/Themes';
+import MainButton from '../../../Components/MainButton';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function FormAlertUpdateItem(props) {
+  const [onSale, setOnSale] = useState(false);
+  const isFocused = useIsFocused();
   console.log(props.item.price);
+
+  useEffect(() => {
+    setOnSale(props.item.onSale);
+    console.log(props.item.onSale);
+  }, [isFocused]);
+
   return (
     <Dialog.Container
       contentStyle={{
@@ -89,6 +99,55 @@ export default function FormAlertUpdateItem(props) {
             marginTop: 10,
             width: '100%',
             color: 'black',
+          }}
+          placeholderTextColor="grey"
+          keyboardType="numeric"
+          onChangeText={e => {
+            props.setNewItem({...props.newItem, onSalePercentage: e});
+          }}
+          placeholder={'precent of sale: ' + props.item.onSalePercentage}
+        />
+        <Text style={{marginTop: 15, fontWeight: 'bold', color: 'black'}}>
+          On Sale?
+        </Text>
+        <View
+          style={{
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <MainButton
+            disabled={onSale}
+            color={onSale ? gradientColors[0] : 'gray'}
+            width={35}
+            title={'On Sale'}
+            titleColor={onSale ? 'white' : 'black'}
+            bold
+            onPressFunction={() => {
+              props.setNewItem({...props.newItem, onSale: !onSale});
+              setOnSale(!onSale);
+            }}
+          />
+          <MainButton
+            disabled={!onSale}
+            width={55}
+            bold
+            titleColor={!onSale ? 'white' : 'black'}
+            title={'Nope'}
+            color={!onSale ? gradientColors[0] : 'gray'}
+            onPressFunction={() => {
+              props.setNewItem({...props.newItem, onSale: !onSale});
+              setOnSale(!onSale);
+            }}
+          />
+        </View>
+        <TextInput
+          style={{
+            borderBottomWidth: 1,
+            padding: -5,
+            marginTop: 10,
+            width: '100%',
+            color: 'black',
             maxWidth: windowWidth * 0.8,
           }}
           placeholderTextColor="grey"
@@ -98,9 +157,41 @@ export default function FormAlertUpdateItem(props) {
           placeholder={'Image Url : ' + props.item.imageSource}
         />
       </View>
+      <View
+        style={{
+          borderWidth: 1,
+          borderRadius: 15,
+          width: '90%',
+          height: 100,
+          flexDirection: 'row',
+          padding: 10,
+          alignSelf: 'center',
+          alignItems: 'center',
+          justifyContent: 'space-around',
+        }}>
+        <Image
+          style={{
+            width: '25%',
+            height: '100%',
+          }}
+          source={{uri: props.item.imageSource}}
+        />
+        <Image
+          style={{
+            width: '25%',
+            height: '100%',
+          }}
+          source={{
+            uri:
+              props.item.imageSource === props.newItem.imageSource
+                ? 'https://www.freeiconspng.com/thumbs/question-mark-icon/black-question-mark-icon-clip-art-10.png'
+                : props.newItem.imageSource,
+          }}
+        />
+      </View>
       <View style={{width: '100%', marginTop: 10}}>
         <Dialog.Button
-          label="Create"
+          label="Update"
           style={{
             color: 'white',
             fontWeight: 'bold',

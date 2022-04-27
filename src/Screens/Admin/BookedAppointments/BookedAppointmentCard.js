@@ -11,13 +11,14 @@ const BookedAppointmentCard = props => {
           flexDirection: 'row',
           justifyContent: 'space-evenly',
           alignItems: 'center',
+          maxWidth: '100%',
         }}
         key={props.appointment.id}>
-        <View>
+        <View style={{maxWidth: '70%', marginLeft: 10}}>
           <Text
             style={{
               fontWeight: 'bold',
-              fontSize: 22,
+              fontSize: 20,
               color: 'black',
             }}>
             {props.appointment.user.firstName +

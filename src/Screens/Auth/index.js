@@ -15,6 +15,7 @@ import {setUser} from '../../Redux/Slices/userSlice';
 import {setApp, setLoginIn} from '../../Redux/Slices/appSlice';
 import Dialog from 'react-native-dialog';
 import {COUNTRY_CODE} from '../../Utils/Rules';
+import {gradientColors} from '../../Utils/Colors';
 
 const Auth = props => {
   const dialData = useSelector(state => state.dial);
@@ -111,7 +112,7 @@ const Auth = props => {
     }
   };
   return (
-    <View style={{backgroundColor: '#AA076B', flex: 1}}>
+    <View style={{backgroundColor: gradientColors[1], flex: 1}}>
       <MainCard isYellow={false} size={85}>
         <Text
           style={{
@@ -160,7 +161,7 @@ const Auth = props => {
         <Dial disabled={loading} />
         <MainButton
           fontSize={18}
-          color={'#61045F'}
+          color={gradientColors[0]}
           titleColor={'white'}
           bold
           borderWidth={1}

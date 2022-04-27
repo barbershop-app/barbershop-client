@@ -1,4 +1,4 @@
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Dialog from 'react-native-dialog';
 import {gradientColors} from '../../../Utils/Colors';
@@ -102,6 +102,27 @@ export default function FormAlertCreateItem(props) {
           }}
           placeholder={'Image Url (optional)'}
         />
+        <View
+          style={{
+            marginTop: 5,
+            borderWidth: 1,
+            borderRadius: 15,
+            height: 200,
+            padding: 5,
+            width: 200,
+            alignSelf: 'center',
+            justifyContent: 'center',
+          }}>
+          <Image
+            style={{width: '60%', height: '75%', alignSelf: 'center'}}
+            source={{
+              uri:
+                props.newItem.imageSource === undefined
+                  ? 'https://www.freeiconspng.com/thumbs/question-mark-icon/black-question-mark-icon-clip-art-10.png'
+                  : props.newItem.imageSource,
+            }}
+          />
+        </View>
         <Text style={{marginTop: 15, fontWeight: 'bold', color: 'black'}}>
           Is Available?
         </Text>
@@ -172,9 +193,9 @@ export default function FormAlertCreateItem(props) {
             }}
             keyboardType="numeric"
             placeholderTextColor="grey"
-            //   onChangeText={e => {
-
-            //   }}
+            onChangeText={e => {
+              setSalePrecent(e);
+            }}
             placeholder={'Sale Precent'}
           />
         ) : (
@@ -193,13 +214,14 @@ export default function FormAlertCreateItem(props) {
             borderRadius: 15,
             backgroundColor: gradientColors[1],
           }}
-          onPress={() =>
+          onPress={() => {
+            console.log(salePrecent);
             props.OnClickCreate({
               isAvailable: isAvailable,
               onSale: onSale,
               onSalePercentage: salePrecent,
-            })
-          }
+            });
+          }}
           //   "isAvailable": true,
           //   "onSale": true,
           //   "onSalePercentage": 0,

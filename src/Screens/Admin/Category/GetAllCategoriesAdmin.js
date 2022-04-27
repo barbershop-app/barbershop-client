@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import HttpRequest from '../../../config/API/axios';
@@ -88,15 +89,17 @@ export default function GetAllCategoriesAdmin(props) {
           </Text>
         </TouchableOpacity>
       </View>
-      {categories.length > 0 &&
-        categories.map((e, index) => (
-          <CategoryAdminCard
-            navigation={props.navigation}
-            deleteCategory={deleteCategory}
-            key={index}
-            item={e}
-          />
-        ))}
+      <ScrollView>
+        {categories.length > 0 &&
+          categories.map((e, index) => (
+            <CategoryAdminCard
+              navigation={props.navigation}
+              deleteCategory={deleteCategory}
+              key={index}
+              item={e}
+            />
+          ))}
+      </ScrollView>
       <Dialog.Container
         contentStyle={{
           borderRadius: 25,
@@ -116,6 +119,7 @@ export default function GetAllCategoriesAdmin(props) {
               padding: -5,
               width: '100%',
               color: 'black',
+              maxWidth: '100%',
             }}
             placeholderTextColor="gray"
             value={undefined}
@@ -132,6 +136,7 @@ export default function GetAllCategoriesAdmin(props) {
               marginTop: 10,
               width: '100%',
               color: 'black',
+              maxWidth: '100%',
             }}
             placeholderTextColor="grey"
             value={undefined}

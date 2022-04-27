@@ -5,12 +5,13 @@ import TitleAndArrow from '../../Components/TitleAndArrow';
 import CategoryCard from './others/CategoryCard';
 import ProductCard from './others/ProductCard';
 import GetAllCategoriesAdmin from './Category/GetAllCategoriesAdmin';
+import {gradientColors} from '../../Utils/Colors';
 
 export default function Admin(props) {
   return (
-    <View style={{flex: 1}}>
+    <View style={{backgroundColor: gradientColors[1], flex: 1}}>
       <TitleAndArrow navigation={props.navigation} title={'Admin'} />
-      <MainCard size={85} isYellow={true}>
+      <MainCard size={85} isYellow={false}>
         <GetAllCategoriesAdmin navigation={props.navigation} />
       </MainCard>
     </View>

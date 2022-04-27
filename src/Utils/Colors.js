@@ -1,4 +1,4 @@
 export const PRIMARY = '#FFF';
 export const SECONDARY = '#FFF';
 
-export const gradientColors = ['#AA076B', '#61045F'];
+export const gradientColors = ['#485563', '#556270'];

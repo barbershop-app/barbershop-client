@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import ProductAdminCard from './ProductAdminCard';
 import TitleAndArrow from '../../../Components/TitleAndArrow';
@@ -18,6 +18,7 @@ export default function ProductsListAdmin(props) {
   const [newItem, setNewItem] = useState({});
 
   useEffect(() => {
+    console.log(params);
     setLoading(true);
     HttpCall();
   }, [isFocused]);
@@ -26,7 +27,6 @@ export default function ProductsListAdmin(props) {
     setNewItem(item);
     setVisible(true);
     setItem(item);
-    console.log(item);
   };
 
   const createProduct = item => {
@@ -35,19 +35,31 @@ export default function ProductsListAdmin(props) {
   };
 
   const OnClickUpdate = async () => {
+    console.log({...newItem, categoryId: params.item.id});
     if (item !== newItem) {
-      console.log(newItem);
-      const result = await HttpRequest('Market/UpdateProduct', 'POST', newItem);
-      if (result.status === 200) console.log(result.status);
-      else console.log(result);
+      const result = await HttpRequest('Market/UpdateProduct', 'POST', {
+        ...newItem,
+        categoryId: params.item.id,
+      });
+      console.log(result.status);
+      if (result.status === 200) {
+        HttpCall();
+        setVisible(false);
+      } else console.log(result);
     } else {
       console.log('nothing new');
       setVisible(false);
     }
   };
-
+  const removeProduct = async id => {
+    const result = await HttpRequest(`Market/DeleteProduct/${id}`, 'POST', '');
+    if (result.status === 200) {
+      //! alert off
+      HttpCall();
+    }
+  };
   const OnClickCreate = async data => {
-    console.log(newItem.imageSource);
+    console.log(data);
     if (
       !(
         newItem.price === undefined ||
@@ -58,30 +70,32 @@ export default function ProductsListAdmin(props) {
         newItem.description.trim() === ''
       )
     ) {
-      console.log({
+      // console.log({
+      //   ...newItem,
+      //   categoryId: params.item.id,
+      //   ...data,
+      //   imageSource:
+      //     newItem.imageSource === undefined ? 'string' : newItem.imageSource,
+      // });
+      const result = await HttpRequest('Market/CreateProduct', 'POST', {
         ...newItem,
         categoryId: params.item.id,
         ...data,
         imageSource:
           newItem.imageSource === undefined ? 'string' : newItem.imageSource,
       });
+
+      if (result.status === 200) {
+        setVisible_1(false);
+        HttpCall();
+      }
       //! send to http request create product
       //! then check if 200 or no if yes update products if no show error
     } else {
+      console.log(result);
       console.log('one of required is not filled');
     }
   };
-  //{//
-  // //  "categoryId": 0,
-  // //  "name": "string",
-  //// "description": "string",
-  // //  "price": 0,
-  // //  "isAvailable": true,
-  ////"onSale": true,
-  //  // "onSalePercentage": 0,
-  //   "imageSource": "string"
-  //}
-  //    "isAvailable": true, "name": "test", "onSale": true, "onSalePercentage": 0, "price": "55"}
 
   const HttpCall = async () => {
     const result = await HttpRequest(
@@ -89,7 +103,6 @@ export default function ProductsListAdmin(props) {
       'GET',
       '',
     );
-    console.log(result.data.products.length);
 
     if (result.status === 200) {
       setProductsList(result.data.products);
@@ -101,7 +114,7 @@ export default function ProductsListAdmin(props) {
 
   return (
     <View>
-      <TitleAndArrow navigation={props.navigation} title={'test'} />
+      <TitleAndArrow navigation={props.navigation} title={params.item.name} />
       <TouchableOpacity
         style={{width: '90%', alignSelf: 'center'}}
         onPress={() => createProduct()}>
@@ -117,14 +130,17 @@ export default function ProductsListAdmin(props) {
           Add Product
         </Text>
       </TouchableOpacity>
-      {productsList.length > 0 &&
-        productsList.map((e, index) => (
-          <ProductAdminCard
-            updateProduct={updateProduct}
-            item={e}
-            key={index}
-          />
-        ))}
+      <ScrollView style={{marginBottom: 100}}>
+        {productsList.length > 0 &&
+          productsList.map((e, index) => (
+            <ProductAdminCard
+              updateProduct={updateProduct}
+              item={e}
+              key={index}
+              removeProduct={removeProduct}
+            />
+          ))}
+      </ScrollView>
       <FormAlertUpdateItem
         setVisible={setVisible}
         newItem={newItem}

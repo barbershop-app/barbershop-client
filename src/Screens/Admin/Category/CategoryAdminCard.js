@@ -26,7 +26,7 @@ export default function CategoryAdminCard(props) {
       />
       <Text style={styles.textTitle}>{props.item.name}</Text>
       <TouchableOpacity onPress={() => props.deleteCategory(props.item.id)}>
-        <Text style={styles.textStyle}>Delete</Text>
+        <Text style={[styles.textStyle, {color: 'black'}]}>Remove</Text>
       </TouchableOpacity>
       {/* <TouchableOpacity>
         <Text style={styles.textStyle}>Update</Text>
