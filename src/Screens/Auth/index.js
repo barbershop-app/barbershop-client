@@ -42,8 +42,15 @@ const Auth = props => {
         const result = await HttpRequest('users/create', 'POST', {
           PhoneNumber: '0' + dialData.phoneNumber,
         });
+        console.log(result[0])
+        if('[Error: Network Error]' == result)
+        setAlertData({
+          title: 'Something Went Wrong!',
+          message: 'Please Try Again Later',
+          showAlert: true,
+        });
 
-        if (result.status === 200) {
+       else if (result.status === 200) {
           dispatch(resetCode());
           dispatch(setIsCodeSent());
         }

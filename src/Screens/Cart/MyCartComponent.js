@@ -11,6 +11,7 @@ const MyCartComponent = props => {
   const removeItem = id => {
     props.removeItem(id);
   };
+  console.log(props.tempData.length)
   return (
     <View style={{height: windowHeight * 0.55}}>
       <Text
@@ -31,7 +32,9 @@ const MyCartComponent = props => {
           width: '98%',
           alignSelf: 'center',
         }}>
-        {props.tempData?.map((e, index) => (
+
+        {props.tempData.length > 0 ? 
+        props.tempData?.map((e, index) => (
           <ProductCartCard
             key={index}
             item={e}
@@ -39,8 +42,11 @@ const MyCartComponent = props => {
             changeQuantity={(id, newQuantity) =>
               changeQuantity(id, newQuantity)
             }
-          />
-        ))}
+          /> 
+        ))
+        : <View style={{justifyContent:'center'}}>
+          <Text style={{alignSelf:'center',fontSize:25,textAlign:'center',color:'black',fontWeight:'bold',marginTop:25}}>empty cart {'\n'} time for shopping !</Text>
+          </View>}
       </ScrollView>
     </View>
   );
