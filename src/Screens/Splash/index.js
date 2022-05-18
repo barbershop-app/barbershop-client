@@ -1,24 +1,39 @@
 import {View, Text, Image} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HttpRequest from '../../config/API/axios';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setUser} from '../../Redux/Slices/userSlice';
-import {setLoginIn} from '../../Redux/Slices/appSlice';
-import {AUTH, HOME, INTRO} from '../../Utils/RouteNames';
+import {setLoginIn, setSelectedColor} from '../../Redux/Slices/appSlice';
+import {AUTH, HOME, INTRO, SELECTCOLOR} from '../../Utils/RouteNames';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
+
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Splash({navigation}) {
   const dispatch = useDispatch();
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
+  const isFocused = useIsFocused();
+  
   useEffect(() => {
-    HttpCall();
-  });
+    pickColor();
+  },[isFocused]);
 
-  const HttpCall = async () => {
+  const pickColor = () =>{
+    AsyncStorage.getItem('selectedGradientColor').then(data=>{
+      console.log('color is ' + data)
+      if(data === null)
+      navigation.navigate(SELECTCOLOR);
+      else{
+        HttpCall(data);
+      }
+    })
+  }
+
+  const HttpCall = async (color) => {
     const result = await HttpRequest('users/IsLoggedIn', 'GET', '');
-
+    dispatch(setSelectedColor(color))
     setTimeout(() => {
       if (result.status === 200) {
         dispatch(setUser(result.data));
@@ -40,7 +55,7 @@ export default function Splash({navigation}) {
       }}
       start={{x: 0, y: 0}}
       end={{x: 0, y: 1}}
-      colors={gradientColors}>
+      colors={SelectedGradientColor}>
       <View>
         <Animatable.View animation={animation_0} iterationCount={'infinite'}>
           <Image

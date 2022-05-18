@@ -19,10 +19,10 @@ import {
   UpdateQuantity,
 } from '../../Redux/Slices/cartSlice';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
 import PaymentMethod from './PaymentComponents/PaymentMethod';
 
 const Cart = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const [total, setTotal] = useState(0); //price
   // const [data, setData] = useState();
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const Cart = props => {
 
   return (
     <LinearGradient
-      colors={['white', 'white', gradientColors[1], gradientColors[0]]}
+      colors={['white', 'white', SelectedGradientColor[1], SelectedGradientColor[0]]}
       style={{flex: 1}}>
       <TitleAndArrow navigation={props.navigation} title="Order Details" />
       <MyCartComponent

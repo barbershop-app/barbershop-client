@@ -1,6 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   ABOUT,
   BOOK_APPOINTMENT,
@@ -21,16 +19,13 @@ import {
 import Home from '../Screens/Home';
 import About from '../Screens/About';
 import BookAppointment from '../Screens/BookingMenu/BookAppointment';
-
 import Settings from '../Screens/Settings';
-import Shop from '../Screens/Shop';
 import {Humburger} from './Humburger';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyAppointment from '../Screens/BookingMenu/MyAppointment';
 import CatalogProductsList from '../Screens/CatalogProductsList';
 import ProductPage from '../Screens/ProductPage';
 import Cart from '../Screens/Cart';
-import PaymentMethod from '../Screens/Cart/PaymentComponents/PaymentMethod';
 import PaymentMethodSelect from '../Screens/PaymentMethodSelect';
 import OrderPlaced from '../Screens/OrderPlaced';
 import Admin from '../Screens/Admin';
@@ -65,7 +60,6 @@ export default function HomeNavigator() {
       />
       <Drawer.Screen name={PRODUCT_PAGE} component={ProductPage} />
       <Drawer.Screen name={SETTINGS} component={Settings} />
-      <Drawer.Screen name={SHOP} component={Shop} />
     </Drawer.Navigator>
   );
 }

@@ -1,6 +1,6 @@
-import {View, Text, Image, TextInput} from 'react-native';
-import React, {Children, useEffect, useState} from 'react';
-import {windowHeight, windowWidth} from '../../Utils/Themes';
+import {View, Text,  TextInput} from 'react-native';
+import React, { useEffect, useState} from 'react';
+import {windowWidth} from '../../Utils/Themes';
 import MainCard from '../../Components/MainCard';
 import Dial from '../Dial/Dial';
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,17 +9,22 @@ import TermsAndPolicy from '../../Components/TermsAndPolicy';
 import {resetCode, setIsCodeSent} from '../../Redux/Slices/dialSlice';
 import HttpRequest from '../../config/API/axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AwesomeAlert from 'react-native-awesome-alerts';
 import AlertOneButton from '../../Components/AlertOneButton';
 import {setUser} from '../../Redux/Slices/userSlice';
-import {setApp, setLoginIn} from '../../Redux/Slices/appSlice';
+import {setLoginIn} from '../../Redux/Slices/appSlice';
 import Dialog from 'react-native-dialog';
 import {COUNTRY_CODE} from '../../Utils/Rules';
-import {gradientColors} from '../../Utils/Colors';
+
 
 const Auth = props => {
   const dialData = useSelector(state => state.dial);
   const userData = useSelector(state => state.user);
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
+
+  useEffect(()=>{
+    // console.log(appData)
+    console.log(props.SelectedGradientColor)
+},[])
 
   const dispatch = useDispatch();
   const [alertData, setAlertData] = useState({
@@ -119,7 +124,7 @@ const Auth = props => {
     }
   };
   return (
-    <View style={{backgroundColor: gradientColors[1], flex: 1}}>
+    <View style={{backgroundColor: SelectedGradientColor[1], flex: 1}}>
       <MainCard isYellow={false} size={85}>
         <Text
           style={{
@@ -168,7 +173,7 @@ const Auth = props => {
         <Dial disabled={loading} />
         <MainButton
           fontSize={18}
-          color={gradientColors[0]}
+          color={SelectedGradientColor[0]}
           titleColor={'white'}
           bold
           borderWidth={1}

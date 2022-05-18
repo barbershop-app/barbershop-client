@@ -6,11 +6,12 @@ import MainCard from '../../../Components/MainCard';
 import TitleAndArrow from '../../../Components/TitleAndArrow';
 import AlertOneButton from '../../../Components/AlertOneButton';
 import BookedAppointmentCard from './BookedAppointmentCard';
-import {gradientColors} from '../../../Utils/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 import {useIsFocused} from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 export default function BookedAppointments(props) {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const isFocused = useIsFocused();
   const [appointments, setAppointments] = useState([]);
   const [alertData, setAlertData] = useState({
@@ -53,7 +54,7 @@ export default function BookedAppointments(props) {
     }
   };
   return (
-    <LinearGradient style={{flex: 1}} colors={[...gradientColors, 'white']}>
+    <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
       <TitleAndArrow
         white
         navigation={props.navigation}

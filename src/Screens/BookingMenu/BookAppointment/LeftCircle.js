@@ -1,13 +1,15 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
-import {gradientColors} from '../../../Utils/Colors';
+import { useSelector } from 'react-redux';
+
 
 const LeftCircle = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   return (
     <View
       style={{
-        backgroundColor: gradientColors[0],
+        backgroundColor: SelectedGradientColor[0],
         width: 70,
         height: 70,
         borderWidth: 1,

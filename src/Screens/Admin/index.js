@@ -5,11 +5,13 @@ import TitleAndArrow from '../../Components/TitleAndArrow';
 import CategoryCard from './others/CategoryCard';
 import ProductCard from './others/ProductCard';
 import GetAllCategoriesAdmin from './Category/GetAllCategoriesAdmin';
-import {gradientColors} from '../../Utils/Colors';
+import { useSelector } from 'react-redux';
+
 
 export default function Admin(props) {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   return (
-    <View style={{backgroundColor: gradientColors[1], flex: 1}}>
+    <View style={{backgroundColor: SelectedGradientColor[1], flex: 1}}>
       <TitleAndArrow navigation={props.navigation} title={'Admin'} />
       <MainCard size={85} isYellow={false}>
         <GetAllCategoriesAdmin navigation={props.navigation} />

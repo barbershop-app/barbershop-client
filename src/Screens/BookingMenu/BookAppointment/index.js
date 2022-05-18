@@ -14,9 +14,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AlertOneButton from '../../../Components/AlertOneButton';
 import {HOME} from '../../../Utils/RouteNames';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../../Utils/Colors';
+
+import { useSelector } from 'react-redux';
 
 const BookAppointment = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const [leftPlaces, setLeftPlaces] = useState(15);
   const [markedDates, setMarkedDates] = useState({});
   const [dateSelected, setDateSelected] = useState(null);
@@ -82,7 +84,7 @@ const BookAppointment = props => {
   };
 
   return (
-    <LinearGradient style={{flex: 1}} colors={[...gradientColors, 'white']}>
+    <LinearGradient style={{flex: 1}} colors={[...SelectedGradientColor, 'white']}>
       <TitleAndArrow
         navigation={props.navigation}
         title={'Book Appointment'}
@@ -108,7 +110,7 @@ const BookAppointment = props => {
                 markedDates[key] = {
                   selected: true,
                   marked: true,
-                  selectedColor: gradientColors[1],
+                  selectedColor: SelectedGradientColor[1],
                 };
                 setMarkedDates(markedDates);
                 setDateSelected(day.dateString + 'T00:00:00.000Z');

@@ -11,7 +11,6 @@ import HttpRequest from '../../config/API/axios';
 import {setUser} from '../../Redux/Slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
 import CategoriesList from './CategoriesComponents/CategoriesList';
 
 const TextBigBold = ({children}) => (
@@ -29,12 +28,14 @@ const TextBigBold = ({children}) => (
 );
 
 const Home = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const userData = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (userData.firstName === null || userData.firstName === undefined)
-      UpdateUserData();
+    UpdateUserData();
+
   }, []);
 
   const UpdateUserData = async () => {
@@ -59,7 +60,7 @@ const Home = props => {
   };
 
   return (
-    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+    <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
       <NavBarHomePage
         white
         onPressMenu={() => {

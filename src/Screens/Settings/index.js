@@ -15,11 +15,11 @@ import HttpRequest from '../../config/API/axios';
 import {AUTH} from '../../Utils/RouteNames';
 import {setLoginIn} from '../../Redux/Slices/appSlice';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
 import {Images, windowHeight, windowWidth} from '../../Utils/Themes';
 import {COUNTRY_CODE} from '../../Utils/Rules';
 
 const Settings = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const dispatch = useDispatch();
   const userData = useSelector(state => state.user);
   const [visible, setVisible] = useState(false);
@@ -99,10 +99,10 @@ const Settings = props => {
       style={{flex: 1}}
       colors={[
         'white',
-        gradientColors[1],
-        gradientColors[0],
-        gradientColors[0],
-        gradientColors[1],
+        SelectedGradientColor[1],
+        SelectedGradientColor[0],
+        SelectedGradientColor[0],
+        SelectedGradientColor[1],
       ]}>
       <TitleAndArrow navigation={props.navigation} title={'Settings'} />
       <Image

@@ -10,8 +10,8 @@ import React, {useEffect, useState} from 'react';
 import HttpRequest from '../../../config/API/axios';
 import CategoryAdminCard from './CategoryAdminCard';
 import Dialog from 'react-native-dialog';
-import {gradientColors} from '../../../Utils/Colors';
 import LoadingDots from '../../../Components/LoadingDots';
+import { useSelector } from 'react-redux';
 
 export default function GetAllCategoriesAdmin(props) {
   const [categories, setCategory] = useState([]);
@@ -19,7 +19,8 @@ export default function GetAllCategoriesAdmin(props) {
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
   const [categoryData, setCategoryData] = useState({name: null, url: 'string'});
-
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
+  
   useEffect(() => {
     HttpCall();
   }, []);
@@ -157,7 +158,7 @@ export default function GetAllCategoriesAdmin(props) {
               width: '80%',
               borderWidth: 1,
               borderRadius: 15,
-              backgroundColor: gradientColors[0],
+              backgroundColor: SelectedGradientColor[0],
             }}
             onPress={createCategory}
           />

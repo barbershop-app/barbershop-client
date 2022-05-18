@@ -4,15 +4,16 @@ import MainButton from '../../Components/MainButton';
 import {Images, windowHeight, windowWidth} from '../../Utils/Themes';
 import {NavigationContainer} from '@react-navigation/native';
 import {AUTH} from '../../Utils/RouteNames';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {resetData} from '../../Redux/Slices/dialSlice';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
+
 
 export default function Intro({navigation}) {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const dispatch = useDispatch();
   return (
-    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+    <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
       <Image
         style={{
           height: windowHeight * 0.4,

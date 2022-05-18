@@ -8,10 +8,13 @@ import Location from './Location';
 import OpenTime from './OpenTime';
 import LogoCenter from '../BookingMenu/BookAppointment/LogoCenter';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
+import { useSelector } from 'react-redux';
 
-const About = props => (
-  <LinearGradient style={{flex: 1}} colors={gradientColors}>
+
+const About = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
+  return (
+  <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
     <TitleAndArrow white title={'About'} navigation={props.navigation} />
     <LogoCenter />
     <MainCard size={68}>
@@ -41,5 +44,5 @@ const About = props => (
   
   */}
   </LinearGradient>
-);
+)}
 export default About;

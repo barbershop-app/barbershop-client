@@ -11,10 +11,11 @@ import CardForm from '../Cart/PaymentComponents/CardForm';
 import {setMethod} from '../../Redux/Slices/paymentSlice';
 import {CART} from '../../Utils/RouteNames';
 import PaymentIcon from '../Cart/PaymentIcon';
-import {gradientColors} from '../../Utils/Colors';
+
 import CashForm from '../Cart/PaymentComponents/CashForm';
 
 const PaymentMethodSelect = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const data = useSelector(state => state.dial);
   const dispatch = useDispatch();
 
@@ -78,7 +79,7 @@ const PaymentMethodSelect = props => {
   return (
     <View style={{flex: 1}}>
       <TitleAndArrow navigation={props.navigation} title={'Payment Method'} />
-      <MainCard size={80} backgroundColor={gradientColors[0]}>
+      <MainCard size={80} backgroundColor={SelectedGradientColor[0]}>
         <Text
           style={{
             fontSize: 25,

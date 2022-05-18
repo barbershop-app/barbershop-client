@@ -1,15 +1,16 @@
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Dialog from 'react-native-dialog';
-import {gradientColors} from '../../../Utils/Colors';
 import {windowWidth} from '../../../Utils/Themes';
 import MainButton from '../../../Components/MainButton';
+import { useSelector } from 'react-redux';
 
 export default function FormAlertCreateItem(props) {
   console.log(props.item.price);
   const [isAvailable, setIsAvailable] = useState(true);
   const [onSale, setOnSale] = useState(false);
   const [salePrecent, setSalePrecent] = useState(0);
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
 
   return (
     <Dialog.Container
@@ -35,7 +36,7 @@ export default function FormAlertCreateItem(props) {
             style={{
               fontWeight: 'bold',
               fontSize: 20,
-              color: gradientColors[0],
+              color: SelectedGradientColor[0],
             }}>
             X
           </Text>
@@ -134,7 +135,7 @@ export default function FormAlertCreateItem(props) {
           }}>
           <MainButton
             disabled={isAvailable}
-            color={isAvailable ? gradientColors[0] : 'gray'}
+            color={isAvailable ? SelectedGradientColor[0] : 'gray'}
             width={35}
             title={'Available'}
             titleColor={isAvailable ? 'white' : 'black'}
@@ -147,7 +148,7 @@ export default function FormAlertCreateItem(props) {
             bold
             titleColor={!isAvailable ? 'white' : 'black'}
             title={'Not Available'}
-            color={!isAvailable ? gradientColors[0] : 'gray'}
+            color={!isAvailable ? SelectedGradientColor[0] : 'gray'}
             onPressFunction={() => setIsAvailable(!isAvailable)}
           />
         </View>
@@ -163,7 +164,7 @@ export default function FormAlertCreateItem(props) {
           }}>
           <MainButton
             disabled={onSale}
-            color={onSale ? gradientColors[0] : 'gray'}
+            color={onSale ? SelectedGradientColor[0] : 'gray'}
             width={35}
             title={'On Sale'}
             titleColor={onSale ? 'white' : 'black'}
@@ -176,7 +177,7 @@ export default function FormAlertCreateItem(props) {
             bold
             titleColor={!onSale ? 'white' : 'black'}
             title={'Nope'}
-            color={!onSale ? gradientColors[0] : 'gray'}
+            color={!onSale ? SelectedGradientColor[0] : 'gray'}
             onPressFunction={() => setOnSale(!onSale)}
           />
         </View>
@@ -212,7 +213,7 @@ export default function FormAlertCreateItem(props) {
             borderWidth: 1,
             marginTop: 25,
             borderRadius: 15,
-            backgroundColor: gradientColors[1],
+            backgroundColor: SelectedGradientColor[1],
           }}
           onPress={() => {
             console.log(salePrecent);

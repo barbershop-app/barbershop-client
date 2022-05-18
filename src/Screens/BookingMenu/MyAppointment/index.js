@@ -9,12 +9,14 @@ import {BOOK_APPOINTMENT, HOME} from '../../../Utils/RouteNames';
 import BookedDetailsSucess from './BookedDetailsSucess';
 import MainButton from '../../../Components/MainButton';
 import {useIsFocused} from '@react-navigation/native';
-import {gradientColors} from '../../../Utils/Colors';
+
 import LinearGradient from 'react-native-linear-gradient';
 import LogoCenter from '../BookAppointment/LogoCenter';
 import LoadingDots from '../../../Components/LoadingDots';
+import { useSelector } from 'react-redux';
 
 const MyAppointment = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const isFocused = useIsFocused();
   const [booked, setBooked] = useState(false);
   const [data, setData] = useState({});
@@ -69,7 +71,7 @@ const MyAppointment = props => {
     }
   };
   return (
-    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+    <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
       <TitleAndArrow
         white
         navigation={props.navigation}

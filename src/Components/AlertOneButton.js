@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import {gradientColors} from '../Utils/Colors';
+import { useSelector } from 'react-redux';
 
 const AlertOneButton = ({
   showButtonOther,
@@ -9,6 +9,8 @@ const AlertOneButton = ({
   alertData,
   setAlertData,
 }) => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
+
   //! title , message , showAlert
   return (
     <AwesomeAlert
@@ -29,7 +31,7 @@ const AlertOneButton = ({
         fontSize: 15,
         textAlign: 'center',
       }}
-      cancelButtonColor={gradientColors[1]}
+      cancelButtonColor={SelectedGradientColor[1]}
       cancelButtonTextStyle={{
         color: 'white',
         fontWeight: 'bold',

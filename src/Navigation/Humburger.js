@@ -20,10 +20,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setLoginIn} from '../Redux/Slices/appSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {resetData} from '../Redux/Slices/dialSlice';
-import {gradientColors} from '../Utils/Colors';
 import {Text} from 'react-native-animatable';
 
 export function Humburger(props) {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
+  
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const DrawerItemWithNavigationTop = ({onPress, icon, navigate, label}) => (
@@ -41,7 +42,7 @@ export function Humburger(props) {
   );
 
   return (
-    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+    <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
       <DrawerContentScrollView {...props}>
         <Image
           style={{
@@ -75,6 +76,7 @@ export function Humburger(props) {
           navigate={HOME}
           icon={'home'}
         />
+       
         <DrawerItemWithNavigationTop
           label="Book Appointment"
           navigate={BOOK_APPOINTMENT}
@@ -109,8 +111,20 @@ export function Humburger(props) {
             icon={'account-settings'}
           />
         )}
+  
+          <DrawerItemWithNavigationTop
+            label="Theme"
+            navigate={null}
+            icon={'wall'}
+            onPress={() => {
+              dispatch(setLoginIn({isLoggedIn: false}));
+              AsyncStorage.removeItem('selectedGradientColor');
+            }}
+          />
+     
       </DrawerContentScrollView>
       <View style={styles.bottomDrawerSection}>
+     
         <DrawerItemWithNavigationTop
           label="Sign Out"
           navigate={null}

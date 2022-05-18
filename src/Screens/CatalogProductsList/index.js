@@ -5,12 +5,13 @@ import TitleAndArrow from '../../Components/TitleAndArrow';
 import HttpRequest from '../../config/API/axios';
 import {useIsFocused} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
 import {windowHeight, windowWidth} from '../../Utils/Themes';
 import LoadingDots from '../../Components/LoadingDots';
 import Line90Width from '../BookingMenu/BookAppointment/Line90Width';
+import { useSelector } from 'react-redux';
 
 const CatalogProductsList = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const isFocused = useIsFocused();
   const params = props.route.params;
   const [products, setProducts] = useState([]);
@@ -48,7 +49,7 @@ const CatalogProductsList = props => {
   );
   // console.log(categoryId);
   return (
-    <LinearGradient style={{flex: 1}} colors={gradientColors}>
+    <LinearGradient style={{flex: 1}} colors={SelectedGradientColor}>
       <TitleAndArrow
         white
         navigation={props.navigation}

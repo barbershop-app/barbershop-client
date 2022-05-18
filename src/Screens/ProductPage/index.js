@@ -7,15 +7,15 @@ import SilmilarThisList from './SilmilarThisList';
 import NameAndPrice from './NameAndPrice';
 import MainButton from '../../Components/MainButton';
 import {AddToCartAsync} from '../../Utils/StaticFunctions';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AddToCart} from '../../Redux/Slices/cartSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
+
 
 const ProductPage = props => {
   const params = props.route.params;
-
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const dispatch = useDispatch();
   const [found, setFound] = useState(false);
   useEffect(() => {
@@ -37,17 +37,18 @@ const ProductPage = props => {
       style={{flex: 1}}
       colors={[
         'white',
-        gradientColors[1],
-        gradientColors[0],
-        gradientColors[1],
+        SelectedGradientColor[1],
+        SelectedGradientColor[0],
+        SelectedGradientColor[1],
       ]}>
       <NavProductPage navigation={props.navigation} />
       <View>
         <Image
           style={[
             {
-              width: windowWidth * 0.7,
-              height: windowWidth * 0.7,
+              resizeMode:'contain',
+              width: windowWidth * 0.6,
+              height: windowWidth * 0.6,
               alignSelf: 'center',
               borderRadius: 25,
             },
@@ -96,7 +97,7 @@ Lorem Ipsum is simply dummy text of the
               found === undefined
                 ? 'black'
                 : found
-                ? gradientColors[0]
+                ? SelectedGradientColor[0]
                 : 'black'
             }
             onPressFunction={async () => {

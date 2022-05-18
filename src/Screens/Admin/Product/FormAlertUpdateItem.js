@@ -1,12 +1,13 @@
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Dialog from 'react-native-dialog';
-import {gradientColors} from '../../../Utils/Colors';
 import {windowWidth} from '../../../Utils/Themes';
 import MainButton from '../../../Components/MainButton';
 import {useIsFocused} from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 export default function FormAlertUpdateItem(props) {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const [onSale, setOnSale] = useState(false);
   const isFocused = useIsFocused();
   console.log(props.item.price);
@@ -40,7 +41,7 @@ export default function FormAlertUpdateItem(props) {
             style={{
               fontWeight: 'bold',
               fontSize: 20,
-              color: gradientColors[0],
+              color: SelectedGradientColor[0],
             }}>
             X
           </Text>
@@ -118,7 +119,7 @@ export default function FormAlertUpdateItem(props) {
           }}>
           <MainButton
             disabled={onSale}
-            color={onSale ? gradientColors[0] : 'gray'}
+            color={onSale ? SelectedGradientColor[0] : 'gray'}
             width={35}
             title={'On Sale'}
             titleColor={onSale ? 'white' : 'black'}
@@ -134,7 +135,7 @@ export default function FormAlertUpdateItem(props) {
             bold
             titleColor={!onSale ? 'white' : 'black'}
             title={'Nope'}
-            color={!onSale ? gradientColors[0] : 'gray'}
+            color={!onSale ? SelectedGradientColor[0] : 'gray'}
             onPressFunction={() => {
               props.setNewItem({...props.newItem, onSale: !onSale});
               setOnSale(!onSale);
@@ -199,7 +200,7 @@ export default function FormAlertUpdateItem(props) {
             width: '80%',
             borderWidth: 1,
             borderRadius: 15,
-            backgroundColor: gradientColors[0],
+            backgroundColor: SelectedGradientColor[0],
           }}
           onPress={() => props.OnClickUpdate()}
         />

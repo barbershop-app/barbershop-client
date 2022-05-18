@@ -5,9 +5,10 @@ import {windowHeight} from '../../Utils/Themes';
 import {HOME} from '../../Utils/RouteNames';
 import {clearCartList} from '../../Utils/StaticFunctions';
 import LinearGradient from 'react-native-linear-gradient';
-import {gradientColors} from '../../Utils/Colors';
+import { useSelector } from 'react-redux';
 
 const OrderPlaced = props => {
+  const SelectedGradientColor = useSelector(state => state.app.colorNumber);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -21,7 +22,7 @@ const OrderPlaced = props => {
   }, []);
   return (
     <LinearGradient
-      colors={gradientColors}
+      colors={SelectedGradientColor}
       style={{
         flex: 1,
         alignItems: 'center',

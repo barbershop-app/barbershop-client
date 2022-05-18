@@ -11,7 +11,7 @@ export default function OpenTime() {
     'Sat 8:30 AM',
   ];
   return (
-    <View style={{width: '90%', alignSelf: 'center'}}>
+    <View style={{width: '90%', alignSelf: 'center',marginTop:50}}>
       <Text
         style={{
           fontSize: 25,

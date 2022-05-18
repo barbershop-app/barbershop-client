@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import React from 'react';
 import {windowHeight, windowWidth} from '../../Utils/Themes';
 import {PRODUCT_PAGE} from '../../Utils/RouteNames';
@@ -19,17 +19,17 @@ const SpecialOfferCardProduct = props => {
         height: windowHeight * 0.5,
         backgroundColor: 'rgba(220, 220, 220,0.1)',
       }}>
-      <View
+      {/* <View
         style={{
           width: '100%',
-          backgroundColor: props.index % 2 == 0 ? 'white' : 'black',
+          backgroundColor: props.index % 2 == 0 ? '#C000' : '#C000',
           height: '100%',
           top: 120,
           position: 'absolute',
           borderRadius: 15,
         }}
-      />
-      <View
+      /> */}
+      <ScrollView
         style={{
           margin: 5,
           width: '100%',
@@ -37,23 +37,25 @@ const SpecialOfferCardProduct = props => {
           borderRadius: 15,
         }}>
         <Image
+        
           alt={props.index + '_IMG'}
           style={{
-            width: windowWidth * 0.33,
+            width: windowWidth * 0.5,
             height: windowHeight * 0.3,
             alignSelf: 'center',
+            resizeMode:'contain'
           }}
           source={{
             uri: props.item.imageSource,
           }}
         />
-      </View>
+      </ScrollView>
       <View style={{alignSelf: 'center'}}>
         <Text
           style={{
             fontSize: 20,
             fontWeight: 'bold',
-            color: props.index % 2 == 0 ? 'black' : 'white',
+            color: props.index % 2 == 0 ? 'black' : 'black',
             alignSelf: 'center',
           }}>
           {props.item.name}
@@ -62,9 +64,10 @@ const SpecialOfferCardProduct = props => {
           style={{
             fontSize: 15,
             fontWeight: 'bold',
-            color: props.index % 2 == 0 ? 'black' : 'white',
+            textAlign:'center',
+            color: props.index % 2 == 0 ? 'black' : 'black',
             maxWidth: '90%',
-            textAlign: 'center',
+            alignSelf:'center',
             marginTop: 10,
           }}>
           {props.item.description}
@@ -79,7 +82,7 @@ const SpecialOfferCardProduct = props => {
             style={{
               fontSize: 25,
               fontWeight: 'bold',
-              color: props.index % 2 == 0 ? 'black' : 'white',
+              color: props.index % 2 == 0 ? 'white' : 'white',
               textAlign: 'right',
               margin: 10,
               width: '90%',
